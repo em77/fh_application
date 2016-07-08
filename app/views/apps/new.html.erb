@@ -1,0 +1,29 @@
+<% provide(:title, "New Application") %>
+
+<%= bootstrap_form_tag(layout: :horizontal, url: {action: "create"}) do |f| %>
+
+  <%= f.text_field :first_name, label: "First Name", required: true %>
+
+  <%= f.text_field :last_name, label: "Last Name", required: true %>
+
+  <%= f.text_field :address, label: "Address", required: true %>
+
+  <%= f.text_field :address_2, label: "Address 2", required: true %>
+
+  <%= f.text_field :city, label: "City", required: true %>
+
+  <%= f.text_field :state, label: "State", required: true %>
+
+  <%= f.text_field :zip_code, label: "Zip code", required: true %>
+
+  <%= f.number_field :age, label: "Age", required: true %>
+
+  <%= f.text_field :comments, label: "Comments", required: true %>
+
+  <br>
+
+  <%= f.form_group do %>
+    <%= f.submit "Submit", class: "btn btn-default btn-primary",
+      id: "submit_app" %>
+  <% end %>
+<% end %>

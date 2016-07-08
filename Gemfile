@@ -17,7 +17,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 
+# For filling pdf forms using pdftk
+gem 'pdf-forms'
+
 gem 'bootstrap-sass'
+gem 'bootstrap_form', '~> 2.4'
 gem 'bootstrap_form_extensions'
 
 # gem 'therubyracer', platforms: :ruby
