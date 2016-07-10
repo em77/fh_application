@@ -1,6 +1,7 @@
 <% provide(:title, "New Application") %>
 
-<%= bootstrap_form_tag(layout: :horizontal, url: {action: "create"}) do |f| %>
+<%= bootstrap_form_tag(layout: :horizontal, url: {action: "create"},
+  multipart: true) do |f| %>
 
   <%= f.text_field :first_name, label: "First Name", required: true %>
 
@@ -19,6 +20,11 @@
   <%= f.number_field :age, label: "Age", required: true %>
 
   <%= f.text_field :comments, label: "Comments", required: true %>
+
+  <br>
+
+  <%= f.file_field :psych_eval, label: "Attach Psychiatric Evaluation" %>
+  <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
 
   <br>
 

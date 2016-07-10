@@ -24,6 +24,9 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form', '~> 2.4'
 gem 'bootstrap_form_extensions'
 
+# For file attachments
+gem 'paperclip'
+
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library

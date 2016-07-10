@@ -1,12 +1,12 @@
-class App
+class App < SimplePaperclip
   include ActiveModel::Model
 
   attr_accessor :template_path
   attr_reader :attributes
 
-  def export(output_file_path=nil)
+  def export(pdf_form_file_name, output_file_path=nil)
     output_path = output_file_path || ("#{Rails.root}/tmp/" +
-      "application-#{SecureRandom.hex(10)}.pdf")
+      "#{pdf_form_file_name}")
     pdftk.fill_form(template_path, output_path, attributes)
     output_path
   end
