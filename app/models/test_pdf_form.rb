@@ -6,8 +6,8 @@ class TestPdfForm < App
     :psych_eval_updated_at, :id
 
   has_attached_file :psych_eval,
-    path: ":rails_root/tmp/:style/:save_name.:extension",
-    url: "/tmp/:style/:save_name.:extension",
+    path: ":rails_root/tmp/:style/:attachment_save_basename.:extension",
+    url: "/tmp/:style/:attachment_save_basename.:extension",
     default_url: "/tmp/:style/missing.:extension",
     storage: :filesystem
   do_not_validate_attachment_file_type :psych_eval
@@ -17,8 +17,8 @@ class TestPdfForm < App
   #    "application/msword",
   #    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
 
-  Paperclip.interpolates :save_name do |attachment, style|
-    attachment.instance.save_name
+  Paperclip.interpolates :attachment_save_basename do |attachment, style|
+    attachment.instance.attachment_save_basename
   end
 
   def fill_out
@@ -37,8 +37,10 @@ class TestPdfForm < App
     end)
   end
 
-  def save_name
-    self.psych_eval_file_name + "-#{unique_hex}"
+  def attachment_save_basename
+    file_path = "#{Rails.root}/tmp/original/#{self.psych_eval_file_name}"
+    base_save_name = File.basename(file_path, File.extname(file_path))
+    base_save_name + "-#{unique_hex}"
   end
 
   def unique_hex

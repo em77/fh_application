@@ -9,9 +9,16 @@ class AppsController < ApplicationController
     @app = TestPdfForm.new(app_params)
     app.fill_out
     # if app.valid?
-      send_file(file_name = app.export("application-#{app.unique_hex}.pdf"),
+      send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
         type: "application/pdf")
       app.save
+      AppMailer.new_app_email(
+        "#{app.first_name} #{app.last_name}",
+        app_file_path,
+        (
+          app.attachment_save_basename + File.extname(app.psych_eval_file_name)
+        )
+        ).deliver
     # end
     redirect_to new_app_path
   end
