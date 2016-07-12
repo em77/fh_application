@@ -29,6 +29,6 @@ class AppsController < ApplicationController
       params.permit(:first_name, :last_name, :address, :address_2, :city,
         :state, :zip_code, :age, :comments, :date, :psych_eval,
         :psych_eval_file_size, :psych_eval_content_type, :psych_eval_file_name,
-        :psych_eval_updated_at, :id)
+        :psych_eval_updated_at)
     end
 end

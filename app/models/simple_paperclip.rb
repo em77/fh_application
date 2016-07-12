@@ -1,6 +1,5 @@
 class SimplePaperclip
   extend ActiveModel::Callbacks
-  # include ActiveModel::Validations
   include ActiveModel::Model
   include Paperclip::Glue
 
@@ -10,9 +9,7 @@ class SimplePaperclip
   define_model_callbacks :commit, only: [:before, :after]
 
   def save
-    run_callbacks :save do
-      self.id = 1000 + Random.rand(9000)
-    end
+    run_callbacks :save
     return true
   end
 
@@ -24,20 +21,11 @@ class SimplePaperclip
     return Time.now.to_s(:autosave_time)
   end
 
-  # # ActiveModel requirements  
-  # def to_model
-  #   self
-  # end
- 
-  # def valid?()      true end
-  # def new_record?() true end
-  # def destroyed?()  true end
-
   def errors
     obj = Object.new
     def obj.[](key)         [] end
     def obj.full_messages() [] end
     def obj.any?()       false end
     obj
-  end  
+  end
 end

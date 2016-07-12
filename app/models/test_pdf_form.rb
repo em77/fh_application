@@ -1,16 +1,29 @@
 class TestPdfForm < App
 
   attr_accessor :first_name, :last_name, :address, :address_2, :city, :state,
-    :zip_code, :age, :comments, :date, :psych_eval_file_name,
-    :psych_eval_content_type, :psych_eval, :psych_eval_file_size,
-    :psych_eval_updated_at, :id
+    :zip_code, :age, :comments, :date, :psych_eval, :psych_eval_file_name
+    # :psych_eval_file_size, :psych_eval_updated_at, :psych_eval_content_type
 
   has_attached_file :psych_eval,
     path: ":rails_root/tmp/:style/:attachment_save_basename.:extension",
     url: "/tmp/:style/:attachment_save_basename.:extension",
     default_url: "/tmp/:style/missing.:extension",
     storage: :filesystem
+
   do_not_validate_attachment_file_type :psych_eval
+  # validates_attachment_file_name :psych_eval, matches:
+  #   [/pdf\Z/, /doc\Z/, /docx\Z/]
+
+  # validates :psych_eval, file_content_type:
+  #   {
+  #     allow:
+  #       [
+  #         "application/pdf",
+  #         "application/msword",
+  #         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  #       ], mode: :strict
+  #   }
+
   # validates_attachment_content_type :psych_eval, content_type:
   #   # pdf, doc, and docx
   #   ["application/pdf",
