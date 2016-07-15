@@ -43,6 +43,12 @@ class TestPdfForm < App
   #   attachment.instance.attachment_save_basename
   # end
 
+  def attachment_content_whitelist
+    ["application/pdf",
+     "application/msword",
+     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+  end
+
   def fill_out
     fill :date, Date.today.to_s
     simple_fields = [:first_name, :last_name, :address, :address_2, :city,

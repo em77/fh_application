@@ -22,16 +22,15 @@ class PsychEvalUploader < CarrierWave::Uploader::Base
   #   # "tmp"
   # end
 
-  def content_type_whitelist
-    ["application/pdf",
-     "application/msword",
-     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
-  end
+  # def content_type_whitelist
+  #   ["application/pdf",
+  #    "application/msword",
+  #    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+  # end
 
   def filename
     if original_filename.present?
       model.attachment_save_basename + ".#{file.extension}"
-      # original_filename + "-#{model.unique_hex}" + ".#{file.extension}"
     end
   end
 

@@ -1,4 +1,6 @@
 class AppsController < ApplicationController
+  before_action :set_referer, only: [:new]
+
   attr_accessor :app
   helper_method :app
 
@@ -9,6 +11,9 @@ class AppsController < ApplicationController
     @app = TestPdfForm.new(app_params)
     app.fill_out
     # if app.valid?
+    if content_type_valid?(app.psych_eval.path,
+                           app.attachment_content_whitelist
+                          )
       send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
         type: "application/pdf")
       app.save
@@ -20,8 +25,17 @@ class AppsController < ApplicationController
           # app.attachment_save_basename + File.extname(app.psych_eval_file_name)
         # )
         ).deliver
-    # end
-    redirect_to new_app_path
+      redirect_to new_app_path
+    else
+      flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
+      redirect_to(session.delete(:return_to))
+    end
+  end
+
+  def content_type_valid?(file_path, whitelist)
+    line = Cocaine::CommandLine.new("file", "-b --mime-type #{file_path}")
+    return true if whitelist.include?(line.run.chomp)
+    false
   end
 
   private
