@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: b31f7ce006bade550be0ad946d0b993b799358e3
+  specs:
+    carrierwave (0.11.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,6 +89,9 @@ GEM
     faker (1.6.5)
       i18n (~> 0.5)
     ffi (1.9.10)
+    file_validators (2.1.0)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -101,7 +113,6 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -109,12 +120,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    paperclip (5.0.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
     pdf-forms (1.0.0)
       cliver (~> 0.3.2)
       safe_shell (>= 1.0.3, < 2.0)
@@ -222,12 +227,14 @@ DEPENDENCIES
   bootstrap_form_extensions
   byebug
   capybara
+  carrierwave!
+  cocaine
   coffee-rails (~> 4.2)
   faker
+  file_validators
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  paperclip
   pdf-forms
   puma (~> 3.0)
   rack-timeout

@@ -1,4 +1,6 @@
-class App < SimplePaperclip
+class App #< SimplePaperclip
+
+  include ActiveModel::Model
 
   attr_accessor :template_path
   attr_reader :attributes

@@ -25,7 +25,10 @@ gem 'bootstrap_form', '~> 2.4'
 gem 'bootstrap_form_extensions'
 
 # For file attachments
-gem 'paperclip'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'file_validators'
+gem 'cocaine'
+# gem 'paperclip'
 
 # gem 'therubyracer', platforms: :ruby
 

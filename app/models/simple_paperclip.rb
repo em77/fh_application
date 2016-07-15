@@ -21,11 +21,11 @@ class SimplePaperclip
     return Time.now.to_s(:autosave_time)
   end
 
-  def errors
-    obj = Object.new
-    def obj.[](key)         [] end
-    def obj.full_messages() [] end
-    def obj.any?()       false end
-    obj
-  end
+  # def errors
+  #   obj = Object.new
+  #   def obj.[](key)         [] end
+  #   def obj.full_messages() [] end
+  #   def obj.any?()       false end
+  #   obj
+  # end
 end

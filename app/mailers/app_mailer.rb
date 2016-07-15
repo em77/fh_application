@@ -11,7 +11,7 @@ class AppMailer < ApplicationMailer
 
     attachments[File.basename(app_file_path)] = File.read(app_file_path)
     attachments[attachment_save_name] = File.read(
-      Rails.root.join("tmp/original/#{attachment_save_name}"))
+      Rails.root.join("tmp/uploads/#{attachment_save_name}"))
 
     mail to: ENV["NEW_APP_EMAIL_TO"],
          subject: "New member application from #{app_name}"
