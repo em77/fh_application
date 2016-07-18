@@ -10,9 +10,9 @@ class AppsController < ApplicationController
   def create
     @app = TestPdfForm.new(app_params)
     app.fill_out
-    # if app.valid?
-    if content_type_valid?(app.psych_eval.path,
-                           app.attachment_content_whitelist
+    if content_type_valid?(
+      app.psych_eval.path,
+      app.attachment_content_whitelist
                           )
       send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
         type: "application/pdf")
@@ -20,15 +20,12 @@ class AppsController < ApplicationController
       AppMailer.new_app_email(
         "#{app.first_name} #{app.last_name}",
         app_file_path,
-        # (
-          app.psych_eval.file.filename
-          # app.attachment_save_basename + File.extname(app.psych_eval_file_name)
-        # )
-        ).deliver
+        app.psych_eval.file.filename
+                             ).deliver
       redirect_to new_app_path
     else
       flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
-      redirect_to(session.delete(:return_to))
+      render :new
     end
   end
 
