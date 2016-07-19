@@ -3,7 +3,7 @@ class TestPdfForm < App
   extend CarrierWave::Mount
 
   attr_accessor :first_name, :last_name, :address, :address_2, :city, :state,
-    :zip_code, :age, :comments, :date, :psych_eval, :id
+    :zip_code, :age, :comments, :date, :psych_eval, :test_checkbox, :id
 
   mount_uploader :psych_eval, PsychEvalUploader
 
@@ -52,7 +52,7 @@ class TestPdfForm < App
   def fill_out
     fill :date, Date.today.to_s
     simple_fields = [:first_name, :last_name, :address, :address_2, :city,
-      :state, :zip_code, :comments]
+      :state, :zip_code, :comments, :test_checkbox]
     simple_fields.each do |field|
       fill(field, self.send(field))
     end

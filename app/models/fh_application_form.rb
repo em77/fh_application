@@ -5,7 +5,7 @@ class FhApplicationForm < App
     :apt, :city, :state, :zip_code, :phone_number, :county,
     :residence_time_length, :email_address, :recommend_name, :recommend_agency,
     :recommend_phone_number, :recommend_agency_type, :recommend_known_length,
-    :why_fh_good_place, :tour_date, :live_along_or_with_others, :who_live_with,
+    :why_fh_good_place, :tour_date, :live_alone_or_with_others, :who_live_with,
     :have_homeless_history, :homeless_explanation, :reside_with_minors,
     :acs_involvement, :ssi, :family_income, :veteran_benefits, :ssdi,
     :snap, :public_assistance, :wages, :retirement_benefits, :other_income,
@@ -101,7 +101,7 @@ class FhApplicationForm < App
       :phone_number, :county, :residence_time_length, :email_address,
       :recommend_name, :recommend_agency, :recommend_phone_number,
       :recommend_agency_type, :recommend_known_length, :why_fh_good_place,
-      :tour_date, :live_along_or_with_others, :who_live_with,
+      :tour_date, :live_alone_or_with_others, :who_live_with,
       :have_homeless_history, :homeless_explanation, :reside_with_minors,
       :acs_involvement, :ssi, :family_income, :veteran_benefits, :ssdi, :snap,
       :public_assistance, :wages, :retirement_benefits, :other_income,
@@ -173,6 +173,7 @@ class FhApplicationForm < App
          (self.send(:first_name) + " " + self.send(:last_name))
         )
     fill(:drug_questions_date, Date.today.to_s)
+    fill(:member_signature_date, Date.today.to_s)
   end
 
   def attachment_save_basename

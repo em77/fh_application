@@ -1,0 +1,46 @@
+<% provide(:title, "New Application") %>
+
+<%= bootstrap_form_tag(layout: :horizontal, url: {action: "create"},
+  multipart: true) do |f| %>
+
+  <%= f.text_field :first_name, label: "First Name", value: params[:first_name],
+    required: true %>
+
+  <%= f.text_field :last_name, label: "Last Name", value: params[:last_name],
+    required: true %>
+
+  <%= f.text_field :address, label: "Address", value: params[:address],
+    required: true %>
+
+  <%= f.text_field :address_2, label: "Address 2", value: params[:address_2],
+    required: true %>
+
+  <%= f.text_field :city, label: "City", value: params[:city], required: true %>
+
+  <%= f.text_field :state, label: "State", value: params[:state],
+    required: true %>
+
+  <%= f.text_field :zip_code, label: "Zip code", value: params[:zip_code],
+    required: true %>
+
+  <%= f.number_field :age, label: "Age", value: params[:age],
+    required: true %>
+
+  <%= f.text_field :comments, label: "Comments", value: params[:comments],
+    required: true %>
+
+  <%= f.check_box :test_checkbox, label: "Test checkbox",
+    checked: is_checked?(params[:test_checkbox]) %>
+
+  <br>
+
+  <%= f.file_field :psych_eval, label: "Attach Psychiatric Evaluation" %>
+  <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
+
+  <br>
+
+  <%= f.form_group do %>
+    <%= f.submit "Submit", class: "btn btn-default btn-primary",
+      id: "submit_app" %>
+  <% end %>
+<% end %>

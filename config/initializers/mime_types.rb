@@ -3,8 +3,6 @@
 # Add new mime types for use in respond_to blocks:
 # Mime::Type.register "text/richtext", :rtf
 
-Mime::Type.register "image/jpeg", :jpg
-Mime::Type.register "text/plain", :txt
 Mime::Type.register "application/pdf", :pdf
 Mime::Type.register "application/msword", :doc
 Mime::Type.register "application/vnd.openxmlformats-officedocument.wordprocessingml.document", :docx
