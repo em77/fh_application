@@ -1,812 +1,674 @@
 <% provide(:title, "New Application") %>
 
-<%= bootstrap_form_tag(layout: :horizontal, url: {action: "create"},
-  multipart: true) do |f| %>
+<%= bootstrap_form_tag(label_col: "col-lg-1 col-xs-1",
+  url: {action: "create"}, multipart: true) do |f| %>
 
-  Prospective Member
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Attachments</h4>
+    </div>
 
-  <%= f.text_field :first_name, label: "First Name", value: params[:first_name],
-    required: true %>
+    <div class="panel-content">
 
-  <%= f.text_field :mi, label: "Middle Initial", value: params[:mi],
-    required: true %>
+      <%= f.file_field :psych_eval, label: ("Please attach a current" +
+        " psychiatric assessment using the DSM V") %>
+      <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
+    </div>
+  </div>
 
-  <%= f.text_field :last_name, label: "Last Name", value: params[:last_name],
-    required: true %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Prospective Member</h4>
+    </div>
 
-  <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
-    required: true %>
+    <div class="panel-content">
 
-  <%= f.number_field :ssn_1, label: "SSN", value: params[:ssn_1], maxlength: 3,
-    layout: :inline, required: true %>-
+      <%= f.text_field :first_name, label: "First Name", value: params[:first_name],
+        required: true %>
 
-  <%= f.number_field :ssn_2, value: params[:ssn_2], maxlength: 2,
-    layout: :inline, required: true %>-
+      <%= f.text_field :mi, label: "Middle Initial", value: params[:mi],
+        required: true %>
 
-  <%= f.number_field :ssn_3, value: params[:ssn_3], maxlength: 4,
-    layout: :inline, required: true %>
+      <%= f.text_field :last_name, label: "Last Name", value: params[:last_name],
+        required: true %>
 
-  <%= f.text_field :gender, label: "Gender", value: params[:gender],
-    required: true %>
+      <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
+        required: true %>
 
-  <%= f.text_field :place_of_birth, label: "Place of Birth",
-    value: params[:place_of_birth], required: true %>
+      <%= f.number_field :ssn, {label: "SSN", value: params[:ssn],
+          required: true, class: "ssn-field"} %>
 
-  Address
+      <br>
 
-  <%= f.text_field :street_address, label: "Street address",
-    value: params[:street_address], required: true %>
+      <%= f.text_field :gender, label: "Gender", value: params[:gender],
+        required: true %>
 
-  <%= f.text_field :apt, label: "Apartment", value: params[:apt] %>
+      <%= f.text_field :place_of_birth, label: "Place of Birth",
+        value: params[:place_of_birth], required: true %>
+    </div>
+  </div>
 
-  <%= f.text_field :city, label: "City", value: params[:city], required: true %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Address</h4>
+    </div>
 
-  <%= f.text_field :state, label: "State", value: params[:state],
-    required: true %>
+    <div class="panel-content">
+
+      <%= f.text_field :street_address, label: "Street address",
+        value: params[:street_address], required: true %>
+
+      <%= f.text_field :apt, label: "Apartment", value: params[:apt] %>
 
-  <%= f.number_field :zip_code, label: "Zip code", value: params[:zip_code],
-    required: true %>
+      <%= f.text_field :city, label: "City", value: params[:city], required: true %>
+
+      <%= f.text_field :state, label: "State", value: params[:state],
+        required: true %>
 
-  <%= f.phone_field :phone_number, label: "Phone number",
-    value: params[:phone_number], required: true %>
+      <%= f.number_field :zip_code, label: "Zip code", value: params[:zip_code],
+        required: true %>
 
-  <%= f.text_field :county, label: "County", value: params[:county],
-    required: true %>
+      <%= f.text_field :phone_number, label: "Phone number",
+        value: params[:phone_number], required: true %>
 
-  <%= f.text_field :residence_time_length,
-    label: "How long have you resided Here?",
-    value: params[:residence_time_length], required: true %>
+      <%= f.text_field :county, label: "County", value: params[:county],
+        required: true %>
 
-  <%= f.email_field :email_address, label: "E-mail address",
-    value: params[:email_address], required: true %>
+      <%= f.text_field :residence_time_length,
+        label: "How long have you resided Here?",
+        value: params[:residence_time_length], required: true %>
+
+      <%= f.email_field :email_address, label: "E-mail address",
+        value: params[:email_address], required: true %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Who is recommending you?</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.text_field :recommend_name, label: "Name",
+        value: params[:recommend_name], required: true %>
 
-  Who is recommending you?
+      <%= f.text_field :recommend_agency, label: "Agency",
+        value: params[:recommend_agency], required: true %>
 
-  <%= f.text_field :recommend_name, label: "Name",
-    value: params[:recommend_name], required: true %>
+      <%= f.text_field :recommend_phone_number, label: "Phone number",
+        value: params[:recommend_phone_number], required: true %>
 
-  <%= f.text_field :recommend_agency, label: "Agency",
-    value: params[:recommend_agency], required: true %>
+      <%= f.text_field :recommend_agency_type, label: "Type of agency",
+        value: params[:recommend_agency], required: true %>
+
+      <%= f.text_field :recommend_known_length,
+        label: "How long have you known this person?", value: params[:city],
+        required: true %>
+
+      <%= f.email_field :recommend_email, label: "E-mail address",
+        value: params[:recommend_email], required: true %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Why Fountain House?</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.text_area :why_fh_good_place,
+        label: "Why would Fountain House be a good place for you?",
+        value: params[:why_fh_good_place], required: true %>
+
+      <%= f.check_box :tour_fh,
+        label: "Check here if you have had a tour of Fountain House",
+        checked: is_checked?(params[:tour_fh]) %>
+
+      <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
+        required: true %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Housing</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.select :current_housing_type, [
+          "Own Home/Apartment (Non-subsidized)",
+          "Home of Family Member",
+          "Rooming/Boarding House, Hotel",
+          "SRO (Temporary)",
+          "Supported Apartment (Subsidized)",
+         "24 Hour Supervised Housing",
+          "Supportive Apartment",
+          "Supervised Housing (Part-time Supervision)",
+          "Foster Care",
+          "Psychiatric Hospital",
+          "Nursing Home",
+          "Prison/Jail",
+          "Shelter",
+          "Homeless/Undomiciled"
+        ],
+        { label: "Current housing type" },
+        selected: params[:current_housing_type] %>
+
+      <%= f.select :live_alone_or_with_others, ["Alone", "With others"],
+        label: "Do you live alone or with others?",
+        selected: params[:live_alone_or_with_others] %>
+
+      <%= f.text_field :who_live_with, label: "If living with others, with whom?",
+        value: params[:who_live_with] %>
+
+      <%= f.select :have_homeless_history, ["No", "Yes"],
+        label: "Do you have a history of homelessness?",
+        selected: params[:have_homeless_history] %>
+
+      <%= f.text_area :homeless_explanation, label: "If so, please explain",
+        value: params[:homeless_explanation] %>
+
+      <%= f.select :reside_with_minors, ["No", "Yes"],
+        label: "Do minor children reside in your home?",
+        selected: params[:reside_with_minors] %>
+
+      <%= f.select :acs_involvement, ["No", "Yes"],
+        label: ("If so, is there or has there ever been any ACS (Administration?" +
+        " for Children's Services) involvement"),
+        selected: params[:acs_involvement] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Income</h4>
+      <h5 class="panel-subtext">
+        Enter monthly amounts in any categories that apply
+      </h5>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.number_field :ssi, label: "SSI", value: params[:ssi] %>
+
+      <%= f.number_field :SSDI, label: "SSDI", value: params[:ssdi] %>
+
+      <%= f.number_field :wages, label: "Wages", value: params[:wages] %>
+
+      <%= f.number_field :family_income, label: "Family/Family Support",
+        value: params[:family_income] %>
+
+      <%= f.number_field :snap, label: "SNAP", value: params[:snap] %>
+
+      <%= f.number_field :retirement_benefits, label: "Retirement Benefits",
+        value: params[:retirement_benefits] %>
+
+      <%= f.number_field :veteran_benefits, label: "Veteran's Benefits",
+        value: params[:veteran_benefits] %>
+
+      <%= f.number_field :public_assistance, label: "Public Assistance",
+        value: params[:public_assistance] %>
+
+      <%= f.number_field :other_income, label: "Other",
+        value: params[:other_income] %>
+
+      <%= f.number_field :total_income, label: "Total Income",
+        value: params[:total_income], required: true %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Demographic Info</h4>
+    </div>
+
+    <div class="panel-content">
+      <h5 class="panel-subtext">Ethnicity (check all that apply)</h5>
+      <%= f.form_group do %>
+        <%= f.check_box :eth_aa, label: "African-American",
+          checked: is_checked?(params[:eth_aa]), inline: true %>
+
+        <%= f.check_box :eth_na, label: "American Indian/Native American",
+          checked: is_checked?(params[:eth_na]), inline: true %>
+
+        <%= f.check_box :eth_cauc, label: "Caucasian",
+          checked: is_checked?(params[:eth_cauc]), inline: true %>
+
+        <%= f.check_box :eth_asian, label: "Asian/Chinese/Japanese/Korean",
+          checked: is_checked?(params[:eth_asian]), inline: true %>
+
+        <%= f.check_box :eth_me, label: "Middle Eastern",
+          checked: is_checked?(params[:eth_me]), inline: true %>
+
+        <%= f.check_box :eth_pi, label: "Pacific Islander",
+          checked: is_checked?(params[:eth_pi]), inline: true %>
+
+        <%= f.check_box :eth_lat, label: "Latino/Hispanic/Cuban/Mexican/Puerto Rican",
+          checked: is_checked?(params[:eth_lat]), inline: true %>
+
+        <%= f.check_box :eth_car, label: "Carribean/Haitian/Jamaican",
+          checked: is_checked?(params[:eth_car]), inline: true %>
+      <% end %>
+
+      <%= f.text_field :eth_other, label: "Other", value: params[:eth_other] %>
+
+      <%= f.text_field :other_language,
+        label: "Primary language (if other than English)",
+        value: params[:other_language] %>
+
+      <%= f.select :marital_status, [
+          "Single, Never Married",
+          "Married",
+          "Permanent Partner",
+          "Separated",
+          "Divorced",
+          "Widowed"
+        ],
+        label: "Marital Status", selected: params[:marital_status] %>
+
+      <%= f.select :are_you_veteran, ["No", "Yes"], label: "Are you a veteran?",
+        selected: params[:are_you_veteran] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Education Level</h4>
+      <h5 class="panel-subtext">(check all that apply)</h5>
+    </div>
+
+    <div class="panel-content">
+      <%= render partial: "education_level", locals: {f: f} %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Employment History</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= render partial: "employment_history", locals: {f: f} %>
+    </div>
+  </div>
+</div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Medical Alerts</h4>
+      <h5 class="panel-subtext">(check all that apply)</h5>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.form_group do %>
+        <%= f.check_box :med_alert_deaf, label: "Deaf/Hearing Impairment",
+          checked: is_checked?(params[:med_alert_deaf]), inline: true %>
+
+        <%= f.check_box :med_alert_asthma, label: "Asthma",
+          checked: is_checked?(params[:med_alert_asthma]), inline: true %>
+
+        <%= f.check_box :med_alert_cpi, label: "Chronic Physical Illness",
+          checked: is_checked?(params[:med_alert_cpi]), inline: true %>
+
+        <%= f.check_box :med_alert_allerg, label: "Severe Allergic Reactions",
+          checked: is_checked?(params[:med_alert_allerg]), inline: true %>
+
+        <%= f.check_box :med_alert_npm, label: "New Psychiatric Medication",
+          checked: is_checked?(params[:med_alert_npm]), inline: true %>
+
+        <%= f.check_box :med_alert_blind, label: "Blind/Visual Impairment",
+          checked: is_checked?(params[:med_alert_blind]), inline: true %>
+
+        <%= f.check_box :med_alert_recent_surg, label: "Recent Surgery",
+          checked: is_checked?(params[:med_alert_recent_surg]), inline: true %>
+
+        <%= f.check_box :med_alert_diabetes, label: "Diabetes",
+          checked: is_checked?(params[:med_alert_diabetes]), inline: true %>
+
+        <%= f.check_box :med_alert_ep, label: "Epilepsy/Seizure Disorder",
+          checked: is_checked?(params[:med_alert_ep]), inline: true %>
+
+        <%= f.check_box :med_alert_hyper, label: "Hypertension",
+          checked: is_checked?(params[:med_alert_hyper]), inline: true %>
+      <% end %>
+
+      <%= f.text_field :med_alert_other, label: "Other",
+        value: params[:med_alert_other] %>
 
-  <%= f.phone_field :recommend_phone_number, label: "Phone number",
-    value: params[:recommend_phone_number], required: true %>
+      <%= f.text_area :med_alert_memo, label: "Alert Memo",
+        value: params[:med_alert_memo] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Psychiatric Contact</h4>
+    </div>
+
+    <div class="panel-content">
 
-  <%= f.text_field :recommend_agency_type, label: "Type of agency",
-    value: params[:recommend_agency], required: true %>
+      <%= f.text_field :psych_name, label: "Psychiatrist",
+        value: params[:psych_name] %>
+
+      <%= f.text_field :psych_agency, label: "Agency",
+        value: params[:psych_agency] %>
 
-  <%= f.text_field :recommend_known_length,
-    label: "How long have you known this person?", value: params[:city],
-    required: true %>
-
-  <%= f.email_field :recommend_email, label: "E-mail address",
-    value: params[:recommend_email], required: true %>
-
-  <%= f.text_area :why_fh_good_place,
-    label: "Why would Fountain House be a good place for you?",
-    value: params[:why_fh_good_place], required: true %>
-
-  <%= f.check_box :tour_fh,
-    label: "Check here if you have had a tour of Fountain House",
-    checked: is_checked?(params[:tour_fh]) %>
-
-  <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
-    required: true %>
-
-  <%= f.select :current_housing_type, [
-      "Own Home/Apartment (Non-subsidized)",
-      "Home of Family Member",
-      "Rooming/Boarding House, Hotel",
-      "SRO (Temporary)",
-      "Supported Apartment (Subsidized)",
-     "24 Hour Supervised Housing",
-      "Supportive Apartment",
-      "Supervised Housing (Part-time Supervision)",
-      "Foster Care",
-      "Psychiatric Hospital",
-      "Nursing Home",
-      "Prison/Jail",
-      "Shelter",
-      "Homeless/Undomiciled"
-    ],
-    { label: "Current housing type" },
-    selected: params[:current_housing_type] %>
-
-  <%= f.select :live_alone_or_with_others, ["Alone", "With others"],
-    label: "Do you live alone or with others?",
-    selected: params[:live_alone_or_with_others] %>
-
-  <%= f.text_field :who_live_with, label: "If living with others, with whom?",
-    value: params[:who_live_with] %>
-
-  <%= f.select :have_homeless_history, ["No", "Yes"],
-    label: "Do you have a history of homelessness?",
-    selected: params[:have_homeless_history] %>
-
-  <%= f.text_area :homeless_explanation, label: "If so, please explain",
-    value: params[:homeless_explanation] %>
-
-  <%= f.select :reside_with_minors, ["No", "Yes"],
-    label: "Do minor children reside in your home?",
-    selected: params[:reside_with_minors] %>
-
-  <%= f.select :acs_involvement, ["No", "Yes"],
-    label: ("If so, is there or has there ever been any ACS (Administration?" +
-    " for Children's Services) involvement"),
-    selected: params[:acs_involvement] %>
-
-  Income - Enter monthly amounts in any categories that apply
-
-  <%= f.number_field :ssi, label: "SSI", value: params[:ssi] %>
-
-  <%= f.number_field :SSDI, label: "SSDI", value: params[:ssdi] %>
-
-  <%= f.number_field :wages, label: "Wages", value: params[:wages] %>
-
-  <%= f.number_field :family_income, label: "Family/Family Support",
-    value: params[:family_income] %>
-
-  <%= f.number_field :snap, label: "SNAP", value: params[:snap] %>
-
-  <%= f.number_field :retirement_benefits, label: "Retirement Benefits",
-    value: params[:retirement_benefits] %>
-
-  <%= f.number_field :veteran_benefits, label: "Veteran's Benefits",
-    value: params[:veteran_benefits] %>
-
-  <%= f.number_field :public_assistance, label: "Public Assistance",
-    value: params[:public_assistance] %>
-
-  <%= f.number_field :other_income, label: "Other",
-    value: params[:other_income] %>
-
-  <%= f.number_field :total_income, label: "Total Income",
-    value: params[:total_income], required: true %>
-
-  Ethnicity (check all that apply)
-
-  <%= f.check_box :eth_aa, label: "African-American",
-    checked: is_checked?(params[:eth_aa]), layout: :inline %>
-
-  <%= f.check_box :eth_na, label: "American Indian/Native American",
-    checked: is_checked?(params[:eth_na]), layout: :inline %>
-
-  <%= f.check_box :eth_cauc, label: "Caucasian",
-    checked: is_checked?(params[:eth_cauc]), layout: :inline %>
-
-  <%= f.check_box :eth_asian, label: "Asian/Chinese/Japanese/Korean",
-    checked: is_checked?(params[:eth_asian]), layout: :inline %>
-
-  <%= f.check_box :eth_me, label: "Middle Eastern",
-    checked: is_checked?(params[:eth_me]), layout: :inline %>
-
-  <%= f.check_box :eth_pi, label: "Pacific Islander",
-    checked: is_checked?(params[:eth_pi]), layout: :inline %>
-
-  <%= f.check_box :eth_lat, label: "Latino/Hispanic/Cuban/Mexican/Puerto Rican",
-    checked: is_checked?(params[:eth_lat]), layout: :inline %>
-
-  <%= f.check_box :eth_car, label: "Carribean/Haitian/Jamaican",
-    checked: is_checked?(params[:eth_car]), layout: :inline %>
-
-  <%= f.text_field :eth_other, label: "Other", value: params[:eth_other] %>
-
-  <%= f.text_field :other_language,
-    label: "Primary language (if other than English)",
-    value: params[:other_language] %>
-
-  <%= f.select :marital_status, [
-      "Single, Never Married",
-      "Married",
-      "Permanent Partner",
-      "Separated",
-      "Divorced",
-      "Widowed"
-    ],
-    label: "Marital Status", selected: params[:marital_status] %>
-
-  <%= f.select :are_you_veteran, ["No", "Yes"], label: "Are you a veteran?",
-    selected: params[:are_you_veteran] %>
-
-    Education Level (check all that apply)
-
-  <%= f.check_box :less_hs, label: "Less than High School",
-    checked: is_checked?(params[:less_hs]), layout: :inline %>
-
-  <%= f.check_box :some_hs, label: "Some High School",
-    checked: is_checked?(params[:some_hs]), layout: :inline %>
-
-  <%= f.check_box :ged, label: "GED", checked: is_checked?(params[:ged]),
-    layout: :inline %>
-
-  <%= f.check_box :hs_diploma, label: "High School Diploma",
-    checked: is_checked?(params[:hs_diploma]), layout: :inline %>
-
-  <%= f.check_box :trade_school, label: "Trade School",
-    checked: is_checked?(params[:trade_school]), layout: :inline %>
-
-  <%= f.check_box :some_college, label: "Some College",
-    checked: is_checked?(params[:some_college]), layout: :inline %>
-
-  <%= f.check_box :assoc_degree, label: "Associate's Degree",
-    checked: is_checked?(params[:assoc_degree]), layout: :inline %>
-
-  <%= f.check_box :bachelors_degree, label: "Bachelor's Degree",
-    checked: is_checked?(params[:bachelors_degree]), layout: :inline %>
-
-  <%= f.check_box :some_grad_work, label: "Some Graduate Work",
-    checked: is_checked?(params[:some_grad_work]), layout: :inline %>
-
-  <%= f.check_box :masters_degree, label: "Master's Degree",
-    checked: is_checked?(params[:masters_degree]), layout: :inline %>
-
-  <%= f.check_box :adv_grad_degree, label: "Advanced Graduate Degree",
-    checked: is_checked?(params[:adv_grad_degree]), layout: :inline %>
-
-  <tr>
-    <td>School Attended</td>
-    <td>Years</td>
-    <td>Major</td>
-    <td>Did you Graduate?</td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :school_attended_1, value: params[:school_attended_1],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :school_years_1, value: params[:school_years_1],
-        layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :major_1, value: params[:major_1], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :graduate_1, value: params[:graduate_1],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :school_attended_2, value: params[:school_attended_2],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :school_years_2, value: params[:school_years_2],
-        layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :major_2, value: params[:major_2], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :graduate_2, value: params[:graduate_2],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :school_attended_3, value: params[:school_attended_3],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :school_years_3, value: params[:school_years_3],
-        layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :major_3, value: params[:major_3], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :graduate_3, value: params[:graduate_3],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  Employment History
-
-  <%= f.text_field :ever_worked, label: "Have you ever worked for pay?",
-    value: params[:ever_worked], required: true %>
-
-  <%= f.text_field :worked_last_12_months,
-    label: "Have you worked in the last 12 months?",
-    value: params[:worked_last_12_months], required: true %>
-
-  <%= f.text_field :total_years_worked,
-    label: "Estimated TOTAL YEARS you have worked for pay",
-    value: params[:total_years_worked], required: true %>
-
-  <%= f.text_field :total_number_jobs,
-    label: "Estimated TOTAL NUMBER OF JOBS you have worked for pay",
-    value: params[:total_number_jobs], required: true %>
-
-  Please list all employment. Be sure to include the most recent and longest job.
-
-  <tr>
-    <td>Start Date/End Date</td>
-    <td>Employer</td>
-    <td>Title/Type of work</td>
-    <td>Hourly wage/Hours per week</td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :work_start_date_1, value: params[:work_start_date_1],
-        class: "datepicker", layout: :inline %>
-      <%= f.text_field :work_end_date_1, value: params[:work_end_date_1],
-        class: "datepicker", layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :employer_1, value: params[:employer_1],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_title_1, value: params[:work_title_1],
-        layout: :inline %>
-      <%= f.text_field :work_type_1, value: params[:work_type_1],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_wage_1, value: params[:work_wage_1],
-        layout: :inline %> 
-      <%= f.text_field :work_hours_1, value: params[:work_hours_1],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :work_start_date_2, value: params[:work_start_date_2],
-        class: "datepicker", layout: :inline %>
-      <%= f.text_field :work_end_date_2, value: params[:work_end_date_2],
-        class: "datepicker", layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :employer_2, value: params[:employer_2],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_title_2, value: params[:work_title_2],
-        layout: :inline %>
-      <%= f.text_field :work_type_2, value: params[:work_type_2],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_wage_2, value: params[:work_wage_2],
-        layout: :inline %> 
-      <%= f.text_field :work_hours_2, value: params[:work_hours_2],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :work_start_date_3, value: params[:work_start_date_3],
-        class: "datepicker", layout: :inline %>
-      <%= f.text_field :work_end_date_3, value: params[:work_end_date_3],
-        class: "datepicker", layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :employer_3, value: params[:employer_3],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_title_3, value: params[:work_title_3],
-        layout: :inline %>
-      <%= f.text_field :work_type_3, value: params[:work_type_3],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_wage_3, value: params[:work_wage_3],
-        layout: :inline %> 
-      <%= f.text_field :work_hours_3, value: params[:work_hours_3],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :work_start_date_4, value: params[:work_start_date_4],
-        class: "datepicker", layout: :inline %>
-      <%= f.text_field :work_end_date_4, value: params[:work_end_date_4],
-        class: "datepicker", layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :employer_4, value: params[:employer_4],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_title_4, value: params[:work_title_4],
-        layout: :inline %>
-      <%= f.text_field :work_type_4, value: params[:work_type_4],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_wage_4, value: params[:work_wage_4],
-        layout: :inline %> 
-      <%= f.text_field :work_hours_4, value: params[:work_hours_4],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :work_start_date_5, value: params[:work_start_date_5],
-        class: "datepicker", layout: :inline %>
-      <%= f.text_field :work_end_date_5, value: params[:work_end_date_5],
-        class: "datepicker", layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :employer_5, value: params[:employer_5],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_title_5, value: params[:work_title_5],
-        layout: :inline %>
-      <%= f.text_field :work_type_5, value: params[:work_type_5],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :work_wage_5, value: params[:work_wage_5],
-        layout: :inline %> 
-      <%= f.text_field :work_hours_5, value: params[:work_hours_5],
-        layout: :inline %> 
-    </td>
-  </tr>
-
-  <% f.text_area :work_notes, label: "Notes", value: params[:work_notes] %>
-
-  Medical Alerts (check all that apply)
-
-  <%= f.check_box :med_alert_deaf, label: "Deaf/Hearing Impairment",
-    checked: is_checked?(params[:med_alert_deaf]), layout: :inline %>
-
-  <%= f.check_box :med_alert_asthma, label: "Asthma",
-    checked: is_checked?(params[:med_alert_asthma]), layout: :inline %>
-
-  <%= f.check_box :med_alert_cpi, label: "Chronic Physical Illness",
-    checked: is_checked?(params[:med_alert_cpi]), layout: :inline %>
-
-  <%= f.check_box :med_alert_allerg, label: "Severe Allergic Reactions",
-    checked: is_checked?(params[:med_alert_allerg]), layout: :inline %>
-
-  <%= f.check_box :med_alert_npm, label: "New Psychiatric Medication",
-    checked: is_checked?(params[:med_alert_npm]), layout: :inline %>
-
-  <%= f.check_box :med_alert_blind, label: "Blind/Visual Impairment",
-    checked: is_checked?(params[:med_alert_blind]), layout: :inline %>
-
-  <%= f.check_box :med_alert_recent_surg, label: "Recent Surgery",
-    checked: is_checked?(params[:med_alert_recent_surg]), layout: :inline %>
-
-  <%= f.check_box :med_alert_diabetes, label: "Diabetes",
-    checked: is_checked?(params[:med_alert_diabetes]), layout: :inline %>
-
-  <%= f.check_box :med_alert_ep, label: "Epilepsy/Seizure Disorder",
-    checked: is_checked?(params[:med_alert_ep]), layout: :inline %>
-
-  <%= f.check_box :med_alert_hyper, label: "Hypertension",
-    checked: is_checked?(params[:med_alert_hyper]), layout: :inline %>
-
-  <%= f.text_field :med_alert_other, label: "Other",
-    value: params[:med_alert_other] %>
-
-  <%= f.text_field :med_alert_memo, label: "Other",
-    value: params[:med_alert_memo] %>
-
-  Medical &amp; Psychiatric Contacts
-
-  <%= f.text_field :psych_name, label: "Psychiatrist",
-    value: params[:psych_name], layout: :inline %>
-
-  <%= f.text_field :psych_agency, label: "Agency",
-    value: params[:psych_agency], layout: :inline %>
-
-  <%= f.phone_field :psych_phone, label: "Phone",
-    value: params[:psych_phone], layout: :inline %>
-
-  <%= f.text_field :psych_address, label: "Address",
-    value: params[:psych_address] %>
-
-  <%= f.text_field :psych_seeing_length,
-    label: "How long have you been seeing this psychiatrist?",
-    value: params[:psych_seeing_length] %>
-
-  <%= f.email_field :psych_email, label: "E-mail",
-    value: params[:psych_email] %>
-
-  <%= f.text_field :therapist_name, label: "Therapist",
-    value: params[:therapist_name], layout: :inline %>
-
-  <%= f.text_field :therapist_agency, label: "Agency",
-    value: params[:therapist_agency], layout: :inline %>
-
-  <%= f.phone_field :therapist_phone, label: "Phone",
-    value: params[:therapist_phone], layout: :inline %>
-
-  <%= f.text_field :therapist_address, label: "Address",
-    value: params[:therapist_address] %>
-
-  <%= f.text_field :therapist_seeing_length,
-    label: "How long have you been seeing this therapist?",
-    value: params[:therapist_seeing_length] %>
-
-  <%= f.email_field :therapist_email, label: "E-mail",
-    value: params[:therapist_email] %>
-
-  <%= f.text_field :primary_care_name, label: "Primary Care MD",
-    value: params[:primary_care_name], layout: :inline %>
-
-  <%= f.text_field :primary_care_agency, label: "Agency",
-    value: params[:primary_care_agency], layout: :inline %>
-
-  <%= f.phone_field :primary_care_phone, label: "Phone",
-    value: params[:primary_care_phone], layout: :inline %>
-
-  <%= f.text_field :primary_care_address, label: "Address",
-    value: params[:primary_care_address] %>
-
-  <%= f.email_field :primary_care_email, label: "E-mail",
-    value: params[:primary_care_email] %>
-
-  Emergency Contacts
-
-  <%= f.text_field :emerg_primary_name, label: "Primary",
-    value: params[:emerg_primary_name], layout: :inline %>
-
-  <%= f.phone_field :emerg_primary_phone, label: "Phone",
-    value: params[:emerg_primary_phone], layout: :inline %>
-
-  <%= f.text_field :emerg_primary_relation, label: "Relationship",
-    value: params[:emerg_primary_relation] %>
-
-  <%= f.text_field :emerg_secondary_name, label: "Secondary",
-    value: params[:emerg_secondary_name], layout: :inline %>
-
-  <%= f.phone_field :emerg_secondary_phone, label: "Phone",
-    value: params[:emerg_secondary_phone], layout: :inline %>
-
-  <%= f.text_field :emerg_secondary_relation, label: "Relationship",
-    value: params[:emerg_secondary_relation] %>
-
-  Medical Insurance
-
-  <%= f.select :insurance_name, [
-      "None",
-      "Other (fill in below)",
-      "Straight Medicaid",
-      "Medicare",
-      "Family pays",
-      "Self pay",
-      "Private Insurance",
-      "Veteran's Benefits",
-      "Worker's Compensation",
-      "Medicaid Managed Care (fill in name of company below)"
-    ],
-    label: "Insurance plan", selected: params[:insurance_name] %>
-
-  <%= f.text_field :medicaid_comp,
-  label: "If Medicaid Managed Care, what is the name of the company?",
-  value: params[:medicaid_comp] %>
-
-  <%= f.select :harp, ["No", "Yes"], label: "HARP", selected: params[:harp] %>
-  <%= f.select :hcbs, ["No", "Yes"], label: "HCBS", selected: params[:hcbs] %>
-
-  <%= f.text_field :last_physical_exam_date,
-    label: "Date of last physical exam",
-    value: params[:last_physical_exam_date], class: "datepicker" %>
-
-  <%= f.text_field :last_dental_exam_date,
-    label: "Date of last physical exam",
-    value: params[:last_physical_exam_date], class: "datepicker" %>
-
-  <%= f.text_area :medication_info,
-    label: ("Please list all medications you take with respective dosage and" +
-    " frequency"), value: params[:medication_info] %>
-
-  Psychiatric Hospitalizations
-  Please list all hospitalizations beginning with the first. Be sure to indicate the most recent.
-
-  <%= render partial: "hospitalization_list", locals: {f: f} %>
-
-  <%= f.text_area :hospitalization_precipitants,
-    label: "Please indicate precipitants to these hospitalizations",
-    value: params[:hospitalization_precipitants] %>
-
-  Substance Abuse History
-
-  <%= f.select :abuse_history_alcohol, ["No", "Yes"],
-    label: "Do you have a history of alcohol abuse?",
-    selected: params[:abuse_history_alcohol] %>
-
-  <%= f.select :abuse_history_drugs, ["No", "Yes"],
-    label: "Do you have a history of drug abuse?",
-    selected: params[:abuse_history_drugs] %>
-
-  <%= f.text_area :abuse_history_elaboration,
-    label: "If an alcohol or substance abuse history exists, please elaborate",
-    value: params[:abuse_history_elaboration] %>
-
-  <tr>
-    <td>Name of substance</td>
-    <td>Date started</td>
-    <td>Last use</td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :substance_name_1, value: params[:substance_name_1],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_date_started_1,
-        value: params[:substance_date_started_1], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :substance_last_use_1,
-        value: params[:substance_last_use_1], layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :substance_name_2, value: params[:substance_name_2],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_date_started_2,
-        value: params[:substance_date_started_2], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :substance_last_use_2,
-        value: params[:substance_last_use_2], layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :substance_name_3, value: params[:substance_name_3],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_date_started_3,
-        value: params[:substance_date_started_3], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :substance_last_use_3,
-        value: params[:substance_last_use_3], layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :substance_name_4, value: params[:substance_name_4],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_date_started_4,
-        value: params[:substance_date_started_4], layout: :inline %> 
-    </td>
-    <td>
-      <%= f.text_field :substance_last_use_4,
-        value: params[:substance_last_use_4], layout: :inline %> 
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <%= f.text_field :substance_name_5, value: params[:substance_name_5],
-        layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_date_started_5,
-        value: params[:substance_date_started_5], layout: :inline %>
-    </td>
-    <td>
-      <%= f.text_field :substance_last_use_5,
-        value: params[:substance_last_use_5], layout: :inline %>
-    </td>
-  </tr>
-
-  <%= f.select :ever_in_treatment, ["No", "Yes"],
-    label: "Have you ever been in treatment for an alcohol or drug problem?",
-    selected: params[:ever_in_treatment] %>
-
-  <%= f.text_field :substance_last_use_5, label: "If so, when and where?",
-    value: params[:substance_last_use_5] %>
-
-  <%= f.select :currently_in_treatment, ["No", "Yes"],
-    label: ("Are you currently in treatment or in a support group for" +
-      " alcohol or drug abuse?"), selected: params[:currently_in_treatment] %>
-
-  <%= f.text_field :current_treatment_when_and_where,
-    label: "If so, when and where?",
-    value: params[:current_treatment_when_and_where] %>
-
-  <%= f.select :interested_in_treatment, ["No", "Yes"],
-    label: ("Are you interested in being in treatment or a support group for" +
-      " alcohol or drug abuse?"),
-    selected: params[:interested_in_treatment] %>
-
-  Legal History
-
-  <%= f.select :been_in_jail, ["No", "Yes"],
-    label: "Have you ever been in jail?", selected: params[:been_in_jail] %>
-
-  <%= f.select :been_in_prison, ["No", "Yes"],
-    label: "Have you ever been in prison?", selected: params[:been_in_prison] %>
-
-  <%= f.select :convicted_of_misdemeanor, ["No", "Yes"],
-    label: "Have you ever been convicted of a misdemeanor?",
-    selected: params[:convicted_of_misdemeanor] %>
-
-  <%= f.select :arrests_for_felonies, ["No", "Yes"],
-    label: "Have you ever had any arrests for felonies?",
-    selected: params[:arrests_for_felonies] %>
-
-  <%= f.select :injured_another_person, ["No", "Yes"],
-    label: "Have you ever physically injured another person?",
-    selected: params[:injured_another_person] %>
-
-  <%= f.select :history_of_violence, ["No", "Yes"],
-    label: "Do you have any history of violent behavior?",
-    selected: params[:history_of_violence] %>
-
-  <%= f.text_area :legal_history_detail,
-    label: ("If any of the above questions were answered \"Yes\", indicate" +
-    " dates, behaviors, precipitants, legal actions, etc."),
-    value: params[:legal_history_detail] %>
-
-  <%= f.text_area :extra_info,
-    label: ("Are you currently involved in any programs, work, school, etc." +
-    " or is there anything else you would like us to know about you?"),
-    value: params[:extra_info] %>
-
-  CAGE-AID Questionnaire
-  The following is a questionnaire, required by one of our funding sources. Please note that your answers to these questions do not affect your acceptance to Fountain House.
-
-  When thinking about drug use, include drug use and use of prescription drug use other than prescribed.
-
-  1. <%= f.select :wanted_reduce_substance_use, ["No", "Yes"],
-    label: ("Have you ever felt that you ought to cut down on your drinking" +
-      " or drug use?"),
-    selected: params[:wanted_reduce_substance_use] %>
-
-  2. <%= f.select :been_annoyed_by_substance_criticism, ["No", "Yes"],
-    label: "Have people annoyed you by criticizing your drinking or drug use?",
-    selected: params[:been_annoyed_by_substance_criticism] %>
-
-  3. <%= f.select :felt_bad_about_substance_use, ["No", "Yes"],
-    label: "Have you ever felt bad or guilty about your drinking or drug use?",
-    selected: params[:felt_bad_about_substance_use] %>
-
-  4. <%= f.select :ever_used_substances_for_hangover, ["No", "Yes"],
-    label: ("Have you ever had a drink or used drugs first thing in the" +
-    " morning to steady your nerves or to get rid of a hangover?"),
-    selected: params[:ever_used_substances_for_hangover] %>
-
-  <br>
-
-  <%= f.file_field :psych_eval, label: "Attach Psychiatric Evaluation" %>
-  <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
-
-  <br>
-
-  <%= f.text_field :bronx_or_manhattan,
-    label: ("Are you applying to Fountain House Bronx or Fountain House" +
-    "Manhattan?"), value: params[:bronx_or_manhattan] %>
-
-  <br>
-
-  Please sign your name to this application by typing it in below
-
-  <%= f.text_field :member_signature, label: "Prospective member signature",
-    value: params[:member_signature] %>
-
-  <br>
-
-  <%= f.form_group do %>
-    <%= f.submit "Submit", class: "btn btn-default btn-primary",
-      id: "submit_app" %>
-  <% end %>
+      <%= f.text_field :psych_phone, label: "Phone",
+        value: params[:psych_phone] %>
+
+      <%= f.text_field :psych_address, label: "Address",
+        value: params[:psych_address] %>
+
+      <%= f.text_field :psych_seeing_length,
+        label: "How long have you been seeing this psychiatrist?",
+        value: params[:psych_seeing_length] %>
+
+      <%= f.email_field :psych_email, label: "E-mail",
+        value: params[:psych_email] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Therapist Contact</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.text_field :therapist_name, label: "Therapist",
+        value: params[:therapist_name] %>
+
+      <%= f.text_field :therapist_agency, label: "Agency",
+        value: params[:therapist_agency] %>
+
+      <%= f.text_field :therapist_phone, label: "Phone",
+        value: params[:therapist_phone] %>
+
+      <%= f.text_field :therapist_address, label: "Address",
+        value: params[:therapist_address] %>
+
+      <%= f.text_field :therapist_seeing_length,
+        label: "How long have you been seeing this therapist?",
+        value: params[:therapist_seeing_length] %>
+
+      <%= f.email_field :therapist_email, label: "E-mail",
+        value: params[:therapist_email] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Medical Contact</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.text_field :primary_care_name, label: "Primary Care MD",
+        value: params[:primary_care_name] %>
+
+      <%= f.text_field :primary_care_agency, label: "Agency",
+        value: params[:primary_care_agency] %>
+
+      <%= f.text_field :primary_care_phone, label: "Phone",
+        value: params[:primary_care_phone] %>
+
+      <%= f.text_field :primary_care_address, label: "Address",
+        value: params[:primary_care_address] %>
+
+      <%= f.email_field :primary_care_email, label: "E-mail",
+        value: params[:primary_care_email] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Emergency Contacts</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.text_field :emerg_primary_name, label: "Primary",
+        value: params[:emerg_primary_name] %>
+
+      <%= f.text_field :emerg_primary_phone, label: "Phone",
+        value: params[:emerg_primary_phone] %>
+
+      <%= f.text_field :emerg_primary_relation, label: "Relationship",
+        value: params[:emerg_primary_relation] %>
+
+      <%= f.text_field :emerg_secondary_name, label: "Secondary",
+        value: params[:emerg_secondary_name] %>
+
+      <%= f.text_field :emerg_secondary_phone, label: "Phone",
+        value: params[:emerg_secondary_phone] %>
+
+      <%= f.text_field :emerg_secondary_relation, label: "Relationship",
+        value: params[:emerg_secondary_relation] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Medical Insurance</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.select :insurance_name, [
+          "None",
+          "Other (fill in below)",
+          "Straight Medicaid",
+          "Medicare",
+          "Family pays",
+          "Self pay",
+          "Private Insurance",
+          "Veteran's Benefits",
+          "Worker's Compensation",
+          "Medicaid Managed Care (fill in name of company below)"
+        ],
+        label: "Insurance plan", selected: params[:insurance_name] %>
+
+      <%= f.text_field :insurance_num, label: "Insurance policy number",
+        value: params[:insurance_num] %>  
+
+      <%= f.text_field :insurance_other, label: "If \"Other,\" please elaborate",
+        value: params[:insurance_other] %>
+
+      <%= f.text_field :medicaid_comp,
+      label: "If Medicaid Managed Care, what is the name of the company?",
+      value: params[:medicaid_comp] %>
+
+      <%= f.select :harp, ["No", "Yes"], label: "HARP", selected: params[:harp] %>
+      <%= f.select :hcbs, ["No", "Yes"], label: "HCBS", selected: params[:hcbs] %>
+
+      <%= f.text_field :last_physical_exam_date,
+        label: "Date of last physical exam",
+        value: params[:last_physical_exam_date], class: "datepicker" %>
+
+      <%= f.text_field :last_dental_exam_date,
+        label: "Date of last physical exam",
+        value: params[:last_physical_exam_date], class: "datepicker" %>
+
+      <%= f.text_area :medication_info,
+        label: ("Please list all medications you take with respective dosage and" +
+        " frequency"), value: params[:medication_info] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Psychiatric Hospitalizations</h4>
+      <h5 class="panel-subtext">Please list all hospitalizations beginning with the first. Be sure to indicate the most recent.</h5>
+    </div>
+    <%= render partial: "hospitalization_list", locals: {f: f} %>
+    <div class="panel-content">
+      <%= f.text_area :hospitalization_precipitants,
+        label: "Please indicate precipitants to these hospitalizations",
+        value: params[:hospitalization_precipitants] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Substance Abuse History</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.select :abuse_history_alcohol, ["No", "Yes"],
+        label: "Do you have a history of alcohol abuse?",
+        selected: params[:abuse_history_alcohol] %>
+
+      <%= f.select :abuse_history_drugs, ["No", "Yes"],
+        label: "Do you have a history of drug abuse?",
+        selected: params[:abuse_history_drugs] %>
+
+      <%= f.text_area :abuse_history_elaboration,
+        label: "If an alcohol or substance abuse history exists, please elaborate",
+        value: params[:abuse_history_elaboration] %>
+
+
+      <%= render partial: "substance_history_list", locals: {f: f} %>
+
+      <%= f.select :ever_in_treatment, ["No", "Yes"],
+        label: "Have you ever been in treatment for an alcohol or drug problem?",
+        selected: params[:ever_in_treatment] %>
+
+      <%= f.text_field :substance_last_use_5, label: "If so, when and where?",
+        value: params[:substance_last_use_5] %>
+
+      <%= f.select :currently_in_treatment, ["No", "Yes"],
+        label: ("Are you currently in treatment or in a support group for" +
+          " alcohol or drug abuse?"), selected: params[:currently_in_treatment] %>
+
+      <%= f.text_field :current_treatment_when_and_where,
+        label: "If so, when and where?",
+        value: params[:current_treatment_when_and_where] %>
+
+      <%= f.select :interested_in_treatment, ["No", "Yes"],
+        label: ("Are you interested in being in treatment or a support group for" +
+          " alcohol or drug abuse?"),
+        selected: params[:interested_in_treatment] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Legal History</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.select :been_in_jail, ["No", "Yes"],
+        label: "Have you ever been in jail?", selected: params[:been_in_jail] %>
+
+      <%= f.select :been_in_prison, ["No", "Yes"],
+        label: "Have you ever been in prison?", selected: params[:been_in_prison] %>
+
+      <%= f.select :convicted_of_misdemeanor, ["No", "Yes"],
+        label: "Have you ever been convicted of a misdemeanor?",
+        selected: params[:convicted_of_misdemeanor] %>
+
+      <%= f.select :arrests_for_felonies, ["No", "Yes"],
+        label: "Have you ever had any arrests for felonies?",
+        selected: params[:arrests_for_felonies] %>
+
+      <%= f.select :injured_another_person, ["No", "Yes"],
+        label: "Have you ever physically injured another person?",
+        selected: params[:injured_another_person] %>
+
+      <%= f.select :history_of_violence, ["No", "Yes"],
+        label: "Do you have any history of violent behavior?",
+        selected: params[:history_of_violence] %>
+
+      <%= f.text_area :legal_history_detail,
+        label: ("If any of the above questions were answered \"Yes\", indicate" +
+        " dates, behaviors, precipitants, legal actions, etc."),
+        value: params[:legal_history_detail] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">CAGE-AID Questionnaire</h4>
+      <h5 class="panel-subtext">
+        The following is a questionnaire, required
+        by one of our funding sources. Please note that your answers to these
+        questions do not affect your acceptance to Fountain House.<br><br>When
+        thinking about drug use, include drug use and use of prescription drug use
+        other than prescribed.
+      </h5>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.select :wanted_reduce_substance_use, ["No", "Yes"],
+        label: ("Have you ever felt that you ought to cut down on your drinking" +
+          " or drug use?"),
+        selected: params[:wanted_reduce_substance_use] %>
+
+      <%= f.select :been_annoyed_by_substance_criticism, ["No", "Yes"],
+        label: "Have people annoyed you by criticizing your drinking or drug use?",
+        selected: params[:been_annoyed_by_substance_criticism] %>
+
+      <%= f.select :felt_bad_about_substance_use, ["No", "Yes"],
+        label: "Have you ever felt bad or guilty about your drinking or drug use?",
+        selected: params[:felt_bad_about_substance_use] %>
+
+      <%= f.select :ever_used_substances_for_hangover, ["No", "Yes"],
+        label: ("Have you ever had a drink or used drugs first thing in the" +
+        " morning to steady your nerves or to get rid of a hangover?"),
+        selected: params[:ever_used_substances_for_hangover] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Further Info</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.text_area :extra_info,
+        label: ("Are you currently involved in any programs, work, school, etc." +
+        " or is there anything else you would like us to know about you?"),
+        value: params[:extra_info] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Signature</h4>
+    </div>
+
+    <div class="panel-content">
+
+      <%= f.text_field :bronx_or_manhattan,
+        label: ("Are you applying to Fountain House Bronx or Fountain House" +
+        " Manhattan?"), value: params[:bronx_or_manhattan] %>
+
+      Please sign your name to this application by typing it in below
+
+      <%= f.text_field :member_signature, label: "Prospective member signature",
+        value: params[:member_signature] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Application Submission</h4>
+    </div>
+
+    <div class="panel-content">
+      <h4 class="panel-subtext">
+        It is very important that all components of this application are
+        absolutely complete. Any missing or incomplete components will,
+        unfortunately, delay the application process.
+      </h4>
+      <br>
+      <%= f.form_group do %>
+        <%= f.submit "Submit Application", class: "btn btn-default btn-primary",
+          id: "submit_app" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

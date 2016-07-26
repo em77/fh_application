@@ -1,0 +1,111 @@
+<%= f.form_group do %>
+  <%= f.check_box :less_hs, label: "Less than High School",
+    checked: is_checked?(params[:less_hs]), inline: true %>
+
+  <%= f.check_box :some_hs, label: "Some High School",
+    checked: is_checked?(params[:some_hs]), inline: true %>
+
+  <%= f.check_box :ged, label: "GED", checked: is_checked?(params[:ged]),
+    inline: true %>
+
+  <%= f.check_box :hs_diploma, label: "High School Diploma",
+    checked: is_checked?(params[:hs_diploma]), inline: true %>
+
+  <%= f.check_box :trade_school, label: "Trade School",
+    checked: is_checked?(params[:trade_school]), inline: true %>
+
+  <%= f.check_box :some_college, label: "Some College",
+    checked: is_checked?(params[:some_college]), inline: true %>
+
+  <%= f.check_box :assoc_degree, label: "Associate's Degree",
+    checked: is_checked?(params[:assoc_degree]), inline: true %>
+
+  <%= f.check_box :bachelors_degree, label: "Bachelor's Degree",
+    checked: is_checked?(params[:bachelors_degree]), inline: true %>
+
+  <%= f.check_box :some_grad_work, label: "Some Graduate Work",
+    checked: is_checked?(params[:some_grad_work]), inline: true %>
+
+  <%= f.check_box :masters_degree, label: "Master's Degree",
+    checked: is_checked?(params[:masters_degree]), inline: true %>
+
+  <%= f.check_box :adv_grad_degree, label: "Advanced Graduate Degree",
+    checked: is_checked?(params[:adv_grad_degree]), inline: true %>
+<% end %>
+
+<div class="form-inline">
+  <div class="col-lg-3 col-xs-3 row_element">
+    <strong>School Attended</strong>
+  </div>
+
+  <div class="col-lg-3 col-xs-3 row_element">
+    <strong>Years</strong>
+  </div>
+
+  <div class="col-lg-3 col-xs-3 row_element">
+    <strong>Major</strong>
+  </div>
+
+  <div class="col-lg-3 col-xs-3 row_element">
+    <strong>Did you Graduate?</strong>
+  </div>
+</div>
+
+<div class="form-inline">
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_attended_1, value: params[:school_attended_1],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_years_1, value: params[:school_years_1],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :major_1, value: params[:major_1],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :graduate_1, value: params[:graduate_1],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+</div>
+
+<div class="form-inline">
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_attended_2, value: params[:school_attended_2],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_years_2, value: params[:school_years_2],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :major_2, value: params[:major_2],  hide_label: true,
+      control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :graduate_2, value: params[:graduate_2],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+</div>
+
+<div class="form-inline">
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_attended_3, value: params[:school_attended_3],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :school_years_3, value: params[:school_years_3],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :major_3, value: params[:major_3],  hide_label: true,
+      control_col: "col-lg-12", class: "row_field" %>
+  </div>
+  <div class="col-lg-3 col-xs-3 row_element">
+    <%= f.text_field :graduate_3, value: params[:graduate_3],
+      hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+  </div>
+</div>
+
+<h6 style="visibility: hidden;">test</h6>

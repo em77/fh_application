@@ -1,0 +1,56 @@
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+.row_element {
+  text-align: center;
+}
+
+.row_field {
+  width: 100% !important;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.field_number {
+  text-align: right;
+  margin-top: 12px;
+}
+
+.panel-info {
+  width: 95%;
+  margin: 0 auto;
+  // text-align: center;
+}
+
+.panel-content {
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+.panel-subtext {
+  color: #333536;
+}
+
+.panel-heading {
+  margin-bottom: 1%;
+}
+
+.psych-hosp-table {
+  margin-right: 5%;
+  margin-bottom: 0.5%;
+}
+
+label {
+  font-weight: bold !important;
+}
+
+label[for="ever_in_treatment"] {
+  margin-top: 2%;
+}
+
+label[for="work_notes"] {
+  margin-top: 2%;
+}

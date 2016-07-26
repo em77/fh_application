@@ -1,0 +1,40 @@
+<div class="form-inline">
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Name of Substance</strong>
+  </div>
+
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Date Started</strong>
+  </div>
+
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Last Use</strong>
+  </div>
+</div>
+
+<% (1..5).each do |num| %>
+  <% substance_name_name = (("substance_name_" + num.to_s).to_sym) %>
+  <% substance_date_started_name = (
+      ("substance_date_started_" + num.to_s).to_sym
+    ) %>
+  <% substance_last_use_name = (("substance_last_use_" + num.to_s).to_sym) %>
+
+  <div class="form-inline">
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field substance_name_name, value: params[substance_name_name],
+        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+    </div>
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field substance_date_started_name,
+        value: params[substance_date_started_name],
+        hide_label: true, control_col: "col-lg-12",
+        class: "datepicker row_field" %>
+    </div>
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field substance_last_use_name,
+        value: params[substance_last_use_name],
+        hide_label: true, control_col: "col-lg-12",
+        class: "datepicker row_field" %>
+    </div>
+  </div>
+<% end %>

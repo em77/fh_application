@@ -1,7 +1,9 @@
 class FhApplicationForm < App
 
+  extend CarrierWave::Mount
+
   attr_accessor :psych_eval_file_name, :first_name, :last_name, :mi, :dob,
-    :ssn_1, :ssn_2, :ssn_3, :gender, :place_of_birth, :street_address,
+    :ssn, :gender, :place_of_birth, :street_address,
     :apt, :city, :state, :zip_code, :phone_number, :county,
     :residence_time_length, :email_address, :recommend_name, :recommend_agency,
     :recommend_phone_number, :recommend_agency_type, :recommend_known_length,
@@ -62,15 +64,18 @@ class FhApplicationForm < App
     :convicted_of_misdemeanor, :arrests_for_felonies, :injured_another_person,
     :history_of_violence, :drug_questions_name, :drug_questions_date,
     :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
-    :felt_bad_about_substance_use, :ever_used_substances_for_hangover
+    :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
+    :insurance_other
 
-  has_attached_file :psych_eval,
-    path: ":rails_root/tmp/:style/:attachment_save_basename.:extension",
-    url: "/tmp/:style/:attachment_save_basename.:extension",
-    default_url: "/tmp/:style/missing.:extension",
-    storage: :filesystem
+  mount_uploader :psych_eval, PsychEvalUploader
 
-  do_not_validate_attachment_file_type :psych_eval
+  # has_attached_file :psych_eval,
+  #   path: ":rails_root/tmp/:style/:attachment_save_basename.:extension",
+  #   url: "/tmp/:style/:attachment_save_basename.:extension",
+  #   default_url: "/tmp/:style/missing.:extension",
+  #   storage: :filesystem
+
+  # do_not_validate_attachment_file_type :psych_eval
   # validates_attachment_file_name :psych_eval, matches:
   #   [/pdf\Z/, /doc\Z/, /docx\Z/]
 
@@ -90,13 +95,15 @@ class FhApplicationForm < App
   #    "application/msword",
   #    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
 
-  Paperclip.interpolates :attachment_save_basename do |attachment, style|
-    attachment.instance.attachment_save_basename
+  def attachment_content_whitelist
+    ["application/pdf",
+     "application/msword",
+     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
   end
 
   def fill_out
     text_fields = [
-      :first_name, :last_name, :mi, :dob, :ssn_1, :ssn_2, :ssn_3,
+      :first_name, :last_name, :mi, :dob,
       :gender, :place_of_birth, :street_address, :apt, :city, :state, :zip_code,
       :phone_number, :county, :residence_time_length, :email_address,
       :recommend_name, :recommend_agency, :recommend_phone_number,
@@ -152,7 +159,8 @@ class FhApplicationForm < App
       :been_in_jail, :been_in_prison, :convicted_of_misdemeanor,
       :arrests_for_felonies, :injured_another_person, :history_of_violence,
       :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
-      :felt_bad_about_substance_use, :ever_used_substances_for_hangover
+      :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
+      :insurance_other
     ]
 
     checkboxes = [
@@ -174,15 +182,29 @@ class FhApplicationForm < App
         )
     fill(:drug_questions_date, Date.today.to_s)
     fill(:member_signature_date, Date.today.to_s)
+    ssn_splitter(self.send(:ssn)).each {|key, value| fill(key, value)}
+  end
+
+  def ssn_splitter(ssn)
+    ssn_hash = {}
+    stripped_ssn = ssn.to_s.gsub(" ", "").gsub("-", "")
+    ssn_hash[:ssn1] = stripped_ssn[0..2]
+    ssn_hash[:ssn2] = stripped_ssn[3..4]
+    ssn_hash[:ssn3] = stripped_ssn[5..7]
+    ssn_hash
   end
 
   def attachment_save_basename
-    file_path = "#{Rails.root}/tmp/original/#{self.psych_eval_file_name}"
+    file_path = self.psych_eval.path
     base_save_name = File.basename(file_path, File.extname(file_path))
     base_save_name + "-#{unique_hex}"
   end
 
   def unique_hex
     @unique_hex ||= SecureRandom.hex(10)
+  end
+
+  def save
+    self.store_psych_eval!
   end
 end
