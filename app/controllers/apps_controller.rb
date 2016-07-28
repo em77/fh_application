@@ -24,7 +24,7 @@ class AppsController < ApplicationController
         "#{app.first_name} #{app.last_name}",
         app_file_path,
         [app.psych_eval.file.filename, app.psych_social.file.filename]
-        ).deliver
+        ).deliver_later
       flash[:success] = "Your application was submitted"
       redirect_to new_app_path
     else
