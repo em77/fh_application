@@ -2,14 +2,7 @@ module Features
   module AppSubmitHelpers
     def fill_out_app
       Faker::Config.locale = "en-US"
-      page.attach_file(
-        "_psych_eval",
-        Rails.root.join("lib/sample_attachments/notes.pdf")
-      )
-      page.attach_file(
-        "_psych_social",
-        Rails.root.join("lib/sample_attachments/utopia.pdf")
-      )
+      
       fill_in :first_name, with: Faker::Name.first_name
       fill_in :last_name, with: Faker::Name.last_name
       fill_in :mi, with: "A"
