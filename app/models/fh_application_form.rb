@@ -2,7 +2,7 @@ class FhApplicationForm < App
 
   extend CarrierWave::Mount
 
-  attr_accessor :psych_eval_file_name, :first_name, :last_name, :mi, :dob,
+  attr_accessor :first_name, :last_name, :mi, :dob,
     :ssn, :gender, :place_of_birth, :street_address,
     :apt, :city, :state, :zip_code, :phone_number, :county,
     :residence_time_length, :email_address, :recommend_name, :recommend_agency,
@@ -65,35 +65,11 @@ class FhApplicationForm < App
     :history_of_violence, :drug_questions_name, :drug_questions_date,
     :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
     :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
-    :insurance_other
+    :insurance_other, :psych_social, :psych_eval
 
   mount_uploader :psych_eval, PsychEvalUploader
 
-  # has_attached_file :psych_eval,
-  #   path: ":rails_root/tmp/:style/:attachment_save_basename.:extension",
-  #   url: "/tmp/:style/:attachment_save_basename.:extension",
-  #   default_url: "/tmp/:style/missing.:extension",
-  #   storage: :filesystem
-
-  # do_not_validate_attachment_file_type :psych_eval
-  # validates_attachment_file_name :psych_eval, matches:
-  #   [/pdf\Z/, /doc\Z/, /docx\Z/]
-
-  # validates :psych_eval, file_content_type:
-  #   {
-  #     allow:
-  #       [
-  #         "application/pdf",
-  #         "application/msword",
-  #         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  #       ], mode: :strict
-  #   }
-
-  # validates_attachment_content_type :psych_eval, content_type:
-  #   # pdf, doc, and docx
-  #   ["application/pdf",
-  #    "application/msword",
-  #    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+  mount_uploader :psych_social, PsychSocialUploader
 
   def attachment_content_whitelist
     ["application/pdf",
@@ -180,8 +156,8 @@ class FhApplicationForm < App
     fill(:drug_questions_name,
          (self.send(:first_name) + " " + self.send(:last_name))
         )
-    fill(:drug_questions_date, Date.today.to_s)
-    fill(:member_signature_date, Date.today.to_s)
+    fill(:drug_questions_date, Date.today.strftime("%b %d, %Y"))
+    fill(:member_signature_date, Date.today.strftime("%b %d, %Y"))
     ssn_splitter(self.send(:ssn)).each {|key, value| fill(key, value)}
   end
 
@@ -194,8 +170,8 @@ class FhApplicationForm < App
     ssn_hash
   end
 
-  def attachment_save_basename
-    file_path = self.psych_eval.path
+  def attachment_save_basename(attachment)
+    file_path = attachment.path
     base_save_name = File.basename(file_path, File.extname(file_path))
     base_save_name + "-#{unique_hex}"
   end
@@ -206,5 +182,6 @@ class FhApplicationForm < App
 
   def save
     self.store_psych_eval!
+    self.store_psych_social!
   end
 end

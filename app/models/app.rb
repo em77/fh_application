@@ -1,4 +1,4 @@
-class App #< SimplePaperclip
+class App
 
   include ActiveModel::Model
 

@@ -9,9 +9,12 @@
     </div>
 
     <div class="panel-content">
-
       <%= f.file_field :psych_eval, label: ("Please attach a current" +
         " psychiatric assessment using the DSM V") %>
+
+      <%= f.file_field :psych_social, label: ("Please attach a current" +
+        " and detailed psychosocial history") %>
+
       <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
     </div>
   </div>
@@ -68,7 +71,7 @@
       <%= f.number_field :zip_code, label: "Zip code", value: params[:zip_code],
         required: true %>
 
-      <%= f.text_field :phone_number, label: "Phone number",
+      <%= f.phone_field :phone_number, label: "Phone number",
         value: params[:phone_number], required: true %>
 
       <%= f.text_field :county, label: "County", value: params[:county],
@@ -96,7 +99,7 @@
       <%= f.text_field :recommend_agency, label: "Agency",
         value: params[:recommend_agency], required: true %>
 
-      <%= f.text_field :recommend_phone_number, label: "Phone number",
+      <%= f.phone_field :recommend_phone_number, label: "Phone number",
         value: params[:recommend_phone_number], required: true %>
 
       <%= f.text_field :recommend_agency_type, label: "Type of agency",
@@ -126,7 +129,7 @@
         checked: is_checked?(params[:tour_fh]) %>
 
       <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
-        required: true %>
+        value: params[:tour_date], required: true %>
     </div>
   </div>
 
@@ -192,7 +195,7 @@
 
       <%= f.number_field :ssi, label: "SSI", value: params[:ssi] %>
 
-      <%= f.number_field :SSDI, label: "SSDI", value: params[:ssdi] %>
+      <%= f.number_field :ssdi, label: "SSDI", value: params[:ssdi] %>
 
       <%= f.number_field :wages, label: "Wages", value: params[:wages] %>
 
@@ -355,7 +358,7 @@
       <%= f.text_field :psych_agency, label: "Agency",
         value: params[:psych_agency] %>
 
-      <%= f.text_field :psych_phone, label: "Phone",
+      <%= f.phone_field :psych_phone, label: "Phone",
         value: params[:psych_phone] %>
 
       <%= f.text_field :psych_address, label: "Address",
@@ -382,7 +385,7 @@
       <%= f.text_field :therapist_agency, label: "Agency",
         value: params[:therapist_agency] %>
 
-      <%= f.text_field :therapist_phone, label: "Phone",
+      <%= f.phone_field :therapist_phone, label: "Phone",
         value: params[:therapist_phone] %>
 
       <%= f.text_field :therapist_address, label: "Address",
@@ -409,7 +412,7 @@
       <%= f.text_field :primary_care_agency, label: "Agency",
         value: params[:primary_care_agency] %>
 
-      <%= f.text_field :primary_care_phone, label: "Phone",
+      <%= f.phone_field :primary_care_phone, label: "Phone",
         value: params[:primary_care_phone] %>
 
       <%= f.text_field :primary_care_address, label: "Address",
@@ -430,7 +433,7 @@
       <%= f.text_field :emerg_primary_name, label: "Primary",
         value: params[:emerg_primary_name] %>
 
-      <%= f.text_field :emerg_primary_phone, label: "Phone",
+      <%= f.phone_field :emerg_primary_phone, label: "Phone",
         value: params[:emerg_primary_phone] %>
 
       <%= f.text_field :emerg_primary_relation, label: "Relationship",
@@ -439,7 +442,7 @@
       <%= f.text_field :emerg_secondary_name, label: "Secondary",
         value: params[:emerg_secondary_name] %>
 
-      <%= f.text_field :emerg_secondary_phone, label: "Phone",
+      <%= f.phone_field :emerg_secondary_phone, label: "Phone",
         value: params[:emerg_secondary_phone] %>
 
       <%= f.text_field :emerg_secondary_relation, label: "Relationship",
@@ -534,8 +537,9 @@
         label: "Have you ever been in treatment for an alcohol or drug problem?",
         selected: params[:ever_in_treatment] %>
 
-      <%= f.text_field :substance_last_use_5, label: "If so, when and where?",
-        value: params[:substance_last_use_5] %>
+      <%= f.text_field :past_treatment_when_and_where,
+        label: "If so, when and where?",
+        value: params[:past_treatment_when_and_where] %>
 
       <%= f.select :currently_in_treatment, ["No", "Yes"],
         label: ("Are you currently in treatment or in a support group for" +

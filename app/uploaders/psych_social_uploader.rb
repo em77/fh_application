@@ -1,0 +1,2 @@
+class PsychSocialUploader < FhAppUploader
+end
