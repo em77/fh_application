@@ -84,7 +84,7 @@ module Features
         end
       [:work_wage_1, :work_wage_2, :work_wage_3, :work_wage_4, :work_wage_5,
         :work_hours_1, :work_hours_2, :work_hours_3, :work_hours_4,
-        :work_hours_5]
+        :work_hours_5, :hospitalization_count]
         .each do |n|
           fill_in n, with: rand(40)
         end

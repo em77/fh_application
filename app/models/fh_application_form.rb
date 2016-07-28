@@ -164,9 +164,9 @@ class FhApplicationForm < App
   def ssn_splitter(ssn)
     ssn_hash = {}
     stripped_ssn = ssn.to_s.gsub(" ", "").gsub("-", "")
-    ssn_hash[:ssn1] = stripped_ssn[0..2]
-    ssn_hash[:ssn2] = stripped_ssn[3..4]
-    ssn_hash[:ssn3] = stripped_ssn[5..7]
+    ssn_hash[:ssn_1] = stripped_ssn[0..2]
+    ssn_hash[:ssn_2] = stripped_ssn[3..4]
+    ssn_hash[:ssn_3] = stripped_ssn[5..8]
     ssn_hash
   end
 

@@ -26,14 +26,14 @@
 
     <div class="panel-content">
 
-      <%= f.text_field :first_name, label: "First Name", value: params[:first_name],
-        required: true %>
+      <%= f.text_field :first_name, label: "First Name",
+        value: params[:first_name], required: true %>
 
       <%= f.text_field :mi, label: "Middle Initial", value: params[:mi],
         required: true %>
 
-      <%= f.text_field :last_name, label: "Last Name", value: params[:last_name],
-        required: true %>
+      <%= f.text_field :last_name, label: "Last Name",
+        value: params[:last_name], required: true %>
 
       <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
         required: true %>
@@ -63,7 +63,8 @@
 
       <%= f.text_field :apt, label: "Apartment", value: params[:apt] %>
 
-      <%= f.text_field :city, label: "City", value: params[:city], required: true %>
+      <%= f.text_field :city, label: "City", value: params[:city],
+        required: true %>
 
       <%= f.text_field :state, label: "State", value: params[:state],
         required: true %>
@@ -162,7 +163,8 @@
         label: "Do you live alone or with others?",
         selected: params[:live_alone_or_with_others] %>
 
-      <%= f.text_field :who_live_with, label: "If living with others, with whom?",
+      <%= f.text_field :who_live_with,
+        label: "If living with others, with whom?",
         value: params[:who_live_with] %>
 
       <%= f.select :have_homeless_history, ["No", "Yes"],
@@ -177,8 +179,8 @@
         selected: params[:reside_with_minors] %>
 
       <%= f.select :acs_involvement, ["No", "Yes"],
-        label: ("If so, is there or has there ever been any ACS (Administration?" +
-        " for Children's Services) involvement"),
+        label: ("If so, is there or has there ever been any ACS" +
+        " (Administration for Children's Services) involvement?"),
         selected: params[:acs_involvement] %>
     </div>
   </div>
@@ -247,7 +249,8 @@
         <%= f.check_box :eth_pi, label: "Pacific Islander",
           checked: is_checked?(params[:eth_pi]), inline: true %>
 
-        <%= f.check_box :eth_lat, label: "Latino/Hispanic/Cuban/Mexican/Puerto Rican",
+        <%= f.check_box :eth_lat,
+          label: "Latino/Hispanic/Cuban/Mexican/Puerto Rican",
           checked: is_checked?(params[:eth_lat]), inline: true %>
 
         <%= f.check_box :eth_car, label: "Carribean/Haitian/Jamaican",
@@ -472,17 +475,20 @@
         label: "Insurance plan", selected: params[:insurance_name] %>
 
       <%= f.text_field :insurance_num, label: "Insurance policy number",
-        value: params[:insurance_num] %>  
+        value: params[:insurance_num] %>
 
-      <%= f.text_field :insurance_other, label: "If \"Other,\" please elaborate",
+      <%= f.text_field :insurance_other,
+        label: "If \"Other,\" please elaborate",
         value: params[:insurance_other] %>
 
       <%= f.text_field :medicaid_comp,
       label: "If Medicaid Managed Care, what is the name of the company?",
       value: params[:medicaid_comp] %>
 
-      <%= f.select :harp, ["No", "Yes"], label: "HARP", selected: params[:harp] %>
-      <%= f.select :hcbs, ["No", "Yes"], label: "HCBS", selected: params[:hcbs] %>
+      <%= f.select :harp, ["No", "Yes"], label: "HARP",
+        selected: params[:harp] %>
+      <%= f.select :hcbs, ["No", "Yes"], label: "HCBS",
+        selected: params[:hcbs] %>
 
       <%= f.text_field :last_physical_exam_date,
         label: "Date of last physical exam",
@@ -493,17 +499,24 @@
         value: params[:last_physical_exam_date], class: "datepicker" %>
 
       <%= f.text_area :medication_info,
-        label: ("Please list all medications you take with respective dosage and" +
-        " frequency"), value: params[:medication_info] %>
+        label: ("Please list all medications you take with respective" +
+        " dosage and frequency"), value: params[:medication_info] %>
     </div>
   </div>
 
   <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">Psychiatric Hospitalizations</h4>
-      <h5 class="panel-subtext">Please list all hospitalizations beginning with the first. Be sure to indicate the most recent.</h5>
+      <h5 class="panel-subtext">Please list all hospitalizations beginning with
+        the first. Be sure to indicate the most recent.</h5>
+    </div>
+    <div class="panel-content">
+      <%= f.number_field :hospitalization_count,
+        label: "Total # of Hospitalizations",
+        value: params[:hospitalization_count], id: "hosp-count" %>
     </div>
     <%= render partial: "hospitalization_list", locals: {f: f} %>
+    <h5></h5>
     <div class="panel-content">
       <%= f.text_area :hospitalization_precipitants,
         label: "Please indicate precipitants to these hospitalizations",
@@ -527,15 +540,16 @@
         selected: params[:abuse_history_drugs] %>
 
       <%= f.text_area :abuse_history_elaboration,
-        label: "If an alcohol or substance abuse history exists, please elaborate",
+        label: "If an alcohol or substance abuse history exists," +
+        " please elaborate",
         value: params[:abuse_history_elaboration] %>
 
 
       <%= render partial: "substance_history_list", locals: {f: f} %>
 
       <%= f.select :ever_in_treatment, ["No", "Yes"],
-        label: "Have you ever been in treatment for an alcohol or drug problem?",
-        selected: params[:ever_in_treatment] %>
+        label: "Have you ever been in treatment for an alcohol or drug" +
+        " problem?", selected: params[:ever_in_treatment] %>
 
       <%= f.text_field :past_treatment_when_and_where,
         label: "If so, when and where?",
@@ -543,15 +557,16 @@
 
       <%= f.select :currently_in_treatment, ["No", "Yes"],
         label: ("Are you currently in treatment or in a support group for" +
-          " alcohol or drug abuse?"), selected: params[:currently_in_treatment] %>
+          " alcohol or drug abuse?"),
+          selected: params[:currently_in_treatment] %>
 
       <%= f.text_field :current_treatment_when_and_where,
         label: "If so, when and where?",
         value: params[:current_treatment_when_and_where] %>
 
       <%= f.select :interested_in_treatment, ["No", "Yes"],
-        label: ("Are you interested in being in treatment or a support group for" +
-          " alcohol or drug abuse?"),
+        label: ("Are you interested in being in treatment or a support group" +
+        " for alcohol or drug abuse?"),
         selected: params[:interested_in_treatment] %>
     </div>
   </div>
@@ -567,7 +582,8 @@
         label: "Have you ever been in jail?", selected: params[:been_in_jail] %>
 
       <%= f.select :been_in_prison, ["No", "Yes"],
-        label: "Have you ever been in prison?", selected: params[:been_in_prison] %>
+        label: "Have you ever been in prison?",
+        selected: params[:been_in_prison] %>
 
       <%= f.select :convicted_of_misdemeanor, ["No", "Yes"],
         label: "Have you ever been convicted of a misdemeanor?",
@@ -586,8 +602,8 @@
         selected: params[:history_of_violence] %>
 
       <%= f.text_area :legal_history_detail,
-        label: ("If any of the above questions were answered \"Yes\", indicate" +
-        " dates, behaviors, precipitants, legal actions, etc."),
+        label: ("If any of the above questions were answered \"Yes\"," +
+        " indicate dates, behaviors, precipitants, legal actions, etc."),
         value: params[:legal_history_detail] %>
     </div>
   </div>
@@ -599,25 +615,25 @@
         The following is a questionnaire, required
         by one of our funding sources. Please note that your answers to these
         questions do not affect your acceptance to Fountain House.<br><br>When
-        thinking about drug use, include drug use and use of prescription drug use
-        other than prescribed.
+        thinking about drug use, include drug use and use of prescription drug
+        use other than prescribed.
       </h5>
     </div>
 
     <div class="panel-content">
 
       <%= f.select :wanted_reduce_substance_use, ["No", "Yes"],
-        label: ("Have you ever felt that you ought to cut down on your drinking" +
-          " or drug use?"),
+        label: ("Have you ever felt that you ought to cut down on your" +
+         " drinking or drug use?"),
         selected: params[:wanted_reduce_substance_use] %>
 
       <%= f.select :been_annoyed_by_substance_criticism, ["No", "Yes"],
-        label: "Have people annoyed you by criticizing your drinking or drug use?",
-        selected: params[:been_annoyed_by_substance_criticism] %>
+        label: "Have people annoyed you by criticizing your drinking or" +
+        " drug use?", selected: params[:been_annoyed_by_substance_criticism] %>
 
       <%= f.select :felt_bad_about_substance_use, ["No", "Yes"],
-        label: "Have you ever felt bad or guilty about your drinking or drug use?",
-        selected: params[:felt_bad_about_substance_use] %>
+        label: "Have you ever felt bad or guilty about your drinking or" +
+        " drug use?", selected: params[:felt_bad_about_substance_use] %>
 
       <%= f.select :ever_used_substances_for_hangover, ["No", "Yes"],
         label: ("Have you ever had a drink or used drugs first thing in the" +
@@ -633,8 +649,8 @@
 
     <div class="panel-content">
       <%= f.text_area :extra_info,
-        label: ("Are you currently involved in any programs, work, school, etc." +
-        " or is there anything else you would like us to know about you?"),
+        label: ("Are you currently involved in any programs, work, school," +
+        " etc. or is there anything else you would like us to know about you?"),
         value: params[:extra_info] %>
     </div>
   </div>
