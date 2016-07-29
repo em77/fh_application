@@ -6,7 +6,7 @@ class AppMailer < ApplicationMailer
   #   en.app_mailer.new_app_email.subject
   #
 
-  def new_app_email(app_name, app_file_path, attachment_save_names_array)
+  def new_app_email(app_name, app_file_path, attachment_save_names_array, house)
     @app_name = app_name
 
     attachments[File.basename(app_file_path)] = File.read(app_file_path)
@@ -17,7 +17,7 @@ class AppMailer < ApplicationMailer
       )
     end
 
-    mail to: ENV["NEW_APP_EMAIL_TO"],
+    mail to: ENV["#{house.upcase}_EMAIL"],
          subject: "New member application from #{app_name}"
   end
 end

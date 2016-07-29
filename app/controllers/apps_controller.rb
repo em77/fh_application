@@ -23,10 +23,11 @@ class AppsController < ApplicationController
       AppMailer.new_app_email(
         "#{app.first_name} #{app.last_name}",
         app_file_path,
-        [app.psych_eval.file.filename, app.psych_social.file.filename]
+        [app.psych_eval.file.filename, app.psych_social.file.filename],
+        app.bronx_or_manhattan
         ).deliver_later
       flash[:success] = "Your application was submitted"
-      redirect_to new_app_path
+      redirect_to root_path
     else
       flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
       render :new

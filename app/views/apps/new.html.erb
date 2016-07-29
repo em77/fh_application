@@ -690,9 +690,9 @@
 
     <div class="panel-content">
 
-      <%= f.text_field :bronx_or_manhattan,
-        label: ("Are you applying to Fountain House Bronx or Fountain House" +
-        " Manhattan?"), value: params[:bronx_or_manhattan] %>
+      <%= f.select :bronx_or_manhattan, ["Manhattan", "Bronx"],
+        label: ("Are you applying to Fountain House Manhattan or Fountain" +
+          " House Bronx?"), selected: params[:bronx_or_manhattan] %>
 
       <%= f.text_field :member_signature, label: "Please sign your name to this application by typing it in below",
         value: params[:member_signature] %>
