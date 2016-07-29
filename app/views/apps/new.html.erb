@@ -5,6 +5,34 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
+      <h4 class="panel-title">Eligibility</h4>
+    </div>
+
+    <div class="panel-content">
+      To be eligible for membership an applicant must:
+      <br>
+      <ol>
+        <li>be interested in attending Fountain House, as membership is
+          voluntary.</li>
+        <li>have a primary presenting problem associated with severe and
+          persistent mental illness.</li>
+        <li>be able to get to Fountain House.</li>
+        <li>not pose a threat to our community.</li>
+        <li>be at least 16 years of age.</li>
+      <ol>
+      <br>
+      <p>
+        <em>
+          "The Clubhouse has control over its acceptance of new members"
+          <br>- Standard #2, International Standards for Clubhouse Programs,
+          Clubhouse International
+        </em>
+      </p>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
       <h4 class="panel-title">Attachments</h4>
     </div>
 
@@ -666,9 +694,7 @@
         label: ("Are you applying to Fountain House Bronx or Fountain House" +
         " Manhattan?"), value: params[:bronx_or_manhattan] %>
 
-      Please sign your name to this application by typing it in below
-
-      <%= f.text_field :member_signature, label: "Prospective member signature",
+      <%= f.text_field :member_signature, label: "Please sign your name to this application by typing it in below",
         value: params[:member_signature] %>
     </div>
   </div>
@@ -683,6 +709,12 @@
         It is very important that all components of this application are
         absolutely complete. Any missing or incomplete components will,
         unfortunately, delay the application process.
+        <br><br>
+        Please allow the Membership Team approximately two weeks to review
+        applications.
+        <br>
+        Please contact the Membership Office at (212) 582-0340
+        x240 with any questions. Thank you for applying to Fountain House.
       </h4>
       <br>
       <%= f.form_group do %>

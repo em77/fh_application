@@ -1,0 +1,39 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  background: url("https://s3.amazonaws.com/fountainhouse-bucket/sunriseresize.jpg");
+  // background-position: center bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+#headline {
+  color: white;
+  text-align: right;
+  float: right;
+}
+
+#fh-desc {
+  color: white;
+  text-align: center;
+  margin-top: 8%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+#button-box {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#home_fh_logo {
+  margin-top: 15px;
+  float: left;
+}
