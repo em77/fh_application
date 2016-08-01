@@ -69,8 +69,6 @@
       <%= f.number_field :ssn, {label: "SSN", value: params[:ssn],
           required: true, class: "ssn-field"} %>
 
-      <br>
-
       <%= f.text_field :gender, label: "Gender", value: params[:gender],
         required: true %>
 
@@ -223,31 +221,35 @@
 
     <div class="panel-content">
 
-      <%= f.number_field :ssi, label: "SSI", value: params[:ssi] %>
+      <%= f.number_field :ssi, label: "SSI", value: (params[:ssi] || 0),
+        class: "income-field" %>
 
-      <%= f.number_field :ssdi, label: "SSDI", value: params[:ssdi] %>
+      <%= f.number_field :ssdi, label: "SSDI", value: (params[:ssdi] || 0),
+        class: "income-field" %>
 
-      <%= f.number_field :wages, label: "Wages", value: params[:wages] %>
+      <%= f.number_field :wages, label: "Wages", value: (params[:wages] || 0),
+        class: "income-field" %>
 
       <%= f.number_field :family_income, label: "Family/Family Support",
-        value: params[:family_income] %>
+        value: (params[:family_income] || 0), class: "income-field" %>
 
-      <%= f.number_field :snap, label: "SNAP", value: params[:snap] %>
+      <%= f.number_field :snap, label: "SNAP", value: (params[:snap] || 0),
+        class: "income-field" %>
 
       <%= f.number_field :retirement_benefits, label: "Retirement Benefits",
-        value: params[:retirement_benefits] %>
+        value: (params[:retirement_benefits] || 0), class: "income-field" %>
 
       <%= f.number_field :veteran_benefits, label: "Veteran's Benefits",
-        value: params[:veteran_benefits] %>
+        value: (params[:veteran_benefits] || 0), class: "income-field" %>
 
       <%= f.number_field :public_assistance, label: "Public Assistance",
-        value: params[:public_assistance] %>
+        value: (params[:public_assistance] || 0), class: "income-field" %>
 
       <%= f.number_field :other_income, label: "Other",
-        value: params[:other_income] %>
+        value: (params[:other_income] || 0), class: "income-field" %>
 
       <%= f.number_field :total_income, label: "Total Income",
-        value: params[:total_income], required: true %>
+        value: params[:total_income], id: "total-field", required: true %>
     </div>
   </div>
 
