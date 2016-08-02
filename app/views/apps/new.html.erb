@@ -195,7 +195,8 @@
         label: "Do minor children reside in your home?",
         selected: params[:reside_with_minors] %>
 
-      <div id="acs-select">
+      <div id="acs-select"
+        class="<%= 'hide-element' unless params[:acs_involvement] %>">
         <%= f.select :acs_involvement, ["No", "Yes"],
           label: ("If so, is there or has there ever been any ACS" +
           " (Administration for Children's Services) involvement?"),
@@ -380,13 +381,13 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h4 class="panel-title">Psychiatric Contact</h4>
+      <h4 class="panel-title">Psychiatric/NP Contact</h4>
     </div>
 
     <div class="panel-content">
 
-      <%= f.text_field :psych_name, label: "Psychiatrist",
-        value: params[:psych_name] %>
+      <%= f.text_field :psych_name, label: "Psychiatrist/NP",
+        value: (params[:psych_name] || "None") %>
 
       <%= f.text_field :psych_agency, label: "Agency",
         value: params[:psych_agency] %>
@@ -504,16 +505,25 @@
         ],
         label: "Insurance plan", selected: params[:insurance_name] %>
 
-      <%= f.text_field :insurance_num, label: "Insurance policy number",
-        value: params[:insurance_num] %>
+      <div id="insurance-num"
+        class="<%= 'hide-element' unless params[:insurance_num] %>">
+        <%= f.text_field :insurance_num, label: "Insurance policy number",
+          value: params[:insurance_num] %>
+      </div>
 
-      <%= f.text_field :insurance_other,
-        label: "If \"Other,\" please elaborate",
-        value: params[:insurance_other] %>
+      <div id="insurance-other"
+        class="<%= 'hide-element' unless params[:insurance_other] %>">
+        <%= f.text_field :insurance_other,
+          label: "If \"Other,\" please elaborate",
+          value: params[:insurance_other] %>
+      </div>
 
-      <%= f.text_field :medicaid_comp,
-      label: "If Medicaid Managed Care, what is the name of the company?",
-      value: params[:medicaid_comp] %>
+      <div id="medicaid-managed"
+        class="<%= 'hide-element' unless params[:medicaid_comp] %>">
+        <%= f.text_field :medicaid_comp,
+        label: "If Medicaid Managed Care, what is the name of the company?",
+        value: params[:medicaid_comp] %>
+      </div>
 
       <%= f.select :harp, ["No", "Yes"], label: "HARP",
         selected: params[:harp] %>
@@ -543,7 +553,8 @@
     <div class="panel-content">
       <%= f.number_field :hospitalization_count,
         label: "Total # of Hospitalizations",
-        value: params[:hospitalization_count], id: "hosp-count" %>
+        value: params[:hospitalization_count], id: "hosp-count",
+        required: true %>
     </div>
     <%= render partial: "hospitalization_list", locals: {f: f} %>
     <h5></h5>
@@ -696,8 +707,8 @@
         label: ("Are you applying to Fountain House Manhattan or Fountain" +
           " House Bronx?"), selected: params[:bronx_or_manhattan] %>
 
-      <%= f.text_field :member_signature, label: "Please sign your name to this application by typing it in below",
-        value: params[:member_signature] %>
+      <%= f.text_field :member_signature, label: "Please sign your name to this application by typing it in below", value: params[:member_signature],
+        required: true %>
     </div>
   </div>
 

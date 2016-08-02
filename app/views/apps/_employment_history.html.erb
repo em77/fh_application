@@ -1,17 +1,18 @@
-<%= f.text_field :ever_worked, label: "Have you ever worked for pay?",
-  value: params[:ever_worked], required: true %>
+<%= f.select :ever_worked, ["No", "Yes"],
+  label: "Have you ever worked for pay?",
+  selected: params[:ever_worked] %>
 
-<%= f.text_field :worked_last_12_months,
+<%= f.select :worked_last_12_months, ["No", "Yes"],
   label: "Have you worked in the last 12 months?",
-  value: params[:worked_last_12_months], required: true %>
+  selected: params[:worked_last_12_months] %>
 
 <%= f.text_field :total_years_worked,
   label: "Estimated TOTAL YEARS you have worked for pay",
-  value: params[:total_years_worked], required: true %>
+  value: params[:total_years_worked] %>
 
 <%= f.text_field :total_number_jobs,
   label: "Estimated TOTAL NUMBER OF JOBS you have worked for pay",
-  value: params[:total_number_jobs], required: true %>
+  value: params[:total_number_jobs] %>
 
 <br>
 

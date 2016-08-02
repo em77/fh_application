@@ -1,7 +1,10 @@
 $(document).on "turbolinks:load", ->
 
   # Datepicker fields
-  $(".datepicker").datepicker format: "M dd, yyyy"
+  # $(".datepicker").datepicker format: "M dd, yyyy"
+  $(".datepicker").datepicker(format: "yyyy",
+    viewMode: "years", 
+    minViewMode: "years")
 
   # Total income field auto-filler
   $(".income-field").change ->
@@ -22,6 +25,29 @@ $(document).on "turbolinks:load", ->
       $("#acs-select").show()
     else
       $("#acs-select").hide()
+    return
+
+  # Hide insurance number field if insurance is "None", hide other_insurance
+  # field unless "Other" is selected, and hide medicaid_comp field if it isn't
+  # selected
+  $("#_insurance_name").change ->
+    selected = $("#_insurance_name option:selected").text()
+    if selected == "None"
+      $("#insurance-num").hide()
+      $("#insurance-other").hide()
+      $("#medicaid-managed").hide()
+    else if selected == "Other (fill in below)"
+      $("#insurance-num").show()
+      $("#insurance-other").show()
+      $("#medicaid-managed").hide()
+    else if selected == "Medicaid Managed Care (fill in name of company below)"
+      $("#insurance-num").show()
+      $("#insurance-other").hide()
+      $("#medicaid-managed").show()
+    else
+      $("#insurance-num").show()
+      $("#insurance-other").hide()
+      $("#medicaid-managed").hide()
     return
 
   return
