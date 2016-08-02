@@ -57,8 +57,7 @@
       <%= f.text_field :first_name, label: "First Name",
         value: params[:first_name], required: true %>
 
-      <%= f.text_field :mi, label: "Middle Initial", value: params[:mi],
-        required: true %>
+      <%= f.text_field :mi, label: "Middle Initial", value: params[:mi] %>
 
       <%= f.text_field :last_name, label: "Last Name",
         value: params[:last_name], required: true %>
@@ -101,15 +100,14 @@
       <%= f.phone_field :phone_number, label: "Phone number",
         value: params[:phone_number], required: true %>
 
-      <%= f.text_field :county, label: "County", value: params[:county],
-        required: true %>
+      <%= f.text_field :county, label: "County", value: params[:county] %>
 
       <%= f.text_field :residence_time_length,
         label: "How long have you resided Here?",
         value: params[:residence_time_length], required: true %>
 
       <%= f.email_field :email_address, label: "E-mail address",
-        value: params[:email_address], required: true %>
+        value: params[:email_address] %>
     </div>
   </div>
 
@@ -130,14 +128,14 @@
         value: params[:recommend_phone_number], required: true %>
 
       <%= f.text_field :recommend_agency_type, label: "Type of agency",
-        value: params[:recommend_agency], required: true %>
+        value: params[:recommend_agency] %>
 
       <%= f.text_field :recommend_known_length,
         label: "How long have you known this person?", value: params[:city],
         required: true %>
 
       <%= f.email_field :recommend_email, label: "E-mail address",
-        value: params[:recommend_email], required: true %>
+        value: params[:recommend_email] %>
     </div>
   </div>
 
@@ -151,12 +149,12 @@
         label: "Why would Fountain House be a good place for you?",
         value: params[:why_fh_good_place], required: true %>
 
-      <%= f.check_box :tour_fh,
-        label: "Check here if you have had a tour of Fountain House",
-        checked: is_checked?(params[:tour_fh]) %>
+      <%= f.select :tour_fh, ["No", "Yes"],
+        label: "Have you had a tour of Fountain House?", include_blank: true,
+        selected: params[:tour_fh] %>
 
       <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
-        value: params[:tour_date], required: true %>
+        value: params[:tour_date] %>
     </div>
   </div>
 
@@ -193,21 +191,23 @@
         label: "If living with others, with whom?",
         value: params[:who_live_with] %>
 
+      <%= f.select :reside_with_minors, ["No", "Yes"],
+        label: "Do minor children reside in your home?",
+        selected: params[:reside_with_minors] %>
+
+      <div id="acs-select">
+        <%= f.select :acs_involvement, ["No", "Yes"],
+          label: ("If so, is there or has there ever been any ACS" +
+          " (Administration for Children's Services) involvement?"),
+          selected: params[:acs_involvement] %>
+      </div>
+
       <%= f.select :have_homeless_history, ["No", "Yes"],
         label: "Do you have a history of homelessness?",
         selected: params[:have_homeless_history] %>
 
       <%= f.text_area :homeless_explanation, label: "If so, please explain",
         value: params[:homeless_explanation] %>
-
-      <%= f.select :reside_with_minors, ["No", "Yes"],
-        label: "Do minor children reside in your home?",
-        selected: params[:reside_with_minors] %>
-
-      <%= f.select :acs_involvement, ["No", "Yes"],
-        label: ("If so, is there or has there ever been any ACS" +
-        " (Administration for Children's Services) involvement?"),
-        selected: params[:acs_involvement] %>
     </div>
   </div>
 
@@ -249,7 +249,7 @@
         value: (params[:other_income] || 0), class: "income-field" %>
 
       <%= f.number_field :total_income, label: "Total Income",
-        value: params[:total_income], id: "total-field", required: true %>
+        value: (params[:total_income] || 0), id: "total-field", required: true %>
     </div>
   </div>
 
