@@ -42,13 +42,15 @@
           <div class="col-lg-4 col-xs-4 row_element">
             <%= f.text_field hospital_start_date_name,
               value: params[hospital_start_date_name], hide_label: true,
-              control_col: "col-lg-12", class: "datepicker row_field" %>
+              control_col: "col-lg-12",
+              class: "datepicker-months-only row_field" %>
           </div>
 
           <div class="col-lg-4 col-xs-4 row_element">
             <%= f.text_field hospital_end_date_name,
               value: params[hospital_end_date_name], hide_label: true,
-              control_col: "col-lg-12", class: "datepicker row_field" %>
+              control_col: "col-lg-12",
+              class: "datepicker-months-only row_field" %>
           </div>
         </div>
       </div>

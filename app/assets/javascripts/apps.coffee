@@ -1,10 +1,11 @@
 $(document).on "turbolinks:load", ->
+  # Datepicker fields for selecting specific dates
+  $(".datepicker").datepicker(format: "M dd, yyyy")
 
-  # Datepicker fields
-  # $(".datepicker").datepicker format: "M dd, yyyy"
-  $(".datepicker").datepicker(format: "yyyy",
-    viewMode: "years", 
-    minViewMode: "years")
+  # Datepicker fields for selecting only month and year
+  $(".datepicker-months-only").datepicker(format: "M, yyyy", \
+    viewMode: "months", \
+    minViewMode: "months")
 
   # Total income field auto-filler
   $(".income-field").change ->
