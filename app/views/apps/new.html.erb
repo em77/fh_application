@@ -37,16 +37,18 @@
     </div>
 
     <div class="panel-content">
-      <%= f.file_field :psych_eval, label: ("Please attach a current" +
+      <%= f.file_field :psych_eval, required: true,
+        label: ("Please attach a current" +
         " psychiatric assessment using the DSM V") %>
 
-      <%= f.file_field :psych_social, label: ("Please attach a current" +
+      <%= f.file_field :psych_social, required: true,
+        label: ("Please attach a current" +
         " and detailed psychosocial history") %>
 
       <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
     </div>
   </div>
-
+<% if false %>
   <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">Prospective Member</h4>
@@ -688,7 +690,7 @@
         value: params[:member_signature], required: true %>
     </div>
   </div>
-
+<% end %>
   <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">Application Submission</h4>

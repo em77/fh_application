@@ -3,6 +3,9 @@ class FhApplicationForm < App
   validates :ssn, format: { with: /\A[0-9]{9}\z/,
     message: "must be a 9 digit number" }
 
+  validates :psych_eval, presence: {message: "file must be attached"}
+  validates :psych_social, presence: {message: "file must be attached"}
+
   extend CarrierWave::Mount
 
   attr_accessor :first_name, :last_name, :mi, :dob,

@@ -26,3 +26,5 @@ en:
     attributes:
       fh_application_form:
         ssn: "SSN"
+        psych_social: "Psychosocial History"
+        psych_eval: "Psychiatric Assessment"
