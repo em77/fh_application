@@ -1,5 +1,8 @@
 class FhApplicationForm < App
 
+  validates :ssn, format: { with: /\A[0-9]{9}\z/,
+    message: "must be a 9 digit number" }
+
   extend CarrierWave::Mount
 
   attr_accessor :first_name, :last_name, :mi, :dob,
@@ -78,6 +81,18 @@ class FhApplicationForm < App
   end
 
   def fill_out
+    text_checkbox_fill_out
+
+    fill(:drug_questions_name,
+         (self.send(:first_name) + " " + self.send(:last_name))
+        )
+    fill(:drug_questions_date, Date.today.strftime("%b %d, %Y"))
+    fill(:member_signature_date, Date.today.strftime("%b %d, %Y"))
+    ssn_splitter(self.send(:ssn)).each {|key, value| fill(key, value)}
+    fill(:tour_fh, "1") if self.send(:tour_fh) == "Yes"
+  end
+
+  def text_checkbox_fill_out
     text_fields = [
       :first_name, :last_name, :mi, :dob,
       :gender, :place_of_birth, :street_address, :apt, :city, :state, :zip_code,
@@ -132,15 +147,15 @@ class FhApplicationForm < App
       :abuse_history_drugs, :ever_in_treatment, :currently_in_treatment,
       :interested_in_treatment, :legal_history_detail, :extra_info,
       :bronx_or_manhattan, :member_signature, :member_signature_date,
-      :been_in_jail, :been_in_prison, :convicted_of_misdemeanor,
-      :arrests_for_felonies, :injured_another_person, :history_of_violence,
-      :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
-      :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
-      :insurance_other
+      :insurance_other, :wanted_reduce_substance_use,
+      :been_annoyed_by_substance_criticism, :felt_bad_about_substance_use,
+      :ever_used_substances_for_hangover, :been_in_jail, :been_in_prison,
+      :convicted_of_misdemeanor, :arrests_for_felonies, :injured_another_person,
+      :history_of_violence
     ]
 
     checkboxes = [
-      :tour_fh, :eth_other, :eth_aa, :eth_asian, :eth_lat, :eth_na, :eth_me,
+      :eth_other, :eth_aa, :eth_asian, :eth_lat, :eth_na, :eth_me,
       :eth_cauc, :eth_pi, :eth_car, :less_hs, :trade_school, :some_grad_work,
       :some_hs, :some_college, :masters_degree, :ged, :assoc_degree,
       :adv_grad_degree, :hs_diploma, :bachelors_degree, :med_alert_deaf,
@@ -152,21 +167,13 @@ class FhApplicationForm < App
     (text_fields + checkboxes).each do |field|
       fill(field, self.send(field))
     end
-
-    fill(:drug_questions_name,
-         (self.send(:first_name) + " " + self.send(:last_name))
-        )
-    fill(:drug_questions_date, Date.today.strftime("%b %d, %Y"))
-    fill(:member_signature_date, Date.today.strftime("%b %d, %Y"))
-    ssn_splitter(self.send(:ssn)).each {|key, value| fill(key, value)}
   end
 
   def ssn_splitter(ssn)
     ssn_hash = {}
-    stripped_ssn = ssn.to_s.gsub(" ", "").gsub("-", "")
-    ssn_hash[:ssn_1] = stripped_ssn[0..2]
-    ssn_hash[:ssn_2] = stripped_ssn[3..4]
-    ssn_hash[:ssn_3] = stripped_ssn[5..8]
+    ssn_hash[:ssn_1] = ssn[0..2]
+    ssn_hash[:ssn_2] = ssn[3..4]
+    ssn_hash[:ssn_3] = ssn[5..8]
     ssn_hash
   end
 

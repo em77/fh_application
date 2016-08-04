@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+
+  activemodel:
+    attributes:
+      fh_application_form:
+        ssn: "SSN"

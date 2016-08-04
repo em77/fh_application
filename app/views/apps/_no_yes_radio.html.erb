@@ -1,0 +1,11 @@
+<div class="left-right-container">
+  <%= f.label element, label_text, class: "position-left" %>
+  <%= f.form_group element do %>
+    <div class="position-right">
+      <%= f.radio_button element, "No", label: "No",
+        required: true, checked: params[element], inline: true %>
+      <%= f.radio_button element, "Yes", label: "Yes",
+        required: true, checked: params[element], inline: true %>
+    </div>
+  <% end %>
+</div>

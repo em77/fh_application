@@ -48,8 +48,11 @@ module Features
         .each do |n|
         fill_in n, with: Faker::Lorem.word
       end
-      [:graduate_1, :graduate_2, :graduate_3, :ever_worked,
-        :worked_last_12_months].each do |n|
+
+      # :ever_worked,
+      #   :worked_last_12_months
+
+      [:graduate_1, :graduate_2, :graduate_3].each do |n|
         fill_in n, with: ["Yes", "No"].sample
       end
 
@@ -141,21 +144,15 @@ module Features
           fill_in n, with: Faker::Lorem.paragraphs(1).join
         end
 
-      fill_in :bronx_or_manhattan, with: "Manhattan"
-
       [:have_homeless_history, :reside_with_minors, :acs_involvement,
         :are_you_veteran, :harp, :hcbs, :abuse_history_alcohol,
         :abuse_history_drugs, :ever_in_treatment, :currently_in_treatment,
-        :interested_in_treatment, :been_in_jail, :been_in_prison,
-        :convicted_of_misdemeanor, :arrests_for_felonies,
-        :injured_another_person, :history_of_violence,
-        :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
-        :felt_bad_about_substance_use, :ever_used_substances_for_hangover]
+        :interested_in_treatment]
         .each do |n|
           select(["Yes", "No"].sample, from: symbol_to_underscore(n))
         end
 
-      [:tour_fh, :eth_aa, :eth_na, :eth_cauc, :eth_asian, :eth_me, :eth_pi,
+      [:eth_aa, :eth_na, :eth_cauc, :eth_asian, :eth_me, :eth_pi,
         :eth_lat, :eth_car, :med_alert_deaf, :med_alert_asthma,
         :med_alert_cpi, :med_alert_allerg, :med_alert_npm, :med_alert_blind,
         :med_alert_recent_surg, :med_alert_diabetes, :med_alert_ep,
@@ -165,6 +162,19 @@ module Features
         .each do |n|
           check(symbol_to_underscore(n))
         end
+
+      [:wanted_reduce_substance_use,
+      :been_annoyed_by_substance_criticism, :felt_bad_about_substance_use,
+      :ever_used_substances_for_hangover, :been_in_jail, :been_in_prison,
+      :convicted_of_misdemeanor, :arrests_for_felonies, :injured_another_person,
+      :history_of_violence]
+      .each do |n|
+        choose("#{symbol_to_underscore(n)}_#{["no", "yes"].sample}")
+      end
+
+      choose("_tour_fh_yes")
+
+      choose("_bronx_or_manhattan_manhattan")
     end
 
     def symbol_to_underscore(symbol)

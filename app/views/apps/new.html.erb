@@ -63,10 +63,10 @@
         value: params[:last_name], required: true %>
 
       <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
-        required: true %>
+        required: true, value: params[:dob] %>
 
-      <%= f.number_field :ssn, {label: "SSN", value: params[:ssn],
-          required: true, class: "ssn-field"} %>
+      <%= f.text_field :ssn, {label: "SSN", value: params[:ssn],
+          required: true, id: "ssn-field"} %>
 
       <%= f.text_field :gender, label: "Gender", value: params[:gender],
         required: true %>
@@ -149,9 +149,18 @@
         label: "Why would Fountain House be a good place for you?",
         value: params[:why_fh_good_place], required: true %>
 
-      <%= f.select :tour_fh, ["No", "Yes"],
-        label: "Have you had a tour of Fountain House?", include_blank: true,
-        selected: params[:tour_fh] %>
+      <div class="left-right-container">
+        <%= f.label :tour_fh, ("Have you had a" +
+          " tour of Fountain House?"), class: "position-left" %>
+        <%= f.form_group :tour_fh do %>
+          <div class="position-right">
+            <%= f.radio_button :tour_fh, "No", label: "No",
+              required: true, checked: params[:tour_fh], inline: true %>
+            <%= f.radio_button :tour_fh, "Yes", label: "Yes",
+              required: true, checked: params[:tour_fh], inline: true %>
+          </div>
+        <% end %>
+      </div>
 
       <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
         value: params[:tour_date] %>
@@ -535,8 +544,8 @@
         value: params[:last_physical_exam_date], class: "datepicker" %>
 
       <%= f.text_field :last_dental_exam_date,
-        label: "Date of last physical exam",
-        value: params[:last_physical_exam_date], class: "datepicker" %>
+        label: "Date of last dental exam",
+        value: params[:last_dental_exam_date], class: "datepicker" %>
 
       <%= f.text_area :medication_info,
         label: ("Please list all medications you take with respective" +
@@ -618,34 +627,7 @@
     </div>
 
     <div class="panel-content">
-
-      <%= f.select :been_in_jail, ["No", "Yes"],
-        label: "Have you ever been in jail?", selected: params[:been_in_jail] %>
-
-      <%= f.select :been_in_prison, ["No", "Yes"],
-        label: "Have you ever been in prison?",
-        selected: params[:been_in_prison] %>
-
-      <%= f.select :convicted_of_misdemeanor, ["No", "Yes"],
-        label: "Have you ever been convicted of a misdemeanor?",
-        selected: params[:convicted_of_misdemeanor] %>
-
-      <%= f.select :arrests_for_felonies, ["No", "Yes"],
-        label: "Have you ever had any arrests for felonies?",
-        selected: params[:arrests_for_felonies] %>
-
-      <%= f.select :injured_another_person, ["No", "Yes"],
-        label: "Have you ever physically injured another person?",
-        selected: params[:injured_another_person] %>
-
-      <%= f.select :history_of_violence, ["No", "Yes"],
-        label: "Do you have any history of violent behavior?",
-        selected: params[:history_of_violence] %>
-
-      <%= f.text_area :legal_history_detail,
-        label: ("If any of the above questions were answered \"Yes\"," +
-        " indicate dates, behaviors, precipitants, legal actions, etc."),
-        value: params[:legal_history_detail] %>
+      <%= render partial: "legal_history", locals: {f: f} %>
     </div>
   </div>
 
@@ -661,25 +643,8 @@
       </h5>
     </div>
 
-    <div class="panel-content">
-
-      <%= f.select :wanted_reduce_substance_use, ["No", "Yes"],
-        label: ("Have you ever felt that you ought to cut down on your" +
-         " drinking or drug use?"),
-        selected: params[:wanted_reduce_substance_use] %>
-
-      <%= f.select :been_annoyed_by_substance_criticism, ["No", "Yes"],
-        label: "Have people annoyed you by criticizing your drinking or" +
-        " drug use?", selected: params[:been_annoyed_by_substance_criticism] %>
-
-      <%= f.select :felt_bad_about_substance_use, ["No", "Yes"],
-        label: "Have you ever felt bad or guilty about your drinking or" +
-        " drug use?", selected: params[:felt_bad_about_substance_use] %>
-
-      <%= f.select :ever_used_substances_for_hangover, ["No", "Yes"],
-        label: ("Have you ever had a drink or used drugs first thing in the" +
-        " morning to steady your nerves or to get rid of a hangover?"),
-        selected: params[:ever_used_substances_for_hangover] %>
+    <div class="panel-content" id="cage-aid">
+      <%= render partial: "cage_aid", locals: {f: f} %>
     </div>
   </div>
 
@@ -702,13 +667,25 @@
     </div>
 
     <div class="panel-content">
-
-      <%= f.select :bronx_or_manhattan, ["Manhattan", "Bronx"],
-        label: ("Are you applying to Fountain House Manhattan or Fountain" +
-          " House Bronx?"), selected: params[:bronx_or_manhattan] %>
-
-      <%= f.text_field :member_signature, label: "Please sign your name to this application by typing it in below", value: params[:member_signature],
-        required: true %>
+      <div class="left-right-container">
+        <%= f.label :bronx_or_manhattan, ("Are you applying" +
+          " to Fountain House Manhattan or Fountain House Bronx?"),
+          class: "position-left" %>
+        <%= f.form_group :bronx_or_manhattan do %>
+          <div class="position-right">
+            <%= f.radio_button :bronx_or_manhattan, "Manhattan",
+              label: "Manhattan", required: true,
+              checked: params[:bronx_or_manhattan], inline: true %>
+            <%= f.radio_button :bronx_or_manhattan, "Bronx", label: "Bronx",
+              required: true, checked: params[:bronx_or_manhattan],
+              inline: true %>
+          </div>
+        <% end %>
+      </div>
+      
+      <%= f.text_field :member_signature, label: ("Please sign your name to" +
+        " this application by typing it in below"),
+        value: params[:member_signature], required: true %>
     </div>
   </div>
 

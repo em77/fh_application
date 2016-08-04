@@ -5,31 +5,37 @@ class AppsController < ApplicationController
   helper_method :app
 
   def new
+    @app = FhApplicationForm.new(app_params)
   end
 
   def create
     @app = FhApplicationForm.new(app_params)
-    app.fill_out
-    if content_type_valid?(
-         app.psych_eval.path,
-         app.attachment_content_whitelist
-         ) && content_type_valid?(
-                app.psych_social.path,
-                app.attachment_content_whitelist
-                )
-      send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
-        type: "application/pdf")
-      app.save
-      AppMailer.new_app_email(
-        "#{app.first_name} #{app.last_name}",
-        app_file_path,
-        [app.psych_eval.file.filename, app.psych_social.file.filename],
-        app.bronx_or_manhattan
-        ).deliver_later
-      flash[:success] = "Your application was submitted"
-      redirect_to root_path
+    if app.valid?
+      app.fill_out
+      if content_type_valid?(
+           app.psych_eval.path,
+           app.attachment_content_whitelist
+           ) && content_type_valid?(
+                  app.psych_social.path,
+                  app.attachment_content_whitelist
+                  )
+        send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
+          type: "application/pdf")
+        app.save
+        AppMailer.new_app_email(
+          "#{app.first_name} #{app.last_name}",
+          app_file_path,
+          [app.psych_eval.file.filename, app.psych_social.file.filename],
+          app.bronx_or_manhattan
+          ).deliver_later
+        flash[:success] = "Your application was submitted"
+        redirect_to root_path
+      else
+        flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
+        render :new
+      end
     else
-      flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
+      flash[:error] = app.errors.full_messages.to_sentence
       render :new
     end
   end

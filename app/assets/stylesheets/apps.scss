@@ -58,3 +58,26 @@ label[for="work_notes"] {
 #hosp-count {
   width: 10%;
 }
+
+.hide-element {
+  display: none;
+}
+
+.position-right {
+  float: right;
+  margin-right: 35%;
+}
+
+.position-left {
+  float: left;
+}
+
+.left-right-container {
+  overflow: hidden;
+  margin-bottom: 1.5%;
+}
+
+#cage-aid .position-right {
+  float: right;
+  margin-right: 20%;
+}

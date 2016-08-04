@@ -1,0 +1,26 @@
+<%= render partial: "no_yes_radio", locals: {f: f, element: :been_in_jail,
+  label_text: "Have you ever been in jail?"} %>
+
+<%= render partial: "no_yes_radio", locals: {f: f, element: :been_in_prison,
+  label_text: "Have you ever been in prison?"} %>
+
+<%= render partial: "no_yes_radio", locals: {f: f,
+  element: :convicted_of_misdemeanor,
+  label_text: "Have you ever been convicted of a misdemeanor?"} %>
+
+<%= render partial: "no_yes_radio", locals: {f: f,
+  element: :arrests_for_felonies,
+  label_text: "Have you ever had any arrests for felonies?"} %>
+
+<%= render partial: "no_yes_radio", locals: {f: f,
+  element: :injured_another_person,
+  label_text: "Have you ever physically injured another person?"} %>
+
+<%= render partial: "no_yes_radio", locals: {f: f,
+  element: :history_of_violence,
+  label_text: "Do you have any history of violent behavior?"} %>
+
+<%= f.text_area :legal_history_detail,
+  label: ("If any of the above questions were answered \"Yes\"," +
+  " indicate dates, behaviors, precipitants, legal actions, etc."),
+  value: params[:legal_history_detail] %>
