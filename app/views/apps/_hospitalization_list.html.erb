@@ -1,30 +1,8 @@
-<div class="form-inline psych-hosp-table">
-  <div class="row">
-    <div class="col-lg-1 col-xs-1 field_number">
-      &nbsp;&nbsp;
-    </div>
-    <div class="col-lg-11 col-xs-11">
-      <div class="row">
-        <div class="col-lg-4 col-xs-4 row_element">
-          <strong>Hospital Name</strong>
-        </div>
-
-        <div class="col-lg-4 col-xs-4 row_element">
-          <strong>Start Date</strong>
-        </div>
-
-        <div class="col-lg-4 col-xs-4 row_element">
-          <strong>End Date</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <% (1..10).each do |num| %>
   <% hospital_name_name = (("hospital_name_" + num.to_s).to_sym) %>
   <% hospital_start_date_name = (("hospital_start_date_" + num.to_s).to_sym) %>
   <% hospital_end_date_name = (("hospital_end_date_" + num.to_s).to_sym) %>
+  <% hosp_precip_name = (("hosp_precip_" + num.to_s).to_sym) %>
 
   <div class="form-inline psych-hosp-table">
     <div class="row">
@@ -36,22 +14,31 @@
           <div class="col-lg-4 col-xs-4 row_element">
             <%= f.text_field hospital_name_name,
               value: params[hospital_name_name], hide_label: true,
-              control_col: "col-lg-12", class: "row_field" %>
+              control_col: "col-lg-12", class: "row_field",
+              placeholder: "Hospital Name" %>
           </div>
 
           <div class="col-lg-4 col-xs-4 row_element">
             <%= f.text_field hospital_start_date_name,
               value: params[hospital_start_date_name], hide_label: true,
               control_col: "col-lg-12",
-              class: "datepicker-months-only row_field" %>
+              class: "datepicker-months-only row_field",
+              placeholder: "Start Date" %>
           </div>
 
           <div class="col-lg-4 col-xs-4 row_element">
             <%= f.text_field hospital_end_date_name,
               value: params[hospital_end_date_name], hide_label: true,
               control_col: "col-lg-12",
-              class: "datepicker-months-only row_field" %>
+              class: "datepicker-months-only row_field",
+              placeholder: "End Date" %>
           </div>
+        </div>
+        <div class="hosp_precip_field">
+          <%= f.text_area hosp_precip_name, value: params[hosp_precip_name],
+            hide_label: true, control_col: "col-lg-12", class: "row_field",
+            placeholder: ("Please indicate precipitants to this" +
+            " hospitalization") %>
         </div>
       </div>
     </div>

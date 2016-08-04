@@ -9,7 +9,7 @@ class FhApplicationForm < App
   extend CarrierWave::Mount
 
   attr_accessor :first_name, :last_name, :mi, :dob,
-    :ssn, :gender, :place_of_birth, :street_address,
+    :ssn, :gender, :us_citizen, :street_address,
     :apt, :city, :state, :zip_code, :phone_number, :county,
     :residence_time_length, :email_address, :recommend_name, :recommend_agency,
     :recommend_phone_number, :recommend_agency_type, :recommend_known_length,
@@ -46,7 +46,7 @@ class FhApplicationForm < App
     :therapist_agency, :therapist_phone, :therapist_address,
     :primary_care_address, :primary_care_name, :primary_care_agency,
     :primary_care_phone, :insurance_name, :insurance_num, :harp, :hcbs,
-    :medication_info, :hospitalization_count, :hospitalization_precipitants,
+    :hospitalization_count,
     :abuse_history_elaboration, :substance_name_1, :substance_date_started_1,
     :substance_last_use_1, :substance_name_2, :substance_date_started_2,
     :substance_last_use_2, :substance_name_3, :substance_date_started_3,
@@ -71,7 +71,13 @@ class FhApplicationForm < App
     :history_of_violence, :drug_questions_name, :drug_questions_date,
     :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
     :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
-    :insurance_other, :psych_social, :psych_eval
+    :insurance_other, :psych_social, :psych_eval, :hosp_precip_1,
+    :hosp_precip_2, :hosp_precip_3, :hosp_precip_4, :hosp_precip_5,
+    :hosp_precip_6, :hosp_precip_7, :hosp_precip_8, :hosp_precip_9,
+    :hosp_precip_10, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
+    :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
+    :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
+    :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6
 
   mount_uploader :psych_eval, PsychEvalUploader
 
@@ -98,7 +104,7 @@ class FhApplicationForm < App
   def text_checkbox_fill_out
     text_fields = [
       :first_name, :last_name, :mi, :dob,
-      :gender, :place_of_birth, :street_address, :apt, :city, :state, :zip_code,
+      :gender, :us_citizen, :street_address, :apt, :city, :state, :zip_code,
       :phone_number, :county, :residence_time_length, :email_address,
       :recommend_name, :recommend_agency, :recommend_phone_number,
       :recommend_agency_type, :recommend_known_length, :why_fh_good_place,
@@ -129,7 +135,7 @@ class FhApplicationForm < App
       :therapist_agency, :therapist_phone, :therapist_address,
       :primary_care_address, :primary_care_name, :primary_care_agency,
       :primary_care_phone, :insurance_name, :insurance_num, :harp, :hcbs,
-      :medication_info, :hospitalization_count, :hospitalization_precipitants,
+      :hospitalization_count,
       :abuse_history_elaboration, :substance_name_1, :substance_date_started_1,
       :substance_last_use_1, :substance_name_2, :substance_date_started_2,
       :substance_last_use_2, :substance_name_3, :substance_date_started_3,
@@ -154,7 +160,13 @@ class FhApplicationForm < App
       :been_annoyed_by_substance_criticism, :felt_bad_about_substance_use,
       :ever_used_substances_for_hangover, :been_in_jail, :been_in_prison,
       :convicted_of_misdemeanor, :arrests_for_felonies, :injured_another_person,
-      :history_of_violence
+      :history_of_violence, :hosp_precip_1,
+      :hosp_precip_2, :hosp_precip_3, :hosp_precip_4, :hosp_precip_5,
+      :hosp_precip_6, :hosp_precip_7, :hosp_precip_8, :hosp_precip_9,
+      :hosp_precip_10, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
+      :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
+      :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
+      :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6
     ]
 
     checkboxes = [

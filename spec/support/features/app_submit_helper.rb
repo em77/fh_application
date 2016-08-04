@@ -44,7 +44,10 @@ module Features
       end
       [:major_1, :major_2, :major_3, :substance_name_1, :substance_name_2,
         :substance_name_3, :substance_name_4, :substance_name_5, :eth_other,
-        :other_language]
+        :other_language, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
+        :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
+        :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
+        :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6]
         .each do |n|
         fill_in n, with: Faker::Lorem.word
       end
@@ -134,7 +137,10 @@ module Features
 
       [:hospitalization_precipitants, :why_fh_good_place, :homeless_explanation,
         :work_notes, :med_alert_memo, :medication_info,
-        :abuse_history_elaboration, :legal_history_detail, :extra_info]
+        :abuse_history_elaboration, :legal_history_detail, :extra_info,
+        :hosp_precip_1, :hosp_precip_2, :hosp_precip_3, :hosp_precip_4,
+        :hosp_precip_5, :hosp_precip_6, :hosp_precip_7, :hosp_precip_8,
+        :hosp_precip_9, :hosp_precip_10]
         .each do |n|
           fill_in n, with: Faker::Lorem.paragraphs(3).join
         end

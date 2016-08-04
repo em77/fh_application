@@ -1,0 +1,40 @@
+<div class="form-inline">
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Medication Name</strong>
+  </div>
+
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Dosage</strong>
+  </div>
+
+  <div class="col-lg-4 col-xs-4 row_element">
+    <strong>Frequency</strong>
+  </div>
+</div>
+
+<% (1..6).each do |num| %>
+  <% med_name_name = (("med_name_" + num.to_s).to_sym) %>
+  <% med_dosage_name = (
+      ("med_dosage_" + num.to_s).to_sym
+    ) %>
+  <% med_freq_name = (("med_freq_" + num.to_s).to_sym) %>
+
+  <div class="form-inline">
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field med_name_name, value: params[med_name_name],
+        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
+    </div>
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field med_dosage_name,
+        value: params[med_dosage_name],
+        hide_label: true, control_col: "col-lg-12",
+        class: "row_field" %>
+    </div>
+    <div class="col-lg-4 col-xs-4 row_element">
+      <%= f.text_field med_freq_name,
+        value: params[med_freq_name],
+        hide_label: true, control_col: "col-lg-12",
+        class: "row_field" %>
+    </div>
+  </div>
+<% end %>

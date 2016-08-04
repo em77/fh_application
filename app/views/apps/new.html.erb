@@ -48,7 +48,7 @@
       <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
     </div>
   </div>
-<% if false %>
+
   <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">Prospective Member</h4>
@@ -73,8 +73,8 @@
       <%= f.text_field :gender, label: "Gender", value: params[:gender],
         required: true %>
 
-      <%= f.text_field :place_of_birth, label: "Place of Birth",
-        value: params[:place_of_birth], required: true %>
+      <%= f.text_field :us_citizen, label: "Are you a U.S. citizen?",
+        value: params[:us_citizen], required: true %>
     </div>
   </div>
 
@@ -123,7 +123,7 @@
       <%= f.text_field :recommend_name, label: "Name",
         value: params[:recommend_name], required: true %>
 
-      <%= f.text_field :recommend_agency, label: "Agency",
+      <%= f.text_field :recommend_agency, label: "Source",
         value: params[:recommend_agency], required: true %>
 
       <%= f.phone_field :recommend_phone_number, label: "Phone number",
@@ -536,9 +536,10 @@
         value: params[:medicaid_comp] %>
       </div>
 
-      <%= f.select :harp, ["No", "Yes"], label: "HARP",
+      <%= f.select :harp, ["No", "Yes"],
+        label: "Health And Recovery Plan (HARP)",
         selected: params[:harp] %>
-      <%= f.select :hcbs, ["No", "Yes"], label: "HCBS",
+      <%= f.select :hcbs, ["No", "Yes", "Unknown"], label: "HCBS",
         selected: params[:hcbs] %>
 
       <%= f.text_field :last_physical_exam_date,
@@ -548,12 +549,19 @@
       <%= f.text_field :last_dental_exam_date,
         label: "Date of last dental exam",
         value: params[:last_dental_exam_date], class: "datepicker" %>
-
-      <%= f.text_area :medication_info,
-        label: ("Please list all medications you take with respective" +
-        " dosage and frequency"), value: params[:medication_info] %>
     </div>
   </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Medication Information</h4>
+      <h5 class="panel-subtext">Please list all medications you are currently
+        taking with respective names, dosage, and frequency.</h5>
+    </div>
+    <div class="panel-content">
+      <%= render partial: "medication_info", locals: {f: f} %>
+    </div>
+  </div>  
 
   <div class="panel panel-info">
     <div class="panel-heading">
@@ -569,11 +577,6 @@
     </div>
     <%= render partial: "hospitalization_list", locals: {f: f} %>
     <h5></h5>
-    <div class="panel-content">
-      <%= f.text_area :hospitalization_precipitants,
-        label: "Please indicate precipitants to these hospitalizations",
-        value: params[:hospitalization_precipitants] %>
-    </div>
   </div>
 
   <div class="panel panel-info">
@@ -690,7 +693,7 @@
         value: params[:member_signature], required: true %>
     </div>
   </div>
-<% end %>
+
   <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">Application Submission</h4>
