@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
   before_action :set_referer, only: [:new]
 
-  attr_accessor :app
+  attr_accessor :app, :app_file_path
   helper_method :app
 
   def new
@@ -19,15 +19,10 @@ class AppsController < ApplicationController
                   app.psych_social.path,
                   app.attachment_content_whitelist
                   )
-        send_file(app_file_path = app.export("application-#{app.unique_hex}.pdf"),
+        send_file(@app_file_path = app.export("application-#{app.unique_hex}.pdf"),
           type: "application/pdf")
         app.save
-        AppMailer.new_app_email(
-          "#{app.first_name} #{app.last_name}",
-          app_file_path,
-          [app.psych_eval.file.filename, app.psych_social.file.filename],
-          app.bronx_or_manhattan
-          ).deliver_later
+        send_email
         flash[:success] = "Your application was submitted"
         redirect_to root_path
       else
@@ -38,6 +33,15 @@ class AppsController < ApplicationController
       flash[:error] = app.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def send_email
+    AppMailer.new_app_email(
+      "#{app.first_name} #{app.last_name}",
+      app_file_path,
+      [app.psych_eval.file.filename, app.psych_social.file.filename],
+      app.bronx_or_manhattan
+      ).deliver_later
   end
 
   def content_type_valid?(file_path, whitelist)
