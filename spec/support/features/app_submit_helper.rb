@@ -10,7 +10,6 @@ module Features
                             .strftime("%b %d, %Y")
       fill_in :ssn, with: Faker::Number.number(9)
       fill_in :gender, with: "Female"
-      fill_in :place_of_birth, with: Faker::Address.city
       fill_in :apt, with: Faker::Address.secondary_address
       fill_in :city, with: Faker::Address.city
       fill_in :state, with: Faker::Address.state
@@ -135,8 +134,8 @@ module Features
       select("Medicare", from: symbol_to_underscore(:insurance_name))
       fill_in :insurance_num, with: rand(5000000)
 
-      [:hospitalization_precipitants, :why_fh_good_place, :homeless_explanation,
-        :work_notes, :med_alert_memo, :medication_info,
+      [:why_fh_good_place, :homeless_explanation,
+        :work_notes, :med_alert_memo,
         :abuse_history_elaboration, :legal_history_detail, :extra_info,
         :hosp_precip_1, :hosp_precip_2, :hosp_precip_3, :hosp_precip_4,
         :hosp_precip_5, :hosp_precip_6, :hosp_precip_7, :hosp_precip_8,
@@ -153,7 +152,7 @@ module Features
       [:have_homeless_history, :reside_with_minors, :acs_involvement,
         :are_you_veteran, :harp, :hcbs, :abuse_history_alcohol,
         :abuse_history_drugs, :ever_in_treatment, :currently_in_treatment,
-        :interested_in_treatment]
+        :interested_in_treatment, :us_citizen]
         .each do |n|
           select(["Yes", "No"].sample, from: symbol_to_underscore(n))
         end

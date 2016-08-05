@@ -73,8 +73,8 @@
       <%= f.text_field :gender, label: "Gender", value: params[:gender],
         required: true %>
 
-      <%= f.text_field :us_citizen, label: "Are you a U.S. citizen?",
-        value: params[:us_citizen], required: true %>
+      <%= f.select :us_citizen, ["No", "Yes"], label: "Are you a U.S. citizen?",
+        selected: params[:us_citizen] %>
     </div>
   </div>
 

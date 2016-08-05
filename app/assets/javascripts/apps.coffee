@@ -51,5 +51,18 @@ $(document).on "turbolinks:load", ->
       $("#medicaid-managed").hide()
     return
 
+  # Required field checker for Safari
+  $("form").submit (e) ->
+    if !e.target.checkValidity()
+      ref = $(this).find("[required]")
+      $(ref).each ->
+        if $(this).val() == ""
+          alert "This field cannot be blank:\n" + $(this).prev("label").text()
+          $(this).focus()
+          e.preventDefault()
+          return false
+        return true
+      return
+
   return
   
