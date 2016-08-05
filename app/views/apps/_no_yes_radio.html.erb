@@ -3,9 +3,9 @@
   <%= f.form_group element do %>
     <div class="position-right">
       <%= f.radio_button element, "No", label: "No",
-        checked: params[element], inline: true %>
+        checked: radio_checked?(element, "No"), inline: true %>
       <%= f.radio_button element, "Yes", label: "Yes",
-        checked: params[element], inline: true %>
+        checked: radio_checked?(element, "Yes"), inline: true %>
     </div>
   <% end %>
 </div>

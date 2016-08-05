@@ -157,9 +157,11 @@
         <%= f.form_group :tour_fh do %>
           <div class="position-right">
             <%= f.radio_button :tour_fh, "No", label: "No",
-              required: true, checked: params[:tour_fh], inline: true %>
+              required: true, checked: radio_checked?(:tour_fh, "No"),
+              inline: true %>
             <%= f.radio_button :tour_fh, "Yes", label: "Yes",
-              required: true, checked: params[:tour_fh], inline: true %>
+              required: true, checked: radio_checked?(:tour_fh, "Yes"),
+              inline: true %>
           </div>
         <% end %>
       </div>
@@ -680,9 +682,11 @@
           <div class="position-right">
             <%= f.radio_button :bronx_or_manhattan, "Manhattan",
               label: "Manhattan", required: true,
-              checked: params[:bronx_or_manhattan], inline: true %>
+              checked: radio_checked?(:bronx_or_manhattan, "Manhattan"),
+              inline: true %>
             <%= f.radio_button :bronx_or_manhattan, "Bronx", label: "Bronx",
-              required: true, checked: params[:bronx_or_manhattan],
+              required: true,
+              checked: radio_checked?(:bronx_or_manhattan, "Bronx"),
               inline: true %>
           </div>
         <% end %>
