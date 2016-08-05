@@ -32,7 +32,7 @@ class App
   end
 
   def pdftk
-    @pdftk ||= PdfForms.new(ENV["PDFTK_PATH"] || "/usr/local/bin/pdftk")
+    @pdftk ||= PdfForms.new(ENV["PATH"] || "/usr/local/bin/pdftk")
   end
 
   def fill_out
