@@ -1,24 +1,4 @@
-# README
+## Fountain House Application Submitter
+#### Web app created for the [Fountain House](http://www.fountainhouse.org) organization that takes user input and attachments, writes the input to a PDF template, and e-mails the completed application to the designated destination.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+See it live: https://www.fhapplication.org/
