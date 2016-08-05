@@ -196,11 +196,11 @@
 
       <%= f.select :live_alone_or_with_others, ["Alone", "With others"],
         label: "Do you live alone or with others?",
-        selected: params[:live_alone_or_with_others] %>
+        selected: params[:live_alone_or_with_others], include_blank: true %>
 
       <%= f.text_field :who_live_with,
         label: "If living with others, with whom?",
-        value: params[:who_live_with] %>
+        value: params[:who_live_with], include_blank: true %>
 
       <%= f.select :reside_with_minors, ["No", "Yes"],
         label: "Do minor children reside in your home?",
@@ -425,7 +425,7 @@
 
     <div class="panel-content">
       <%= f.text_field :therapist_name, label: "Therapist",
-        value: params[:therapist_name] %>
+        value: (params[:therapist_name] || "None") %>
 
       <%= f.text_field :therapist_agency, label: "Agency",
         value: params[:therapist_agency] %>
@@ -452,7 +452,7 @@
 
     <div class="panel-content">
       <%= f.text_field :primary_care_name, label: "Primary Care MD",
-        value: params[:primary_care_name] %>
+        value: (params[:primary_care_name] || "None") %>
 
       <%= f.text_field :primary_care_agency, label: "Agency",
         value: params[:primary_care_agency] %>
@@ -536,7 +536,7 @@
         value: params[:medicaid_comp] %>
       </div>
 
-      <%= f.select :harp, ["No", "Yes"],
+      <%= f.select :harp, ["No", "Yes", "Unknown"],
         label: "Health And Recovery Plan (HARP)",
         selected: params[:harp] %>
       <%= f.select :hcbs, ["No", "Yes", "Unknown"], label: "HCBS",
@@ -588,23 +588,23 @@
 
       <%= f.select :abuse_history_alcohol, ["No", "Yes"],
         label: "Do you have a history of alcohol abuse?",
-        selected: params[:abuse_history_alcohol] %>
+        selected: params[:abuse_history_alcohol], include_blank: true %>
 
       <%= f.select :abuse_history_drugs, ["No", "Yes"],
         label: "Do you have a history of drug abuse?",
-        selected: params[:abuse_history_drugs] %>
+        selected: params[:abuse_history_drugs], include_blank: true %>
 
       <%= f.text_area :abuse_history_elaboration,
         label: "If an alcohol or substance abuse history exists," +
         " please elaborate",
         value: params[:abuse_history_elaboration] %>
 
-
       <%= render partial: "substance_history_list", locals: {f: f} %>
 
       <%= f.select :ever_in_treatment, ["No", "Yes"],
         label: "Have you ever been in treatment for an alcohol or drug" +
-        " problem?", selected: params[:ever_in_treatment] %>
+        " problem?", selected: params[:ever_in_treatment],
+        include_blank: true %>
 
       <%= f.text_field :past_treatment_when_and_where,
         label: "If so, when and where?",
@@ -613,7 +613,7 @@
       <%= f.select :currently_in_treatment, ["No", "Yes"],
         label: ("Are you currently in treatment or in a support group for" +
           " alcohol or drug abuse?"),
-          selected: params[:currently_in_treatment] %>
+          selected: params[:currently_in_treatment], include_blank: true %>
 
       <%= f.text_field :current_treatment_when_and_where,
         label: "If so, when and where?",
@@ -622,7 +622,7 @@
       <%= f.select :interested_in_treatment, ["No", "Yes"],
         label: ("Are you interested in being in treatment or a support group" +
         " for alcohol or drug abuse?"),
-        selected: params[:interested_in_treatment] %>
+        selected: params[:interested_in_treatment], include_blank: true %>
     </div>
   </div>
 
