@@ -25,7 +25,8 @@ gem 'bootstrap_form', '~> 2.4'
 gem 'bootstrap_form_extensions'
 
 # For file attachments
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave', require: 'carrierwave',
+  git: 'https://github.com/carrierwaveuploader/carrierwave.git'
 gem 'cocaine'
 
 # gem 'therubyracer', platforms: :ruby
