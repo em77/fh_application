@@ -31,4 +31,20 @@ feature "app submit" do
     expect(page).to have_content ("Uploaded file may only be a .pdf, .doc," +
       " or .docx file")
   end
+
+  scenario "user cannot submit an app with an attachment over 7 MB" do
+    visit new_app_path
+    page.attach_file(
+        "_psych_eval",
+        Rails.root.join("lib/sample_attachments/notes.pdf")
+      )
+    page.attach_file(
+      "_psych_social",
+      Rails.root.join("lib/sample_attachments/bigfile.pdf")
+    )
+    fill_out_app
+    click_on "Submit Application"
+    expect(page).to have_content ("Uploaded file may only be a .pdf, .doc," +
+      " or .docx file")
+  end
 end

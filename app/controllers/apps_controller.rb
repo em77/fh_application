@@ -12,13 +12,11 @@ class AppsController < ApplicationController
     @app = FhApplicationForm.new(app_params)
     if app.valid?
       app.fill_out
-      if content_type_valid?(
-           app.psych_eval.path,
-           app.attachment_content_whitelist
-           ) && content_type_valid?(
-                  app.psych_social.path,
-                  app.attachment_content_whitelist
-                  )
+      if valid_uploads?(
+           [app.psych_eval.path, app.psych_social.path],
+           app.attachment_content_whitelist,
+           7340032 # 7 MB in bytes
+           )
         send_file(@app_file_path = app.export("application-#{app.unique_hex}.pdf"),
           type: "application/pdf")
         app.save
@@ -26,7 +24,8 @@ class AppsController < ApplicationController
         flash[:success] = "Your application was submitted"
         redirect_to root_path
       else
-        flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx file"
+        flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx" +
+          " file less than 7 megabytes in size."
         render :new
       end
     else
@@ -48,6 +47,25 @@ class AppsController < ApplicationController
     line = Cocaine::CommandLine.new("file", "-b --mime-type #{file_path}")
     return true if whitelist.include?(line.run.chomp)
     false
+  end
+
+  def file_size_valid?(file_path, max_byte_size)
+    line = Cocaine::CommandLine.new("wc", "-c #{file_path}")
+    return true if line.run.to_i <= max_byte_size
+    false
+  end
+
+  def valid_upload?(file_path, whitelist, max_byte_size)
+    content_type_valid?(file_path, whitelist) &&
+      file_size_valid?(file_path, max_byte_size)
+  end
+
+  # Returns true only if all uploads are valid
+  def valid_uploads?(file_path_array, whitelist, max_byte_size)
+    file_path_array.each do |file_path|
+      return false unless valid_upload?(file_path, whitelist, max_byte_size)
+    end
+    true
   end
 
   private
