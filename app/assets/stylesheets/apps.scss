@@ -2,6 +2,30 @@
   fieldset { display: table-cell; }
 }
 
+#logo-title-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25%;
+  margin-bottom: 1%;
+}
+
+#fh-logo-app {
+  margin-left: 2%;
+}
+
+#app-title {
+  margin-right: 2.5%;
+  margin-top: 2%;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  background-color: #0099CC !important;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+  background-color: #0078A1 !important;
+}
+
 .row_element {
   text-align: center;
 }
@@ -32,11 +56,17 @@
 }
 
 .panel-subtext {
-  color: #333536;
+  color: white;
 }
 
 .panel-heading {
   margin-bottom: 1%;
+  background-color: #0099CC !important;
+  border-color: #0099CC !important;
+}
+
+.panel-title {
+  color: white !important;
 }
 
 .psych-hosp-table {

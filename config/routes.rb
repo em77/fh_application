@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   resources :apps, only: [:new, :create]
 
-  root to: "pages#home"
+  root to: "apps#new"
 end

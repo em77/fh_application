@@ -22,7 +22,7 @@ class AppsController < ApplicationController
         app.save
         send_email
         flash[:success] = "Your application was submitted"
-        redirect_to root_path
+        redirect_to pages_home_path
       else
         flash[:error] = "Uploaded file may only be a .pdf, .doc, or .docx" +
           " file less than 7 megabytes in size."

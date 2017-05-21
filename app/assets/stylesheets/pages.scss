@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  background: url("https://s3.amazonaws.com/fountainhouse-bucket/sunriseresize.jpg");
+  // background: url("https://s3.amazonaws.com/fountainhouse-bucket/sunriseresize.jpg");
   // background-position: center bottom;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -14,32 +14,30 @@ body {
 }
 
 #headline {
-  color: white;
   text-align: right;
   float: right;
 }
 
 #fh-desc {
-  color: white;
   text-align: center;
-  margin-top: 8%;
+  margin-top: 3%;
   margin-right: 5%;
   margin-left: 5%;
 }
 
 #button-box {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 3%;
   margin-bottom: 0.75%;
 }
 
 #two_houses_notice {
   margin-bottom: 5%;
   text-align: center;
-  color: white;
 }
 
 #home_fh_logo {
-  margin-top: 15px;
   float: left;
+  margin-top: 2%;
+  margin-bottom: 1.25%;
 }

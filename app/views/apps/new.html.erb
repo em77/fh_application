@@ -1,4 +1,16 @@
-<% provide(:title, "New Application") %>
+<% provide(:title, "Membership Application Form") %>
+
+<div id="logo-title-container">
+  <div id="fh-logo-app">
+  <%= link_to image_tag("https://s3.amazonaws.com/fountainhouse-bucket/fountain_house_logo2.jpg", alt: "Fountain House"), "http://www.fountainhouse.org/" %>
+  </div>
+
+  <div id="app-title">
+    <h1>
+      Membership Application Form
+    </h1>
+  </div>
+</div>
 
 <%= bootstrap_form_tag(label_col: "col-lg-1 col-xs-1",
   url: {action: "create"}, multipart: true) do |f| %>
@@ -705,7 +717,7 @@
     </div>
 
     <div class="panel-content">
-      <h4 class="panel-subtext">
+      <h4>
         It is very important that all components of this application are
         absolutely complete. Any missing or incomplete components will,
         unfortunately, delay the application process.
