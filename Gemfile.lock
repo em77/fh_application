@@ -110,12 +110,12 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (2.0.0)
-    nokogiri (1.7.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     pdf-forms (1.1.1)
       cliver (~> 0.3.2)
       safe_shell (>= 1.0.3, < 2.0)
@@ -231,7 +231,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  nokogiri (~> 1.7.1)
+  nokogiri (~> 1.8.0)
   pdf-forms
   puma (~> 3.0)
   rack-timeout
@@ -250,4 +250,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
