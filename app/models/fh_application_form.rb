@@ -195,15 +195,19 @@ class FhApplicationForm < App
   def attachment_save_basename(attachment)
     file_path = attachment.path
     base_save_name = File.basename(file_path, File.extname(file_path))
-    base_save_name + "-#{unique_hex}"
+    base_save_name + "-#{unique_code}"
   end
 
-  def unique_hex
-    @unique_hex ||= SecureRandom.hex(10)
+  def unique_code
+    @unique_code ||= SecureRandom.uuid
   end
 
-  def save
+  def save(app_file_path)
+    uploaded_app = AppS3Uploader.new(app_file_path, unique_code).upload
     self.store_psych_eval!
     self.store_psych_social!
+    { app: uploaded_app.public_url,
+      psych_eval: self.psych_eval.url,
+      psych_social: self.psych_social.url }
   end
 end

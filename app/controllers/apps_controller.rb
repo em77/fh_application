@@ -17,9 +17,9 @@ class AppsController < ApplicationController
            app.attachment_content_whitelist,
            7340032 # 7 MB in bytes
            )
-        send_file(@app_file_path = app.export("application-#{app.unique_hex}.pdf"),
+        send_file(@app_file_path = app.export("application-#{app.unique_code}.pdf"),
           type: "application/pdf")
-        app.save
+        @file_urls = app.save(app_file_path)
         send_email
         flash[:success] = "Your application was submitted"
         redirect_to pages_home_path
@@ -37,8 +37,7 @@ class AppsController < ApplicationController
   def send_email
     AppMailer.new_app_email(
       "#{app.first_name} #{app.last_name}",
-      app_file_path,
-      [app.psych_eval.file.filename, app.psych_social.file.filename],
+      @file_urls,
       app.bronx_or_manhattan
       ).deliver_later
   end
