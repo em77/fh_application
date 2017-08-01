@@ -1,10 +1,12 @@
 class FhApplicationForm < App
+  UPLOAD_ERROR_MESSAGE = "file must be attached"
 
   validates :ssn, format: { with: /\A[0-9]{9}\z/,
     message: "must be a 9 digit number" }
 
-  validates :psych_eval, presence: {message: "file must be attached"}
-  validates :psych_social, presence: {message: "file must be attached"}
+  validates :psych_eval, presence: { message: UPLOAD_ERROR_MESSAGE }
+  validates :psych_social, presence: { message: UPLOAD_ERROR_MESSAGE }
+  validates :insurance_card, presence: { message: UPLOAD_ERROR_MESSAGE }
 
   extend CarrierWave::Mount
 
@@ -71,7 +73,7 @@ class FhApplicationForm < App
     :history_of_violence, :drug_questions_name, :drug_questions_date,
     :wanted_reduce_substance_use, :been_annoyed_by_substance_criticism,
     :felt_bad_about_substance_use, :ever_used_substances_for_hangover,
-    :insurance_other, :psych_social, :psych_eval, :hosp_precip_1,
+    :insurance_other, :psych_social, :psych_eval, :insurance_card, :hosp_precip_1,
     :hosp_precip_2, :hosp_precip_3, :hosp_precip_4, :hosp_precip_5,
     :hosp_precip_6, :hosp_precip_7, :hosp_precip_8, :hosp_precip_9,
     :hosp_precip_10, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
@@ -83,10 +85,13 @@ class FhApplicationForm < App
 
   mount_uploader :psych_social, PsychSocialUploader
 
+  mount_uploader :insurance_card, InsuranceCardUploader
+
   def attachment_content_whitelist
     ["application/pdf",
      "application/msword",
-     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     "image/jpeg"]
   end
 
   def fill_out
@@ -206,8 +211,10 @@ class FhApplicationForm < App
     uploaded_app = AppS3Uploader.new(app_file_path, unique_code).upload
     self.store_psych_eval!
     self.store_psych_social!
+    self.store_insurance_card!
     { app: uploaded_app.public_url,
       psych_eval: self.psych_eval.url,
-      psych_social: self.psych_social.url }
+      psych_social: self.psych_social.url,
+      insurance_card: self.insurance_card.url }
   end
 end

@@ -1,0 +1,2 @@
+class InsuranceCardUploader < FhAppUploader
+end

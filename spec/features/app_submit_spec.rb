@@ -11,6 +11,10 @@ feature "app submit" do
       "_psych_social",
       Rails.root.join("lib/sample_attachments/utopia.pdf")
     )
+    page.attach_file(
+        "_insurance_card",
+        Rails.root.join("lib/sample_attachments/sun.jpg")
+      )
     fill_out_app
     click_on "Submit Application"
     expect(page).to have_content "Your application was submitted"
@@ -26,6 +30,10 @@ feature "app submit" do
       "_psych_social",
       Rails.root.join("lib/sample_attachments/spoof.pdf")
     )
+    page.attach_file(
+        "_insurance_card",
+        Rails.root.join("lib/sample_attachments/sun.jpg")
+      )
     fill_out_app
     click_on "Submit Application"
     expect(page).to have_content ("Uploaded file may only be a .pdf, .doc," +
@@ -42,6 +50,10 @@ feature "app submit" do
       "_psych_social",
       Rails.root.join("lib/sample_attachments/bigfile.pdf")
     )
+    page.attach_file(
+        "_insurance_card",
+        Rails.root.join("lib/sample_attachments/sun.jpg")
+      )
     fill_out_app
     click_on "Submit Application"
     expect(page).to have_content ("Uploaded file may only be a .pdf, .doc," +

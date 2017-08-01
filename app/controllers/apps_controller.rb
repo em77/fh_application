@@ -13,7 +13,7 @@ class AppsController < ApplicationController
     if app.valid?
       app.fill_out
       if valid_uploads?(
-           [app.psych_eval.path, app.psych_social.path],
+           [app.psych_eval.path, app.psych_social.path, app.insurance_card.path],
            app.attachment_content_whitelist,
            7340032 # 7 MB in bytes
            )
@@ -138,7 +138,7 @@ class AppsController < ApplicationController
         :drug_questions_date, :wanted_reduce_substance_use,
         :been_annoyed_by_substance_criticism, :felt_bad_about_substance_use,
         :ever_used_substances_for_hangover, :insurance_other,
-        :psych_social, :psych_eval, :hosp_precip_1, :hosp_precip_2,
+        :psych_social, :psych_eval, :insurance_card, :hosp_precip_1, :hosp_precip_2,
         :hosp_precip_3, :hosp_precip_4, :hosp_precip_5, :hosp_precip_6,
         :hosp_precip_7, :hosp_precip_8, :hosp_precip_9, :hosp_precip_10,
         :med_name_1, :med_name_2, :med_name_3, :med_name_4, :med_name_5,

@@ -52,15 +52,18 @@
     </div>
 
     <div class="panel-content">
-      <%= f.file_field :psych_eval, required: true,
-        label: ("Please attach a current" +
-        " psychiatric assessment using the DSM V") %>
+    <h4 class="required-fields-warning">Required</h4>
 
-      <%= f.file_field :psych_social, required: true,
-        label: ("Please attach a current" +
-        " and detailed psychosocial history") %>
+      <%= f.file_field :psych_eval, label: ("Please attach a current" +
+        " psychiatric assessment using the DSM V"), required: true %>
 
-      <p><em>Accepted file types: .pdf, .doc, .docx</em></p>
+      <%= f.file_field :psych_social, label: ("Please attach a current" +
+        " and detailed psychosocial history"), required: true %>
+
+      <%= f.file_field :insurance_card,
+        label: "Please attach a current insurance card", required: true %>
+
+      <p><em>Accepted file types: .pdf, .doc, .docx, .jpg</em></p>
       <p><em>Maximum file size: 7 megabytes</em></p>
     </div>
   </div>
