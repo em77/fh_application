@@ -1,4 +1,3 @@
 ## Fountain House Application Submitter
-#### Web app created for the [Fountain House](http://www.fountainhouse.org) organization that takes user input and attachments, writes the input to a PDF template, and e-mails the completed application to the designated destination.
-
+#### Web app for applying to the [Fountain House](http://www.fountainhouse.org) organization that takes user input and attachments, generates and fills out a PDF template with the input, uploads the files to an S3 bucket, and e-mails the completed application download links to the relevant department.
 See it live: https://www.fhapplication.org/
