@@ -4,15 +4,15 @@ feature "app submit" do
   scenario "user can submit an app with valid attachments" do
     visit new_app_path
     page.attach_file(
-        "_psych_eval",
+        "psych_eval",
         Rails.root.join("lib/sample_attachments/notes.pdf")
       )
     page.attach_file(
-      "_psych_social",
+      "psych_social",
       Rails.root.join("lib/sample_attachments/utopia.pdf")
     )
     page.attach_file(
-        "_insurance_card",
+        "insurance_card",
         Rails.root.join("lib/sample_attachments/sun.jpg")
       )
     fill_out_app
@@ -23,15 +23,15 @@ feature "app submit" do
   scenario "user cannot submit an app with spoofed attachments" do
     visit new_app_path
     page.attach_file(
-        "_psych_eval",
+        "psych_eval",
         Rails.root.join("lib/sample_attachments/notes.pdf")
       )
     page.attach_file(
-      "_psych_social",
+      "psych_social",
       Rails.root.join("lib/sample_attachments/spoof.pdf")
     )
     page.attach_file(
-        "_insurance_card",
+        "insurance_card",
         Rails.root.join("lib/sample_attachments/sun.jpg")
       )
     fill_out_app
@@ -43,15 +43,15 @@ feature "app submit" do
   scenario "user cannot submit an app with an attachment over 7 MB" do
     visit new_app_path
     page.attach_file(
-        "_psych_eval",
+        "psych_eval",
         Rails.root.join("lib/sample_attachments/notes.pdf")
       )
     page.attach_file(
-      "_psych_social",
+      "psych_social",
       Rails.root.join("lib/sample_attachments/bigfile.pdf")
     )
     page.attach_file(
-        "_insurance_card",
+        "insurance_card",
         Rails.root.join("lib/sample_attachments/sun.jpg")
       )
     fill_out_app

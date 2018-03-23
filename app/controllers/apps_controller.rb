@@ -43,13 +43,13 @@ class AppsController < ApplicationController
   end
 
   def content_type_valid?(file_path, whitelist)
-    line = Cocaine::CommandLine.new("file", "-b --mime-type #{file_path}")
+    line = Terrapin::CommandLine.new("file", "-b --mime-type #{file_path}")
     return true if whitelist.include?(line.run.chomp)
     false
   end
 
   def file_size_valid?(file_path, max_byte_size)
-    line = Cocaine::CommandLine.new("wc", "-c #{file_path}")
+    line = Terrapin::CommandLine.new("wc", "-c #{file_path}")
     return true if line.run.to_i <= max_byte_size
     false
   end

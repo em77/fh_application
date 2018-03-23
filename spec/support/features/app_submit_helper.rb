@@ -22,9 +22,9 @@ module Features
       fill_in :tour_date, with: Faker::Time.backward(14).strftime("%b %d, %Y")
 
       select("Home of Family Member",
-        from: symbol_to_underscore(:current_housing_type))
+        from: (:current_housing_type).to_s)
       select("With others",
-        from: symbol_to_underscore(:live_alone_or_with_others))
+        from: (:live_alone_or_with_others).to_s)
       fill_in :who_live_with, with: "Parents"
 
       [:ssi, :ssdi, :wages, :family_income, :snap, :retirement_benefits,
@@ -32,7 +32,7 @@ module Features
         :total_income]. each {|n| fill_in n, with: rand(200)}
 
       select("Permanent Partner",
-        from: symbol_to_underscore(:marital_status))
+        from: (:marital_status).to_s)
 
       [:school_attended_1, :school_attended_2, :school_attended_3].each do |n|
         fill_in n, with: Faker::Educator.university
@@ -131,7 +131,7 @@ module Features
       fill_in :emerg_primary_relation, with: "Friend"
       fill_in :emerg_secondary_relation, with: "Mother"
 
-      select("Medicare", from: symbol_to_underscore(:insurance_name))
+      select("Medicare", from: (:insurance_name).to_s)
       fill_in :insurance_num, with: rand(5000000)
 
       [:why_fh_good_place, :homeless_explanation,
@@ -154,7 +154,7 @@ module Features
         :abuse_history_drugs, :ever_in_treatment, :currently_in_treatment,
         :interested_in_treatment, :us_citizen]
         .each do |n|
-          select(["Yes", "No"].sample, from: symbol_to_underscore(n))
+          select(["Yes", "No"].sample, from: (n).to_s)
         end
 
       [:eth_aa, :eth_na, :eth_cauc, :eth_asian, :eth_me, :eth_pi,
@@ -165,7 +165,7 @@ module Features
         :some_college, :assoc_degree, :bachelors_degree, :some_grad_work,
         :masters_degree, :adv_grad_degree]
         .each do |n|
-          check(symbol_to_underscore(n))
+          check((n).to_s)
         end
 
       [:wanted_reduce_substance_use,
@@ -174,16 +174,12 @@ module Features
       :convicted_of_misdemeanor, :arrests_for_felonies, :injured_another_person,
       :history_of_violence]
       .each do |n|
-        choose("#{symbol_to_underscore(n)}_#{["no", "yes"].sample}")
+        choose("#{(n).to_s}_#{["no", "yes"].sample}")
       end
 
-      choose("_tour_fh_yes")
+      choose("tour_fh_yes")
 
-      choose("_bronx_or_manhattan_manhattan")
-    end
-
-    def symbol_to_underscore(symbol)
-      symbol.to_s.insert(0, "_")
+      choose("bronx_or_manhattan_manhattan")
     end
   end
 end
