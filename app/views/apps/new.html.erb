@@ -84,7 +84,10 @@
         value: params[:last_name], required: true %>
 
       <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
-        required: true, value: params[:dob] %>
+        required: true, id: "dob-field", value: params[:dob] %>
+
+      <%= f.text_field :age, label: "Age", required: true, id: "age-field",
+        readonly: true %>
 
       <%= f.text_field :ssn, {label: "SSN", value: params[:ssn],
           required: true, id: "ssn-field"} %>
@@ -162,14 +165,10 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h4 class="panel-title">Why Fountain House?</h4>
+      <h4 class="panel-title">Fountain House Tour</h4>
     </div>
 
     <div class="panel-content">
-      <%= f.text_area :why_fh_good_place,
-        label: "Why would Fountain House be a good place for you?",
-        value: params[:why_fh_good_place], required: true %>
-
       <div class="left-right-container">
         <%= f.label :tour_fh, ("Have you had a" +
           " tour of Fountain House?"), class: "position-left" %>
@@ -620,8 +619,6 @@
         " please elaborate",
         value: params[:abuse_history_elaboration] %>
 
-      <%= render partial: "substance_history_list", locals: {f: f} %>
-
       <%= f.select :ever_in_treatment, ["No", "Yes"],
         label: "Have you ever been in treatment for an alcohol or drug" +
         " problem?", selected: params[:ever_in_treatment],
@@ -671,19 +668,6 @@
 
     <div class="panel-content" id="cage-aid">
       <%= render partial: "cage_aid", locals: {f: f} %>
-    </div>
-  </div>
-
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <h4 class="panel-title">Further Info</h4>
-    </div>
-
-    <div class="panel-content">
-      <%= f.text_area :extra_info,
-        label: ("Are you currently involved in any programs, work, school," +
-        " etc. or is there anything else you would like us to know about you?"),
-        value: params[:extra_info] %>
     </div>
   </div>
 

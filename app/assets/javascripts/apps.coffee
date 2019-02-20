@@ -7,6 +7,15 @@ $(document).on "turbolinks:load", ->
     viewMode: "months", \
     minViewMode: "months")
 
+  # Auto-fill age field from DOB
+  $('#dob-field').change ->
+    now = moment()
+    dob = moment($('#dob-field').val())
+    duration = moment.duration(now.diff(dob))
+    years = duration.asYears()
+    $('#age-field').val(Math.round(years))
+    return
+
   # Total income field auto-filler
   $(".income-field").change ->
     total = (selector) ->

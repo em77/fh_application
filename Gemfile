@@ -31,7 +31,7 @@ gem 'terrapin'
 # For uploading to S3
 gem 'fog-aws'
 
-# gem 'therubyracer', platforms: :ruby
+gem 'momentjs-rails', '2.20.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

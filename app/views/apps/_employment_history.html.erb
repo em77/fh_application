@@ -6,14 +6,6 @@
   label: "Have you worked in the last 12 months?",
   selected: params[:worked_last_12_months] %>
 
-<%= f.text_field :total_years_worked,
-  label: "Estimated TOTAL YEARS you have worked for pay",
-  value: params[:total_years_worked] %>
-
-<%= f.text_field :total_number_jobs,
-  label: "Estimated TOTAL NUMBER OF JOBS you have worked for pay",
-  value: params[:total_number_jobs] %>
-
 <br>
 
 <h5 class="panel-subtext">
@@ -43,15 +35,6 @@
       <strong>Type of work</strong>
     </div>
   </div>
-
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <strong>Hourly wage</strong>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <strong>Hours per week</strong>
-    </div>
-  </div>
 </div>
 
 <div class="form-inline">
@@ -78,16 +61,6 @@
     </div>
     <div class="col-lg-6 col-xs-6">
       <%= f.text_field :work_type_1, value: params[:work_type_1],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-  </div>
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_wage_1, value: params[:work_wage_1],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_hours_1, value: params[:work_hours_1],
         hide_label: true, control_col: "col-lg-12", class: "row_field" %>
     </div>
   </div>
@@ -120,16 +93,6 @@
         hide_label: true, control_col: "col-lg-12", class: "row_field" %>
     </div>
   </div>
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_wage_2, value: params[:work_wage_2],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_hours_2, value: params[:work_hours_2],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-  </div>
 </div>
 
 <div class="form-inline">
@@ -156,16 +119,6 @@
     </div>
     <div class="col-lg-6 col-xs-6">
       <%= f.text_field :work_type_3, value: params[:work_type_3],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-  </div>
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_wage_3, value: params[:work_wage_3],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_hours_3, value: params[:work_hours_3],
         hide_label: true, control_col: "col-lg-12", class: "row_field" %>
     </div>
   </div>
@@ -198,16 +151,6 @@
         hide_label: true, control_col: "col-lg-12", class: "row_field" %>
     </div>
   </div>
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_wage_4, value: params[:work_wage_4],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_hours_4, value: params[:work_hours_4],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-  </div>
 </div>
 
 <div class="form-inline">
@@ -234,16 +177,6 @@
     </div>
     <div class="col-lg-6 col-xs-6">
       <%= f.text_field :work_type_5, value: params[:work_type_5],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-  </div>
-  <div class="col-lg-3 col-xs-3 row_element">
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_wage_5, value: params[:work_wage_5],
-        hide_label: true, control_col: "col-lg-12", class: "row_field" %>
-    </div>
-    <div class="col-lg-6 col-xs-6">
-      <%= f.text_field :work_hours_5, value: params[:work_hours_5],
         hide_label: true, control_col: "col-lg-12", class: "row_field" %>
     </div>
   </div>
