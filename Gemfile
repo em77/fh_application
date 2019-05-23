@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.4.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6.1'
+gem 'rails', '~> 5.1.6.2'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
@@ -16,13 +16,13 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'nokogiri', '~> 1.8.0'
+gem 'nokogiri'
 # For filling pdf forms using pdftk
 gem 'pdf-forms'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '3.4.1'
 gem 'bootstrap_form', '~> 2.4'
-gem 'bootstrap_form_extensions'
+gem 'bootstrap_form_extensions', '1.2.1'
 
 # For file attachments
 gem 'carrierwave', '~> 1.1.0'
