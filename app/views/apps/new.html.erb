@@ -55,7 +55,7 @@
     <h4 class="required-fields-warning">Required</h4>
 
       <%= f.file_field :psych_eval, label: ("Please attach a current" +
-        " psychiatric assessment using the DSM V"), required: true %>
+        " psychiatric evaluation using the DSM V"), required: true %>
 
       <%= f.file_field :psych_social, label: ("Please attach a current" +
         " and detailed psychosocial history"), required: true %>
@@ -64,7 +64,7 @@
         label: "Please attach a current insurance card", required: true %>
 
       <p><em>Accepted file types: .pdf, .doc, .docx, .jpg</em></p>
-      <p><em>Maximum file size: 7 megabytes</em></p>
+      <p><em>Maximum file size: 15 MB</em></p>
     </div>
   </div>
 
@@ -85,6 +85,9 @@
 
       <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
         required: true, id: "dob-field", value: params[:dob] %>
+
+      <%= f.text_field :place_of_birth, label: "Place of Birth",
+        required: true, value: params[:place_of_birth] %>
 
       <%= f.text_field :age, label: "Age", required: true, id: "age-field",
         readonly: true %>
@@ -186,6 +189,31 @@
 
       <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
         value: params[:tour_date] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Main Goals</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.select :main_goal, [
+          "Community",
+          "Education",
+          "Employment",
+          "Wellness",
+          "Benefits/Resources",
+          "Other"
+        ],
+        { label: "What is your main goal in joining Fountain House?" },
+        selected: params[:main_goal] %>
+
+      <%= f.text_field :main_goal_other_text, label: "Other",
+        value: params[:main_goal_other_text] %>
+
+      <%= f.text_field :what_challenges, label: "What challenges or barriers are keeping you from achieving your goals?",
+        value: params[:what_challenges] %>
     </div>
   </div>
 
@@ -335,6 +363,11 @@
         ],
         label: "Marital Status", selected: params[:marital_status] %>
 
+      <%= f.select :have_children, ["No", "Yes"], label: "Do you have any children?",
+        selected: params[:have_children] %>
+
+      <%= f.text_field :children_number, label: "If yes, how many?", value: params[:children_number] %>
+
       <%= f.select :are_you_veteran, ["No", "Yes"], label: "Are you a veteran?",
         selected: params[:are_you_veteran] %>
     </div>
@@ -360,7 +393,6 @@
       <%= render partial: "employment_history", locals: {f: f} %>
     </div>
   </div>
-</div>
 
   <div class="panel panel-info">
     <div class="panel-heading">

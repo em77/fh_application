@@ -15,7 +15,7 @@ class AppsController < ApplicationController
       if valid_uploads?(
            [app.psych_eval.path, app.psych_social.path, app.insurance_card.path],
            app.attachment_content_whitelist,
-           7340032 # 7 MB in bytes
+           15728640 # 15 MB in bytes
            )
         send_file(@app_file_path = app.export("application-#{app.unique_code}.pdf"),
           type: "application/pdf")
