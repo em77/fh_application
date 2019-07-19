@@ -137,6 +137,10 @@ class AppsController < ApplicationController
         :med_name_1, :med_name_2, :med_name_3, :med_name_4, :med_name_5,
         :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3, :med_dosage_4,
         :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2, :med_freq_3,
-        :med_freq_4, :med_freq_5, :med_freq_6)
+        :med_freq_4, :med_freq_5, :med_freq_6, :sub_abuse_check, :work_prog_check,
+        :acces_vr_check, :edu_sup_check, :act_team_check, :age, :place_of_birth,
+        :main_goal, :main_goal_other_text, :what_challenges, :have_children,
+        :children_number, :dsm_v, :other_sup_text, :referral_signature, :referral_signature_date,
+        :recommend_type, :get_needs_met, :feel_part)
     end
 end

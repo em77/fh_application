@@ -72,7 +72,10 @@ class FhApplicationForm < App
     :hosp_precip_10, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
     :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
     :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
-    :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6
+    :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6, :age, :place_of_birth,
+    :main_goal, :main_goal_other_text, :what_challenges, :have_children,
+    :children_number, :dsm_v, :other_sup_text, :referral_signature, :referral_signature_date,
+    :recommend_type, :get_needs_met, :feel_part
 
   mount_uploader :psych_eval, PsychEvalUploader
 
@@ -166,7 +169,10 @@ class FhApplicationForm < App
       :hosp_precip_10, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
       :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
       :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
-      :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6
+      :med_freq_3, :med_freq_4, :med_freq_5, :med_freq_6, :age, :place_of_birth,
+      :main_goal, :main_goal_other_text, :what_challenges, :have_children,
+      :children_number, :dsm_v, :other_sup_text, :referral_signature, :referral_signature_date,
+      :recommend_type, :get_needs_met, :feel_part
     ]
 
     checkboxes = [
@@ -176,7 +182,8 @@ class FhApplicationForm < App
       :adv_grad_degree, :hs_diploma, :bachelors_degree, :med_alert_deaf,
       :med_alert_recent_surg, :med_alert_asthma, :med_alert_diabetes,
       :med_alert_cpi, :med_alert_npm, :med_alert_ep, :med_alert_allerg,
-      :med_alert_blind, :med_alert_hyper
+      :med_alert_blind, :med_alert_hyper, :sub_abuse_check, :work_prog_check,
+      :acces_vr_check, :edu_sup_check, :act_team_check
     ]
 
     (text_fields + checkboxes).each do |field|
