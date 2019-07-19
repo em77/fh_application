@@ -54,11 +54,11 @@
     <div class="panel-content">
     <h4 class="required-fields-warning">Required</h4>
 
-      <%= f.file_field :psych_eval, label: ("Please attach a current" +
-        " psychiatric evaluation using the DSM V"), required: true %>
+      <%= f.file_field :psych_eval, label: sanitize("Please attach a current" +
+        " psychiatric evaluation using the DSM V (#{link_to 'template', 'https://fountainhouse-bucket.s3.amazonaws.com/Psychiatric+Evaluation+Template.docx', target: '_blank'})"), required: true %>
 
-      <%= f.file_field :psych_social, label: ("Please attach a current" +
-        " and detailed psychosocial history"), required: true %>
+      <%= f.file_field :psych_social, label: sanitize("Please attach a current" +
+        " and detailed psychosocial history (#{link_to 'template', 'https://fountainhouse-bucket.s3.amazonaws.com/Psychosocial+Template.pdf', target: '_blank'})"), required: true %>
 
       <%= f.file_field :insurance_card,
         label: "Please attach a current insurance card", required: true %>
