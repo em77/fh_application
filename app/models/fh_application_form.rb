@@ -93,8 +93,10 @@ class FhApplicationForm < App
     fill(:drug_questions_name,
          (self.send(:first_name) + " " + self.send(:last_name))
         )
-    fill(:drug_questions_date, Date.today.strftime("%b %d, %Y"))
-    fill(:member_signature_date, Date.today.strftime("%b %d, %Y"))
+    todays_date = Date.today.strftime("%b %d, %Y")
+    fill(:drug_questions_date, todays_date)
+    fill(:member_signature_date, todays_date)
+    fill(:referral_signature_date, todays_date)
     ssn_splitter(self.send(:ssn)).each {|key, value| fill(key, value)}
     fill(:tour_fh, "1") if self.send(:tour_fh) == "Yes"
   end
