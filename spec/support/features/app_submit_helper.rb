@@ -8,6 +8,7 @@ module Features
       fill_in :mi, with: "A"
       fill_in :dob, with: Faker::Date.between(40.years.ago, 20.years.ago)
                             .strftime("%b %d, %Y")
+      fill_in :place_of_birth, with: Faker::Address.city
       fill_in :ssn, with: Faker::Number.number(9)
       fill_in :gender, with: "Female"
       fill_in :apt, with: Faker::Address.secondary_address
@@ -17,9 +18,13 @@ module Features
       fill_in :county, with: Faker::Address.city
       fill_in :residence_time_length, with: "#{rand(20)} years"
 
+      fill_in :children_number, with: Faker::Number.number(1)
+
       fill_in :recommend_agency_type, with: Faker::Company.buzzword
 
       fill_in :tour_date, with: Faker::Time.backward(14).strftime("%b %d, %Y")
+
+      select("Education", from: (:main_goal).to_s)
 
       select("Home of Family Member",
         from: (:current_housing_type).to_s)
@@ -41,8 +46,7 @@ module Features
         fill_in n, with: Faker::Date.between(15.years.ago, Date.today)
                            .strftime("%Y")
       end
-      [:major_1, :major_2, :major_3, :substance_name_1, :substance_name_2,
-        :substance_name_3, :substance_name_4, :substance_name_5, :eth_other,
+      [:major_1, :major_2, :major_3, :eth_other,
         :other_language, :med_name_1, :med_name_2, :med_name_3, :med_name_4,
         :med_name_5, :med_name_6, :med_dosage_1, :med_dosage_2, :med_dosage_3,
         :med_dosage_4, :med_dosage_5, :med_dosage_6, :med_freq_1, :med_freq_2,
@@ -51,15 +55,10 @@ module Features
         fill_in n, with: Faker::Lorem.word
       end
 
-      # :ever_worked,
-      #   :worked_last_12_months
-
       [:graduate_1, :graduate_2, :graduate_3].each do |n|
         fill_in n, with: ["Yes", "No"].sample
       end
 
-      fill_in :total_years_worked, with: rand(20)
-      fill_in :total_number_jobs, with: rand(10)
       [:work_start_date_1, :work_start_date_2, :work_start_date_3,
         :work_start_date_4, :work_start_date_5, :work_end_date_1,
         :work_end_date_2, :work_end_date_3, :work_end_date_4, :work_end_date_5,
@@ -72,11 +71,7 @@ module Features
         :hospital_end_date_1, :hospital_end_date_2, :hospital_end_date_3,
         :hospital_end_date_4, :hospital_end_date_5, :hospital_end_date_6,
         :hospital_end_date_7, :hospital_end_date_8, :hospital_end_date_9,
-        :hospital_end_date_10, :substance_last_use_1, :substance_last_use_2,
-        :substance_last_use_3, :substance_last_use_4, :substance_last_use_5,
-        :substance_date_started_1, :substance_date_started_2,
-        :substance_date_started_3, :substance_date_started_4,
-        :substance_date_started_5]
+        :hospital_end_date_10]
         .each do |n|
           fill_in n, with: Faker::Date.between(15.years.ago, Date.today)
                              .strftime("%b %d, %Y")
@@ -87,15 +82,13 @@ module Features
         .each do |n|
           fill_in n, with: Faker::Lorem.word
         end
-      [:work_wage_1, :work_wage_2, :work_wage_3, :work_wage_4, :work_wage_5,
-        :work_hours_1, :work_hours_2, :work_hours_3, :work_hours_4,
-        :work_hours_5, :hospitalization_count]
+      [:hospitalization_count]
         .each do |n|
           fill_in n, with: rand(40)
         end
 
       [:psych_name, :recommend_name, :therapist_name, :primary_care_name,
-        :emerg_primary_name, :emerg_secondary_name, :member_signature]
+        :emerg_primary_name, :emerg_secondary_name, :member_signature, :referral_signature]
         .each do |n|
           fill_in n, with: Faker::Name.name
         end
@@ -134,9 +127,15 @@ module Features
       select("Medicare", from: (:insurance_name).to_s)
       fill_in :insurance_num, with: rand(5000000)
 
-      [:why_fh_good_place, :homeless_explanation,
+      select("Inpatient", from: (:recommend_type).to_s)
+
+      select("Somewhat", from: (:get_needs_met).to_s)
+
+      select("Somewhat", from: (:feel_part).to_s)
+
+      [:homeless_explanation,
         :work_notes, :med_alert_memo,
-        :abuse_history_elaboration, :legal_history_detail, :extra_info,
+        :abuse_history_elaboration, :legal_history_detail,
         :hosp_precip_1, :hosp_precip_2, :hosp_precip_3, :hosp_precip_4,
         :hosp_precip_5, :hosp_precip_6, :hosp_precip_7, :hosp_precip_8,
         :hosp_precip_9, :hosp_precip_10]
@@ -144,7 +143,8 @@ module Features
           fill_in n, with: Faker::Lorem.paragraphs(3).join
         end
       [:med_alert_other, :past_treatment_when_and_where,
-        :current_treatment_when_and_where]
+        :current_treatment_when_and_where, :main_goal_other_text, :what_challenges,
+        :dsm_v, :other_sup_text]
         .each do |n|
           fill_in n, with: Faker::Lorem.paragraphs(1).join
         end
@@ -152,7 +152,7 @@ module Features
       [:have_homeless_history, :reside_with_minors, :acs_involvement,
         :are_you_veteran, :harp, :hcbs, :abuse_history_alcohol,
         :abuse_history_drugs, :ever_in_treatment, :currently_in_treatment,
-        :interested_in_treatment, :us_citizen]
+        :interested_in_treatment, :us_citizen, :have_children]
         .each do |n|
           select(["Yes", "No"].sample, from: (n).to_s)
         end
@@ -163,7 +163,8 @@ module Features
         :med_alert_recent_surg, :med_alert_diabetes, :med_alert_ep,
         :med_alert_hyper, :less_hs, :some_hs, :ged, :hs_diploma, :trade_school,
         :some_college, :assoc_degree, :bachelors_degree, :some_grad_work,
-        :masters_degree, :adv_grad_degree]
+        :masters_degree, :adv_grad_degree, :sub_abuse_check, :work_prog_check,
+        :acces_vr_check, :edu_sup_check, :act_team_check]
         .each do |n|
           check((n).to_s)
         end

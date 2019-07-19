@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require rails-ujs
+//= require moment
 //= require turbolinks
 //= require bootstrap-sprockets
 /*

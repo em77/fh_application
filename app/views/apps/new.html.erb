@@ -54,17 +54,17 @@
     <div class="panel-content">
     <h4 class="required-fields-warning">Required</h4>
 
-      <%= f.file_field :psych_eval, label: ("Please attach a current" +
-        " psychiatric assessment using the DSM V"), required: true %>
+      <%= f.file_field :psych_eval, label: sanitize("Please attach a current" +
+        " psychiatric evaluation using the DSM V (#{link_to 'template', 'https://fountainhouse-bucket.s3.amazonaws.com/Psychiatric+Evaluation+Template.docx', target: '_blank'})"), required: true %>
 
-      <%= f.file_field :psych_social, label: ("Please attach a current" +
-        " and detailed psychosocial history"), required: true %>
+      <%= f.file_field :psych_social, label: sanitize("Please attach a current" +
+        " and detailed psychosocial history (#{link_to 'template', 'https://fountainhouse-bucket.s3.amazonaws.com/Psychosocial+Template.pdf', target: '_blank'})"), required: true %>
 
       <%= f.file_field :insurance_card,
         label: "Please attach a current insurance card", required: true %>
 
       <p><em>Accepted file types: .pdf, .doc, .docx, .jpg</em></p>
-      <p><em>Maximum file size: 7 megabytes</em></p>
+      <p><em>Maximum file size: 15 MB</em></p>
     </div>
   </div>
 
@@ -84,7 +84,13 @@
         value: params[:last_name], required: true %>
 
       <%= f.text_field :dob, label: "Date of Birth", class: "datepicker",
-        required: true, value: params[:dob] %>
+        required: true, id: "dob-field", value: params[:dob] %>
+
+      <%= f.text_field :place_of_birth, label: "Place of Birth",
+        required: true, value: params[:place_of_birth] %>
+
+      <%= f.text_field :age, label: "Age", required: true, id: "age-field",
+        readonly: true %>
 
       <%= f.text_field :ssn, {label: "SSN", value: params[:ssn],
           required: true, id: "ssn-field"} %>
@@ -139,6 +145,14 @@
 
     <div class="panel-content">
 
+      <%= f.select :recommend_type, [
+          "Self-Referral",
+          "Inpatient",
+          "Outpatient"
+        ],
+        { label: "Select one:" },
+        selected: params[:recommend_type] %>
+
       <%= f.text_field :recommend_name, label: "Name",
         value: params[:recommend_name], required: true %>
 
@@ -162,14 +176,10 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h4 class="panel-title">Why Fountain House?</h4>
+      <h4 class="panel-title">Fountain House Tour</h4>
     </div>
 
     <div class="panel-content">
-      <%= f.text_area :why_fh_good_place,
-        label: "Why would Fountain House be a good place for you?",
-        value: params[:why_fh_good_place], required: true %>
-
       <div class="left-right-container">
         <%= f.label :tour_fh, ("Have you had a" +
           " tour of Fountain House?"), class: "position-left" %>
@@ -187,6 +197,31 @@
 
       <%= f.text_field :tour_date, label: "Date of tour", class: "datepicker",
         value: params[:tour_date] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">Main Goals</h4>
+    </div>
+
+    <div class="panel-content">
+      <%= f.select :main_goal, [
+          "Community",
+          "Education",
+          "Employment",
+          "Wellness",
+          "Benefits/Resources",
+          "Other"
+        ],
+        { label: "What is your main goal in joining Fountain House?" },
+        selected: params[:main_goal] %>
+
+      <%= f.text_field :main_goal_other_text, label: "Other",
+        value: params[:main_goal_other_text] %>
+
+      <%= f.text_field :what_challenges, label: "What challenges or barriers are keeping you from achieving your goals?",
+        value: params[:what_challenges] %>
     </div>
   </div>
 
@@ -292,7 +327,7 @@
     </div>
 
     <div class="panel-content">
-      <h5 class="panel-subtext">Ethnicity (check all that apply)</h5>
+      <h5>Ethnicity (check all that apply)</h5>
       <%= f.form_group do %>
         <%= f.check_box :eth_aa, label: "African-American",
           checked: is_checked?(params[:eth_aa]), inline: true %>
@@ -336,6 +371,11 @@
         ],
         label: "Marital Status", selected: params[:marital_status] %>
 
+      <%= f.select :have_children, ["No", "Yes"], label: "Do you have any children?",
+        selected: params[:have_children] %>
+
+      <%= f.text_field :children_number, label: "If yes, how many?", value: params[:children_number] %>
+
       <%= f.select :are_you_veteran, ["No", "Yes"], label: "Are you a veteran?",
         selected: params[:are_you_veteran] %>
     </div>
@@ -354,6 +394,21 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
+      <h4 class="panel-title">Current Community</h4>
+      <h5 class="panel-subtext">How well do each of the following statements represent how you <i>feel</i> about your current community?</h5>
+    </div>
+
+    <div class="panel-content">
+      <%= f.select :get_needs_met, ["Not at all", "Somewhat", "Mostly", "Completely"], label: "I get important needs of mine met by my current community",
+        selected: params[:get_needs_met] %>
+
+      <%= f.select :feel_part, ["Not at all", "Somewhat", "Mostly", "Completely"], label: "It is important for me to feel a part of a community",
+        selected: params[:feel_part] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
       <h4 class="panel-title">Employment History</h4>
     </div>
 
@@ -361,7 +416,6 @@
       <%= render partial: "employment_history", locals: {f: f} %>
     </div>
   </div>
-</div>
 
   <div class="panel panel-info">
     <div class="panel-heading">
@@ -575,6 +629,15 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
+      <h4 class="panel-title">Diagnosis</h4>
+    </div>
+    <div class="panel-content">
+      <%= f.text_area :dsm_v, label: "Psychiatric Diagnosis (DSM V)", value: params[:dsm_v] %>
+    </div>
+  </div>  
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
       <h4 class="panel-title">Medication Information</h4>
       <h5 class="panel-subtext">Please list all medications you are currently
         taking with respective names, dosage, and frequency.</h5>
@@ -619,8 +682,6 @@
         label: "If an alcohol or substance abuse history exists," +
         " please elaborate",
         value: params[:abuse_history_elaboration] %>
-
-      <%= render partial: "substance_history_list", locals: {f: f} %>
 
       <%= f.select :ever_in_treatment, ["No", "Yes"],
         label: "Have you ever been in treatment for an alcohol or drug" +
@@ -676,14 +737,31 @@
 
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h4 class="panel-title">Further Info</h4>
+      <h4 class="panel-title">Current Support</h4>
     </div>
 
     <div class="panel-content">
-      <%= f.text_area :extra_info,
-        label: ("Are you currently involved in any programs, work, school," +
-        " etc. or is there anything else you would like us to know about you?"),
-        value: params[:extra_info] %>
+      <h5>Let us know what types of support you are receiving currently</h5>
+
+      <%= f.form_group do %>
+        <%= f.check_box :sub_abuse_check, label: "Substance Abuse Program",
+          checked: is_checked?(params[:sub_abuse_check]), inline: true %>
+
+        <%= f.check_box :work_prog_check, label: "Work Program",
+          checked: is_checked?(params[:work_prog_check]), inline: true %>
+
+        <%= f.check_box :acces_vr_check, label: "Acces-VR",
+          checked: is_checked?(params[:acces_vr_check]), inline: true %>
+
+        <%= f.check_box :edu_sup_check, label: "Education Support",
+          checked: is_checked?(params[:edu_sup_check]), inline: true %>
+
+        <%= f.check_box :act_team_check, label: "ACT Team",
+          checked: is_checked?(params[:act_team_check]), inline: true %>
+      <% end %>
+
+      <%= f.text_field :other_sup_text, label: "Other",
+        value: params[:other_sup_text] %>
     </div>
   </div>
 
@@ -710,10 +788,14 @@
           </div>
         <% end %>
       </div>
-      
+
       <%= f.text_field :member_signature, label: ("Please sign your name to" +
-        " this application by typing it in below"),
+        " this application by typing it in below (Member)"),
         value: params[:member_signature], required: true %>
+
+      <%= f.text_field :referral_signature, label: ("Please sign your name to" +
+        " this application by typing it in below (Referral)"),
+        value: params[:referral_signature], required: true %>
     </div>
   </div>
 
