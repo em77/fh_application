@@ -157,8 +157,11 @@ module Features
           select(["Yes", "No"].sample, from: (n).to_s)
         end
 
-      [:eth_aa, :eth_na, :eth_cauc, :eth_asian, :eth_me, :eth_pi,
-        :eth_lat, :eth_car, :med_alert_deaf, :med_alert_asthma,
+      [:eth_aa, :eth_na, :eth_cauc, :eth_asian, :eth_pi,
+        :eth_car, :eth_aa_ac, :eth_aa_other,
+        :eth_aa_unknown, :eth_aa_na, :eth_cuban, :eth_mex, :eth_pr, :eth_dom,
+        :eth_sa, :eth_ca,
+        :med_alert_deaf, :med_alert_asthma,
         :med_alert_cpi, :med_alert_allerg, :med_alert_npm, :med_alert_blind,
         :med_alert_recent_surg, :med_alert_diabetes, :med_alert_ep,
         :med_alert_hyper, :less_hs, :some_hs, :ged, :hs_diploma, :trade_school,

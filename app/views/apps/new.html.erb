@@ -16,7 +16,7 @@
   url: {action: "create"}, multipart: true) do |f| %>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Eligibility</h4>
     </div>
 
@@ -47,7 +47,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Attachments</h4>
     </div>
 
@@ -69,7 +69,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Prospective Member</h4>
     </div>
 
@@ -104,7 +104,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Address</h4>
     </div>
 
@@ -139,7 +139,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Who is recommending you?</h4>
     </div>
 
@@ -175,7 +175,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Fountain House Tour</h4>
     </div>
 
@@ -201,7 +201,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Main Goals</h4>
     </div>
 
@@ -226,7 +226,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Housing</h4>
     </div>
 
@@ -280,7 +280,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Income</h4>
       <h5 class="panel-subtext">
         Enter monthly amounts in any categories that apply
@@ -322,41 +322,89 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
+      <h4 class="panel-title">Ethnicity (check all that apply)</h4>
+    </div>
+
+    <div class="panel-content">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= f.form_group do %>
+            <%= f.check_box :eth_cauc, label: "White / European American",
+              checked: is_checked?(params[:eth_cauc]), inline: true %>
+
+            <%= f.check_box :eth_asian, label: "Asian",
+              checked: is_checked?(params[:eth_asian]), inline: true %>
+
+            <%= f.check_box :eth_pi, label: "Pacific Islander / Native Hawaiian",
+              checked: is_checked?(params[:eth_pi]), inline: true %>
+
+            <%= f.check_box :eth_na, label: "Native American / American Indian",
+              checked: is_checked?(params[:eth_na]), inline: true %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Black / African American</div>
+        <div class="panel-body">
+          <%= f.form_group do %>
+            <%= f.check_box :eth_aa, label: "African-American",
+              checked: is_checked?(params[:eth_aa]), inline: true %>
+
+            <%= f.check_box :eth_car, label: "Afro-Carribean",
+              checked: is_checked?(params[:eth_car]), inline: true %>
+
+            <%= f.check_box :eth_aa_ac, label: "African Continent",
+              checked: is_checked?(params[:eth_aa_ac]), inline: true %>
+
+            <%= f.check_box :eth_aa_other, label: "Other Black",
+              checked: is_checked?(params[:eth_aa_other]), inline: true %>
+
+            <%= f.check_box :eth_aa_unknown, label: "Unknown",
+              checked: is_checked?(params[:eth_aa_unknown]), inline: true %>
+
+            <%= f.check_box :eth_aa_na, label: "Not Applicable",
+              checked: is_checked?(params[:eth_aa_na]), inline: true %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Hispanic / Latin American</div>
+        <div class="panel-body">
+          <%= f.form_group do %>
+            <%= f.check_box :eth_cuban, label: "Cuban",
+              checked: is_checked?(params[:eth_cuban]), inline: true %>
+
+            <%= f.check_box :eth_mex, label: "Mexican",
+              checked: is_checked?(params[:eth_mex]), inline: true %>
+
+            <%= f.check_box :eth_pr, label: "Puerto Rican",
+              checked: is_checked?(params[:eth_pr]), inline: true %>
+
+            <%= f.check_box :eth_dom, label: "Dominican",
+              checked: is_checked?(params[:eth_dom]), inline: true %>
+
+            <%= f.check_box :eth_sa, label: "South American",
+              checked: is_checked?(params[:eth_sa]), inline: true %>
+
+            <%= f.check_box :eth_ca, label: "Central American",
+              checked: is_checked?(params[:eth_ca]), inline: true %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= f.text_field :eth_other, label: "Other Ethnicity", value: params[:eth_other] %>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Demographic Info</h4>
     </div>
 
     <div class="panel-content">
-      <h5>Ethnicity (check all that apply)</h5>
-      <%= f.form_group do %>
-        <%= f.check_box :eth_aa, label: "African-American",
-          checked: is_checked?(params[:eth_aa]), inline: true %>
-
-        <%= f.check_box :eth_na, label: "American Indian/Native American",
-          checked: is_checked?(params[:eth_na]), inline: true %>
-
-        <%= f.check_box :eth_cauc, label: "Caucasian",
-          checked: is_checked?(params[:eth_cauc]), inline: true %>
-
-        <%= f.check_box :eth_asian, label: "Asian/Chinese/Japanese/Korean",
-          checked: is_checked?(params[:eth_asian]), inline: true %>
-
-        <%= f.check_box :eth_me, label: "Middle Eastern",
-          checked: is_checked?(params[:eth_me]), inline: true %>
-
-        <%= f.check_box :eth_pi, label: "Pacific Islander",
-          checked: is_checked?(params[:eth_pi]), inline: true %>
-
-        <%= f.check_box :eth_lat,
-          label: "Latino/Hispanic/Cuban/Mexican/Puerto Rican",
-          checked: is_checked?(params[:eth_lat]), inline: true %>
-
-        <%= f.check_box :eth_car, label: "Carribean/Haitian/Jamaican",
-          checked: is_checked?(params[:eth_car]), inline: true %>
-      <% end %>
-
-      <%= f.text_field :eth_other, label: "Other", value: params[:eth_other] %>
-
       <%= f.text_field :other_language,
         label: "Primary language (if other than English)",
         value: params[:other_language] %>
@@ -382,7 +430,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Education Level</h4>
       <h5 class="panel-subtext">(check all that apply)</h5>
     </div>
@@ -393,7 +441,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Current Community</h4>
       <h5 class="panel-subtext">How well do each of the following statements represent how you <i>feel</i> about your current community?</h5>
     </div>
@@ -408,7 +456,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Employment History</h4>
     </div>
 
@@ -418,7 +466,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Medical Alerts</h4>
       <h5 class="panel-subtext">(check all that apply)</h5>
     </div>
@@ -466,7 +514,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Psychiatric/NP Contact</h4>
     </div>
 
@@ -494,7 +542,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Therapist Contact</h4>
     </div>
 
@@ -521,7 +569,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Medical Contact</h4>
     </div>
 
@@ -544,7 +592,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Emergency Contacts</h4>
     </div>
 
@@ -571,7 +619,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Medical Insurance</h4>
     </div>
 
@@ -628,7 +676,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Diagnosis</h4>
     </div>
     <div class="panel-content">
@@ -637,7 +685,7 @@
   </div>  
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Medication Information</h4>
       <h5 class="panel-subtext">Please list all medications you are currently
         taking with respective names, dosage, and frequency.</h5>
@@ -648,7 +696,7 @@
   </div>  
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Psychiatric Hospitalizations</h4>
       <h5 class="panel-subtext">Please list all hospitalizations beginning with
         the first. Be sure to indicate the most recent.</h5>
@@ -664,7 +712,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Substance Abuse History</h4>
     </div>
 
@@ -709,7 +757,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Legal History</h4>
     </div>
 
@@ -719,7 +767,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">CAGE-AID Questionnaire</h4>
       <h5 class="panel-subtext">
         The following is a questionnaire, required
@@ -736,7 +784,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Current Support</h4>
     </div>
 
@@ -766,7 +814,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Signature</h4>
     </div>
 
@@ -800,7 +848,7 @@
   </div>
 
   <div class="panel panel-info">
-    <div class="panel-heading">
+    <div class="panel-heading panel-heading-custom">
       <h4 class="panel-title">Application Submission</h4>
     </div>
 

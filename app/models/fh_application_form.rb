@@ -25,7 +25,9 @@ class FhApplicationForm < App
     :school_attended_3, :school_years_3, :major_3, :graduate_3,
     :work_start_date_1, :employer_1,
     :work_title_1, :employer_2, :employer_3, :employer_4, :employer_5,
-    :eth_aa, :eth_asian, :eth_lat, :eth_na, :eth_me, :eth_cauc, :eth_pi,
+    :eth_aa, :eth_asian, :eth_na, :eth_cauc, :eth_pi, :eth_aa_ac, :eth_aa_other,
+    :eth_aa_unknown, :eth_aa_na, :eth_cuban, :eth_mex, :eth_pr, :eth_dom,
+    :eth_sa, :eth_ca,
     :eth_car, :marital_status, :are_you_veteran, :less_hs, :trade_school,
     :some_grad_work, :some_hs, :some_college, :masters_degree, :ged,
     :assoc_degree, :adv_grad_degree, :hs_diploma, :bachelors_degree,
@@ -170,7 +172,9 @@ class FhApplicationForm < App
     ]
 
     checkboxes = [
-      :eth_other, :eth_aa, :eth_asian, :eth_lat, :eth_na, :eth_me,
+      :eth_other, :eth_aa, :eth_asian, :eth_na, :eth_aa_ac, :eth_aa_other,
+      :eth_aa_unknown, :eth_aa_na, :eth_cuban, :eth_mex, :eth_pr, :eth_dom,
+      :eth_sa, :eth_ca,
       :eth_cauc, :eth_pi, :eth_car, :less_hs, :trade_school, :some_grad_work,
       :some_hs, :some_college, :masters_degree, :ged, :assoc_degree,
       :adv_grad_degree, :hs_diploma, :bachelors_degree, :med_alert_deaf,
