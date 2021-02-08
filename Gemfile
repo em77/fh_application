@@ -25,7 +25,7 @@ gem 'bootstrap_form', '~> 2.4'
 gem 'bootstrap_form_extensions', '1.2.1'
 
 # For file attachments
-gem 'carrierwave', '~> 1.1.0'
+gem 'carrierwave', '~> 1.3.2'
 # For running file verification commands
 gem 'terrapin'
 # For uploading to S3
