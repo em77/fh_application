@@ -139,7 +139,8 @@ GEM
       cliver (~> 0.3.2)
       safe_shell (>= 1.0.3, < 2.0)
     public_suffix (3.0.2)
-    puma (3.12.2)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (2.0.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -261,7 +262,7 @@ DEPENDENCIES
   momentjs-rails (= 2.20.1)
   nokogiri
   pdf-forms
-  puma (~> 3.12)
+  puma (~> 4.3)
   rack-timeout
   rails (~> 5.1.7)
   rspec-rails
